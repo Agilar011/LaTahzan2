@@ -832,10 +832,33 @@
 {{-- Navigasi Bar --}}
 
 <body class="antialiased">
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-white selection:bg-red-500 selection:text-white">
+    <div>
         @if (Route::has('login'))
-            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+            <div class="sm:fixed sm:justify-center sm:items-center ">
+                <div class="container-navbar">
+
+            <div class="navbar">
+                <div class="nav-title">
+                    <a href="/"><h1>LaTahzan</h1></a>
+                </div>
+                <div class="nav-btn">
+                    <ul>
+                        <li><a href="#">Layanan</a></li>
+                        <li><a href="#">Testimoni</a></li>
+                        <li><a href="#">Kontak Kami</a></li>
+                        <li><a href="#">Tentang</a></li>
+                    </ul>
+                </div>
+
+                <div class="searchbar">
+                    <form>
+                        <input type="text" placeholder="Temukan Motor, Rumah atau Paket Umroh Disini..">
+                        <button type="submit">Cari</button>
+                    </form>
+                </div>
+
+
+
                 @auth
                     <a href="{{ url('/dashboard') }}"
                         class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
@@ -849,6 +872,8 @@
                             class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                     @endif
                 @endauth
+            </div>
+        </div>
             </div>
         @endif
         {{-- Konten Utama --}}

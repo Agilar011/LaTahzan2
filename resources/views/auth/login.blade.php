@@ -1,9 +1,13 @@
+{{-- elemen dalam halaman ini terdapat pada resources\views\components --}}
 <x-guest-layout>
+    {{-- elemen auth.. crd --}}
     <x-authentication-card>
         <x-slot name="logo">
+                {{-- elemen auth.. crd logo--}}
+
             <x-authentication-card-logo />
         </x-slot>
-
+            {{-- elemen validation error --}}
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -28,7 +32,7 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600 dark:text-black">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
