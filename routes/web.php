@@ -23,6 +23,11 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        if (auth()->user()->hasRole('admin')) {
+            return view('Template UI.admin.dasboard-admin');
+        } else {
+            return view('template UI.customer.dasboard-customer');
+        }
     })->name('dashboard');
+
 });
