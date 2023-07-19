@@ -832,6 +832,8 @@
 {{-- Navigasi Bar --}}
 
 <body>
+<x-app-layout>
+</x-app-layout>
 
     <div style="position: fixed; top: 0; left: 30%; transform: translateX(-20%); background-color: #transparance; padding: 10px;">
         <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">

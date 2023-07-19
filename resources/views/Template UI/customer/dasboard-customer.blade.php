@@ -832,27 +832,10 @@
 {{-- Navigasi Bar --}}
 
 <body>
-
-
-    <div style="position: fixed; top: 0; left: 30%; transform: translateX(-20%); background-color: #transparance; padding: 10px;">
-        <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">
-
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">LaTahzan</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">
-            <div class="searchbar">
-            <form>
-                <input type="text" placeholder="Temukan Motor, Rumah atau Paket Umroh Disini..">
-                <button type="submit">Cari</button>
-            </form>
-        </div></a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Layanan</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Testimoni</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Kontak Kami</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Tentang</a>
         @auth
-        <a href="{{ url('/dashboard') }}"
-            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-            style="margin-right: 10px; text-decoration: none; color: #333;">Dashboard</a>
+        <x-app-layout>
+            {{-- penempatan di layout.app dan navigation-menu --}}
+            </x-app-layout>
     @else
         <a href="{{ route('login') }}"
             class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
