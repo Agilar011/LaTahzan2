@@ -1,7 +1,8 @@
 
-{{-- permulaan --}}
+{{-- permulaan div utama navbar --}}
 <nav x-data="{ open: false }" class="bg-gray-900  border-b border-gray-100 dark:border-gray-700">
     @auth
+    {{-- Navbar Admin --}}
     @if (auth()->user()->hasRole('admin'))
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -147,7 +148,9 @@
             </div>
         </div>
     </div>
+    {{-- Akhir Punya Admin --}}
     @else
+    {{-- Navbar Selain Admin --}}
     <div style="position: fixed; top: 0; left: 30%; transform: translateX(-20%); background-color: #transparance; padding: 10px;">
         <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;">
 
@@ -222,8 +225,9 @@
 
     @endif
     <!-- Primary Navigation Menu -->
+    {{-- AKhir Navbar User --}}
 
-
+        {{-- Navbar Non Login --}}
     @else
     <div style="position: fixed; top: 0; left: 30%; transform: translateX(-20%); background-color: #transparance; padding: 10px;">
         <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">
