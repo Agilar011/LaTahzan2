@@ -5,3 +5,7 @@ menu.addEventListener('click', function(){
     sidebar.classList.toggle('hide');
 
 })
+
+// function tambahOto(){
+//     window.open('/tambah-oto')
+// }

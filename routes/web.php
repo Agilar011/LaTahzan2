@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OtomotifController;
+use App\Http\Controllers\PropertiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,13 +59,47 @@ Route::get('/input-umroh', function () {
     return view('admin.admin-category-page.umroh.input-umroh');
 });
 
-Route::get('/input-oto', function () {
-    return view('admin.admin-category-page.oto.input-oto');
-});
+// Route::get('/input-properti', function () {
+//     return view('admin.admin-category-page.prop.input-prop');
+// });
 
-Route::get('/input-properti', function () {
-    return view('admin.admin-category-page.prop.input-prop');
-});
+
+//RETRIEVE DATA PROP ADMIN
+
+Route::get('/input-properti',[PropertiController::class,'index'])->name('properti');
+
+//TAMBAH DATA PROP ADMIN
+
+Route::get('/tambahProp',[PropertiController::class,'tambahProp'])->name('tambahProp');
+Route::post('/insertdataprop',[PropertiController::class,'insertdataprop'])->name('insertdataprop');
+
+
+
+
+//RETRIEVE DATA OTO ADMIN
+
+Route::get('/input-oto',[OtomotifController::class,'index'])->name('otomotif');
+
+
+//TAMBAH DATA OTO ADMIN
+
+Route::get('/tambahOto',[OtomotifController::class,'tambahOto'])->name('tambahOto');
+Route::post('/insertdataoto',[OtomotifController::class,'insertdataoto'])->name('insertdataoto');
+
+//UPDATE DATA OTO ADMIN
+
+Route::get('/tampilkandataoto/{id}',[OtomotifController::class,'tampildataoto'])->name('tampilkandataoto');
+Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->name('updatedataoto');
+
+//DELETE DATA OTO ADMIN
+
+Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
+
+
+
+
+
+
 
 // CARDVIEW ADMIN
 

@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('propertis', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_properti');
+            $table->string('jenis');
+            $table->string('foto1');
+            $table->string('foto2');
+            $table->string('foto3');
+            $table->string('foto_sertifikat');
+            $table->string('deskripsi');
+            $table->string('alamat');
+            $table->string('kecamatan');
+            $table->string('kota');
+            $table->integer('luas');
+            $table->bigInteger('harga');
             $table->timestamps();
         });
     }

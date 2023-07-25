@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('otomotifs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_kendaraan');
+            $table->string('deskripsi', 100);
+            $table->string('merk');
+            $table->integer('kapasitas_mesin');
+            $table->string('warna');
+            $table->enum('transmisi',['manual','matic']);
+            $table->integer('kilometer');
+            $table->integer('tahun');
+            $table->enum('status',['baru','bekas']);
+            $table->string('lokasi');
+            $table->integer('harga');
+            $table->string('foto1');
+            $table->string('foto2');
+            $table->string('foto3');
             $table->timestamps();
         });
     }
