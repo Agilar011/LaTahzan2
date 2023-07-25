@@ -30,10 +30,10 @@
             <th scope="row">{{ $row->id }}</th>
             <td>{{ $row->nama_properti }}</td>
             <td>{{ $row->jenis }}</td>
-            <td>{{ $row->foto1 }}</td>
-            <td>{{ $row->foto2 }}</td>
-            <td>{{ $row->foto3 }}</td>
-            <td>{{ $row->foto_sertifikat }}</td>
+            <td><img src="{{ asset('fotoProp1/'.$row->foto1) }}" height="50px"></td>
+            <td><img src="{{ asset('fotoProp2/'.$row->foto2) }}" height="50px"></td>
+            <td><img src="{{ asset('fotoProp3/'.$row->foto3) }}" height="50px"></td>
+            <td><img src="{{ asset('fotoSertifikat/'.$row->foto_sertifikat) }}" height="50px"></td>
             <td>{{ $row->deskripsi }}</td>
             <td>{{ $row->alamat }}</td>
             <td>{{ $row->kecamatan }}</td>
@@ -42,8 +42,8 @@
             <td>Rp. {{ $row->harga }},-</td>
             <td>
                 <div class="btn">
-                    <a href="" class="btn-update">Update</a>
-                    <a href="" class="btn-hapus">Hapus</a>
+                    <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
+                    <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
                 </div>
             </td>
         </tr>

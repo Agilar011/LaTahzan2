@@ -73,6 +73,19 @@ Route::get('/input-properti',[PropertiController::class,'index'])->name('propert
 Route::get('/tambahProp',[PropertiController::class,'tambahProp'])->name('tambahProp');
 Route::post('/insertdataprop',[PropertiController::class,'insertdataprop'])->name('insertdataprop');
 
+//UPDATE DATA PROP ADMIN
+
+Route::get('/tampilkandataprop/{id}',[PropertiController::class,'tampilkandataprop'])->name('tampilkandataprop');
+Route::post('/updatedataprop/{id}',[PropertiController::class,'updatedataprop'])->name('updatedataprop');
+
+//DELETE DATA PROP ADMIN
+
+Route::get('/deletedataprop/{id}',[PropertiController::class,'deletedataprop'])->name('deletedataprop');
+
+
+
+
+
 
 
 
@@ -94,6 +107,8 @@ Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->
 //DELETE DATA OTO ADMIN
 
 Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
+
+
 
 
 

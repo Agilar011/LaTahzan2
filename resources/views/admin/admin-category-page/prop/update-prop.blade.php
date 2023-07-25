@@ -1,12 +1,12 @@
 @extends('layouts.admin-sidebar')
 
 @section('content')
-    <h1>Tambah Produk Properti</h1>
+
+    <h1>Edit Produk Properti</h1>
 
     <div class="cont-form">
-        <form action="/insertdataprop" method="POST" enctype="multipart/form-data">
+        <form action="/updatedataprop/{{ $data->id }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <div class="form-input">
                 <label for="">Judul</label>
                 <input type="text" name="nama_properti">
@@ -16,6 +16,14 @@
                     <option value="rumah">Rumah</option>
                     <option value="tanah">Tanah</option>
                 </select>
+                <label for="">Foto</label>
+                <input type="text" name="foto1">
+                <label for="">Foto</label>
+                <input type="text" name="foto2">
+                <label for="">Foto</label>
+                <input type="text" name="foto3">
+                <label for="">Foto Serifikat</label>
+                <input type="text" name="foto_sertifikat">
                 <label for="">Deskripsi</label>
                 <input type="text" name="deskripsi">
 
@@ -29,18 +37,9 @@
                 <input type="number" name="luas">
                 <label for="">Harga</label>
                 <input type="number" name="harga">
-                <label for="">Foto</label>
-                <input type="file" name="foto1">
-                <label for="">Foto</label>
-                <input type="file" name="foto2">
-                <label for="">Foto</label>
-                <input type="file" name="foto3">
-                <label for="">Foto Sertifikat</label>
-                <input type="file" name="foto_sertifikat">
 
                 <button type="submit">Tambahkan Produk</button>
             </div>
         </form>
     </div>
-
 @endsection
