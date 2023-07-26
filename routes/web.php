@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OtomotifController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,12 @@ Route::middleware([
     })->name('dashboard');
 
 });
+
+// setting Ototmotif
+// Input data otomotif
+Route::get('/input-oto',[OtomotifController::class,'index'])->name('otomotif');
+// etalase otomotif
+Route::get('/crd-oto',[OtomotifController::class,'showApprovedAndNotPurchasedOtomotifs'])->name('etalase-oto');
+// route approve otomotif
+Route::middleware('auth')->post('/otomotifs/{otomotif}/approve', [OtomotifController::class, 'approve'])->name('otomotifs.approve');
+
