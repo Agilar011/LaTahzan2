@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('deskripsi', 600);
             $table->string('Alamat');
+            $table->string('kecamatan');
+            $table->string('kota');
             $table->integer('luas_tanah');
             $table->integer('luas_bangunan');
             $table->string('foto1');

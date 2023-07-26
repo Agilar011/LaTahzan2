@@ -30,7 +30,7 @@
             @foreach ($data as $row)
             <tr>
                 <th scope="row">{{ $row->id }}</th>
-                <td>{{ $row->nama_properti }}</td>
+                <td>{{ $row->nama_property }}</td>
                 <td>{{ $row->jenis }}</td>
                 <td><img src="{{ asset('fotoProp1/'.$row->foto1) }}" height="50px"></td>
                 <td><img src="{{ asset('fotoProp2/'.$row->foto2) }}" height="50px"></td>
@@ -40,7 +40,8 @@
                 <td>{{ $row->alamat }}</td>
                 <td>{{ $row->kecamatan }}</td>
                 <td>{{ $row->kota }}</td>
-                <td>{{ $row->luas }}m2</td>
+                <td>{{ $row->luas_tanah }}m2</td>
+                <td>{{ $row->luas_bangunan }}m2</td>
                 <td>Rp. {{ $row->harga }},-</td>
                 <td>{{ $row->created_at }}</td>
                 <td>{{ $row->updated_at }}</td>

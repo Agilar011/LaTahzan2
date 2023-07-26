@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Properti;
+use App\Models\Property;
 
 class PropertiController extends Controller
 {
@@ -11,7 +11,7 @@ class PropertiController extends Controller
     //RETRIEVE DATA PROP
 
     public function index(){
-        $data = Properti::all();
+        $data = Property::all();
 
         return view('admin.admin-category-page.prop.input-prop', compact('data'));
     }
@@ -24,7 +24,7 @@ class PropertiController extends Controller
 
     public function insertdataprop(Request $request){
         // dd($request->all());
-        $data = Properti::create($request->all());
+        $data = Property::create($request->all());
         if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_sertifikat')){
             $request->file('foto1')->move('fotoProp1/', $request->file('foto1')->getClientOriginalName());
             $request->file('foto2')->move('fotoProp2/', $request->file('foto2')->getClientOriginalName());
@@ -45,13 +45,13 @@ class PropertiController extends Controller
 
     public function tampilkandataprop($id){
         // $data = Otomotif::find($id);
-        $data = Properti::find($id);
+        $data = Property::find($id);
 
         return view('admin.admin-category-page.prop.update-prop', compact('data'));
     }
 
     public function updatedataprop(Request $request, $id){
-        $data = Properti::find($id);
+        $data = Property::find($id);
         $data->update($request->all());
 
         return redirect()->route('properti');
@@ -60,7 +60,7 @@ class PropertiController extends Controller
     //DELETE DATA OTO
 
     public function deletedataprop($id){
-        $data = Properti::find($id);
+        $data = Property::find($id);
         $data->delete();
 
         return redirect()->route('properti');
