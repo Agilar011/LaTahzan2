@@ -168,6 +168,11 @@
             window.open('/tambahProp')
         };
 
+        function tambahUmroh() {
+            window.open('/tambahUmroh')
+        };
+
+
 
 
 

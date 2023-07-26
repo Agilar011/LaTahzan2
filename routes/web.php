@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OtomotifController;
 use App\Http\Controllers\PropertiController;
+use App\Http\Controllers\UmrohController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,13 +56,37 @@ Route::get('/dashboard', function () {
 
 // INPUT ADMIN
 
-Route::get('/input-umroh', function () {
-    return view('admin.admin-category-page.umroh.input-umroh');
-});
-
-// Route::get('/input-properti', function () {
-//     return view('admin.admin-category-page.prop.input-prop');
+// Route::get('/input-umroh', function () {
+//     return view('admin.admin-category-page.umroh.input-umroh');
 // });
+
+
+
+
+
+
+//RETRIEVE DATA UMROH ADMIN
+
+Route::get('/input-umroh',[UmrohController::class,'index'])->name('umroh');
+
+
+//TAMBAH DATA UMROH ADMIN
+
+Route::get('/tambahUmroh',[UmrohController::class,'tambahUmroh'])->name('tambahUmroh');
+Route::post('/insertdataumroh',[UmrohController::class,'insertdataumroh'])->name('insertdataumroh');
+
+
+//UPDATE DATA UMROH ADMIN
+
+Route::get('/tampilkandataumroh/{id}',[UmrohController::class,'tampilkandataumroh'])->name('tampilkandataumroh');
+Route::post('/updatedataumroh/{id}',[UmrohController::class,'updatedataumroh'])->name('updatedataumroh');
+
+
+//DELETE DATA UMROH ADMIN
+
+Route::get('/deletedataumroh/{id}',[UmrohController::class,'deletedataumroh'])->name('deletedataumroh');
+
+
 
 
 //RETRIEVE DATA PROP ADMIN

@@ -21,6 +21,8 @@
             <th>Kota Lokasi</th>
             <th>Luas</th>
             <th>Harga</th>
+            <th>Tanggal Input</th>
+            <th>Tanggal Update</th>
             <th>Opsi</th>
         </tr>
     </thead>
@@ -40,6 +42,8 @@
             <td>{{ $row->kota }}</td>
             <td>{{ $row->luas }}m2</td>
             <td>Rp. {{ $row->harga }},-</td>
+            <td>{{ $row->created_at }}</td>
+            <td>{{ $row->updated_at }}</td>
             <td>
                 <div class="btn">
                     <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>

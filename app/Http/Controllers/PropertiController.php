@@ -7,6 +7,9 @@ use App\Models\Properti;
 
 class PropertiController extends Controller
 {
+
+    //RETRIEVE DATA PROP
+    
     public function index(){
         $data = Properti::all();
 
