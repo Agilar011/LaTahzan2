@@ -4,33 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePropertiesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('table_produk_property', function (Blueprint $table) {
+        Schema::create('table_property', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('nama_property');
             $table->string('jenis');
-            $table->string('deskripsi', 600);
+            $table->string('deskripsi', 100);
             $table->string('Alamat');
-            $table->string('kecamatan');
-            $table->string('kota');
-            $table->integer('luas_tanah');
-            $table->integer('luas_bangunan');
+            $table->string('Kecamatan');
+            $table->string('Kota');
+            $table->string('luas_tanah');
+            $table->string('luas_bangunan');
             $table->string('foto1');
             $table->string('foto2');
             $table->string('foto3');
             $table->string('foto_Sertifikat');
             $table->integer('harga');
-            $table->unsignedBigInteger('approved_by_user_id')->nullable(); // New column for the user who approves the product
-            $table->string('approved_by_user_name')->nullable(); // New column for the user who approves the product
-            $table->unsignedBigInteger('purchased_by_user_id')->nullable(); // New column for the user who purchased the product
-            $table->string('purchased_by_user_name')->nullable(); // New column for the user who purchased the product
+            $table->unsignedBigInteger('approved_by_user_id')->nullable();
+            $table->string('approved_by_user_name')->nullable();
+            $table->unsignedBigInteger('purchased_by_user_id')->nullable();
+            $table->string('purchased_by_user_name')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
             $table->timestamps();
@@ -48,9 +50,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('table_produk_property');
+        Schema::dropIfExists('table_property');
     }
-};
+}

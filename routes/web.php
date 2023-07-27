@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,10 @@ Route::middleware([
     })->name('dashboard');
 
 });
+// setting property
+// Input data property
+Route::get('/input-properti',[PropertyController::class,'index'])->name('property');
+// etalase otomotif
+Route::get('/crd-properti',[PropertyController::class,'showApprovedAndNotPurchasedPropertys'])->name('etalase-prop');
+// route approve otomotif
+Route::middleware('auth')->post('/Propertys/{property}/approve', [PropertyController::class, 'approve'])->name('propertys.approve');

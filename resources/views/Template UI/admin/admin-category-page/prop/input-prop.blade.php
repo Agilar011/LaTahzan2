@@ -1,8 +1,10 @@
-@extends('layouts.admin-sidebar')
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+    </x-app-layout>
+@extends('Template UI.layouts.admin-sidebar')
 
 @section('content')
     <h1>Input Properti</h1>
-<<<<<<< HEAD
     <table class="content-table">
         <thead>
             <tr>
@@ -17,7 +19,8 @@
                 <th>Alamat</th>
                 <th>Kecamatan</th>
                 <th>Kota Lokasi</th>
-                <th>Luas</th>
+                <th>Luas Tanah</th>
+                <th>Luas Bangunan</th>
                 <th>Harga</th>
                 <th>Tanggal Input</th>
                 <th>Tanggal Update</th>
@@ -47,6 +50,14 @@
                     <div class="btn">
                         <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                         <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                        @if ($row->approved_by_user_id === null)
+                        <form action="{{ route('propertys.approve', $row->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-approved">Approve</button>
+                        </form>
+                    @else
+                        <button class="btn-approved">Approved by User {{ $row->approved_by_user_id }}</button>
+                    @endif
                     </div>
                 </td>
             </tr>
@@ -54,6 +65,4 @@
             @endforeach
         </tbody>
     </table>
-=======
->>>>>>> parent of 5eeb047 (base commit)
 @endsection

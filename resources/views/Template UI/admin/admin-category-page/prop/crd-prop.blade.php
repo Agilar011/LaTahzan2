@@ -1,5 +1,7 @@
-@extends('layouts.admin-sidebar')
-
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+    </x-app-layout>
+@extends('Template UI.layouts.admin-sidebar')
     @section('content')
     <h1>Input Properti</h1>
     <table class="content-table">
@@ -24,8 +26,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $row)
-            <tr>
+            @php
+            $no = 1;
+        @endphp
+        @foreach ($approvedNotPurchasedPropertys as $row)
+                <tr>
                 <th scope="row">{{ $row->id }}</th>
                 <td>{{ $row->nama_property }}</td>
                 <td>{{ $row->jenis }}</td>
