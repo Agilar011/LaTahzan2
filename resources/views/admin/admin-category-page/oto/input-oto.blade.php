@@ -3,7 +3,7 @@
 @section('content')
     <h1>Input Otomotif</h1>
 
-    <button type="submit" class="btn-tambahdata" onclick="tambahOto()"> + Tambah Data</button>
+    <a href="/tambahOto" class="btn-tambahdata"> + Tambah Produk</a>
 
     <table class="content-table">
         <thead>

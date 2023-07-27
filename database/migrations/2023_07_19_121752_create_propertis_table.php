@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('kota');
             $table->integer('luas');
             $table->bigInteger('harga');
+            $table->enum('status_step',['input','etalase','transaksi','report']);
             $table->timestamps();
         });
     }

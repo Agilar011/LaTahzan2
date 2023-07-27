@@ -39,6 +39,7 @@
                 <input type="file" name="foto_sertifikat">
                 <label for="">Foto KTP Pemilik</label>
                 <input type="file" name="foto_ktp">
+                <input class="status-step" type="text" name="status_step" value="input"></input>
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

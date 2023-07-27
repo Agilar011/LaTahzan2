@@ -1,18 +1,20 @@
 
 .btn-tambahdata{
-    margin: 0px 50px 50px 50px;
+    margin-left: 50px;
     background-color:#089d46;
     color: rgb(255, 255, 255);
     padding: 13px 17px;
     border: 1px solid #ddd;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .content-table{
     width: 95%;
     /* border-collapse: collapse; */
     margin-left: 50px;
+    margin-top: 50px;
 }
 
 .content-table th{

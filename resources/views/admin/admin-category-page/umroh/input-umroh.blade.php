@@ -5,7 +5,7 @@
     <h1>Input Umroh</h1>
 </div>
 
-<button type="submit" class="btn-tambahdata" onclick="tambahUmroh()"> + Tambah Data</button>
+<a href="/tambahUmroh" class="btn-tambahdata"> + Tambah Data</a>
 
 <table class="content-table">
     <thead>

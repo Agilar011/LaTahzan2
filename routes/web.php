@@ -93,6 +93,10 @@ Route::get('/deletedataumroh/{id}',[UmrohController::class,'deletedataumroh'])->
 
 Route::get('/input-properti',[PropertiController::class,'index'])->name('properti');
 
+//RETRIEVE DATA ETALASE PROP ADMIN
+
+Route::get('/crd-properti',[PropertiController::class,'etalaseProp'])->name('propertiEtls');
+
 //TAMBAH DATA PROP ADMIN
 
 Route::get('/tambahProp',[PropertiController::class,'tambahProp'])->name('tambahProp');
@@ -106,6 +110,10 @@ Route::post('/updatedataprop/{id}',[PropertiController::class,'updatedataprop'])
 //DELETE DATA PROP ADMIN
 
 Route::get('/deletedataprop/{id}',[PropertiController::class,'deletedataprop'])->name('deletedataprop');
+
+//STATUS STEP PROP
+
+Route::get('/updatestatusprop/{id}',[PropertiController::class,'updatestatusprop'])->name('updatestatusprop');
 
 
 
@@ -121,8 +129,6 @@ Route::get('/input-oto',[OtomotifController::class,'index'])->name('otomotif');
 //RETRIEVE DATA OTO ETALASE ADMIN
 
 Route::get('/crd-oto',[OtomotifController::class,'etalaseOto'])->name('otomotifEtls');
-
-
 
 //TAMBAH DATA OTO ADMIN
 
@@ -156,9 +162,9 @@ Route::get('/crd-umroh', function () {
     return view('admin.admin-category-page.umroh.crd-umroh');
 });
 
-Route::get('/crd-properti', function () {
-    return view('admin/admin-category-page/prop/crd-prop');
-});
+// Route::get('/crd-properti', function () {
+//     return view('admin/admin-category-page/prop/crd-prop');
+// });
 
 // TRX ADMIN
 

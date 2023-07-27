@@ -11,9 +11,17 @@ class PropertiController extends Controller
     //RETRIEVE DATA PROP
 
     public function index(){
-        $data = Properti::all();
+        $data = Properti::where('status_step', 'input')->get();
 
         return view('admin.admin-category-page.prop.input-prop', compact('data'));
+    }
+
+    //RETRIEVE DATA PROP ETALASE
+
+    public function etalaseProp(){
+        $data = Properti::where('status_step', 'etalase')->get();
+
+        return view('admin.admin-category-page.prop.crd-prop', compact('data'));
     }
 
     //CREATE DATA PROP
@@ -68,5 +76,14 @@ class PropertiController extends Controller
         return redirect()->route('properti');
     }
 
+    //UPDATE STATUS
+
+    public function updatestatusprop(Request $request, $id){
+        $data = Properti::find($id);
+        $changer = "etalase";
+        $data->update(['status_step' => $changer]);
+
+        return redirect()->route('properti');
+    }
 
 }

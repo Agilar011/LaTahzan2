@@ -3,7 +3,7 @@
 @section('content')
 <h1>Input Properti</h1>
 
-<button type="submit" class="btn-tambahdata" onclick="tambahProp()"> + Tambah Data</button>
+<a href="/tambahProp" class="btn-tambahdata"> + Tambah Produk</a>
 
 <table class="content-table">
     <thead>
@@ -47,6 +47,7 @@
                 <div class="btn">
                     <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                    <a href="/updatestatusprop/{{ $row->id }}" class="btn-ekspor">+Etalase</a>
                 </div>
             </td>
         </tr>

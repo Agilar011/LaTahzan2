@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('maskapai');
             $table->bigInteger('harga');
             $table->string('foto');
+            $table->enum('status_step',['input','etalase','transaksi','report']);
             $table->timestamps();
         });
     }
