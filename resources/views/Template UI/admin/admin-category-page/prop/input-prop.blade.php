@@ -1,10 +1,8 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
-    @extends('Template UI.layouts.admin-sidebar')
+@extends('layouts.admin-sidebar')
 
 @section('content')
     <h1>Input Properti</h1>
+<<<<<<< HEAD
     <table class="content-table">
         <thead>
             <tr>
@@ -56,4 +54,6 @@
             @endforeach
         </tbody>
     </table>
+=======
+>>>>>>> parent of 5eeb047 (base commit)
 @endsection

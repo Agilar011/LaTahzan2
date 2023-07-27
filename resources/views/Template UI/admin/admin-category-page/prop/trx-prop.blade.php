@@ -1,7 +1,4 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
-    @extends('Template UI.layouts.admin-sidebar')
+@extends('layouts.admin-sidebar')
 
 @section('content')
     <h1>Riwayat Transaksi Properti</h1>
