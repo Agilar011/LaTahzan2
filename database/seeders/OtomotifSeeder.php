@@ -25,6 +25,10 @@ class OtomotifSeeder extends Seeder
             'status' => 'bekas',
             'lokasi' => 'Blitar',
             'harga' => '25000000',
+            'foto1' => 'a',
+            'foto2' => 'a',
+            'foto3' => 'a',
+            'status_step' => 'etalase',
 
         ]);
     }

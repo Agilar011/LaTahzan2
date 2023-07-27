@@ -9,7 +9,7 @@ class PropertiController extends Controller
 {
 
     //RETRIEVE DATA PROP
-    
+
     public function index(){
         $data = Properti::all();
 
@@ -25,16 +25,18 @@ class PropertiController extends Controller
     public function insertdataprop(Request $request){
         // dd($request->all());
         $data = Properti::create($request->all());
-        if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_sertifikat')){
+        if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_sertifikat') && $request->hasFile('foto_ktp')){
             $request->file('foto1')->move('fotoProp1/', $request->file('foto1')->getClientOriginalName());
             $request->file('foto2')->move('fotoProp2/', $request->file('foto2')->getClientOriginalName());
             $request->file('foto3')->move('fotoProp3/', $request->file('foto3')->getClientOriginalName());
             $request->file('foto_sertifikat')->move('fotoSertifikat/', $request->file('foto_sertifikat')->getClientOriginalName());
+            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
 
             $data->foto1 = $request->file('foto1')->getClientOriginalName();
             $data->foto2 = $request->file('foto2')->getClientOriginalName();
             $data->foto3 = $request->file('foto3')->getClientOriginalName();
             $data->foto_sertifikat = $request->file('foto_sertifikat')->getClientOriginalName();
+            $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
 
             $data->save();
         }

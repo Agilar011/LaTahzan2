@@ -65,6 +65,16 @@
     text-decoration: none;
 }
 
+.content-table tbody .btn-ekspor{
+    background-color: #089d46;
+    color: white;
+    padding: 13px 17px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 /* Tambah Data */
 
 .cont-form{
@@ -133,6 +143,10 @@ form{
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.status-step{
+    display: none;
 }
 
 

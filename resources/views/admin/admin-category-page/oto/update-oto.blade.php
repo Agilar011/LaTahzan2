@@ -39,6 +39,7 @@
                 <input type="text" name="lokasi" value="{{ $data->lokasi }}">
                 <label for="">Harga</label>
                 <input type="number" name="harga" value="{{ $data->harga }}">
+                <input class="status-step" type="text" name="status_step" value="input">
 
                 <button type="submit">Edit Produk</button>
             </div>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('foto2');
             $table->string('foto3');
             $table->string('foto_sertifikat');
+            $table->string('foto_ktp');
             $table->string('deskripsi');
             $table->string('alamat');
             $table->string('kecamatan');

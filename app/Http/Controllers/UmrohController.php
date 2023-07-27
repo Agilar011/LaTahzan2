@@ -23,6 +23,12 @@ class UmrohController extends Controller
     public function insertdataumroh(Request $request){
         // dd($request->all());
         $data = Umroh::create($request->all());
+        if($request->hasFile('foto') ){
+            $request->file('foto')->move('fotoUmroh/', $request->file('foto')->getClientOriginalName());
+            $data->foto = $request->file('foto')->getClientOriginalName();
+
+            $data->save();
+        }
         return redirect()->route('umroh');
     }
 

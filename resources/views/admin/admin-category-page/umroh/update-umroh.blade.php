@@ -15,6 +15,8 @@
                     <option value="Umroh">Umroh</option>
                     <option value="Haji">Haji</option>
                 </select>
+                <label for="">Deskripsi</label>
+                <input type="text" name="deskripsi" value="{{ $data->deskripsi }}">
                 <label for="">Tanggal Berangkat</label>
                 <input type="date" name="tanggal_berangkat" value="{{ $data->tanggal_berangkat }}">
 

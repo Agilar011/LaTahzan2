@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_paket');
             $table->string('jenis');
+            $table->string('deskripsi');
             $table->date('tanggal_berangkat');
             $table->integer('durasi');
             $table->string('jasa_travel');

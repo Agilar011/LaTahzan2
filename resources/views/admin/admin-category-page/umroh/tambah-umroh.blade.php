@@ -16,6 +16,8 @@
                     <option value="Umroh">Umroh</option>
                     <option value="Haji">Haji</option>
                 </select>
+                <label for="">Deskripsi</label>
+                <input type="text" name="deskripsi">
                 <label for="">Tanggal Berangkat</label>
                 <input type="date" name="tanggal_berangkat">
 
@@ -25,8 +27,9 @@
                 <select class="status" name="jasa_travel">
                     <option selected>Pilih Jasa Travel</option>
                     <option value="Anamiroh">Anamiroh</option>
-                    <option value="Jasa Travel B">Jasa Travel B</option>
-                    <option value="Jasa Travel C">Jasa Travel C</option>
+                    <option value="Rihlah Saidah">Rihlah Saidah</option>
+                    <option value="Antrav Mustika">Antrav Mustika</option>
+                    <option value="Lainnya">Lainnya</option>
                 </select>
                 <label for="">CP Travel</label>
                 <input type="number" name="cp_travel">
@@ -37,7 +40,8 @@
                 <label for="">Harga</label>
                 <input type="number" name="harga">
                 <label for="">Foto</label>
-                <input type="text" name="foto">
+                <input type="file" name="foto">
+
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

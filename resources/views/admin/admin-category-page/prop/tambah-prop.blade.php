@@ -37,6 +37,8 @@
                 <input type="file" name="foto3">
                 <label for="">Foto Sertifikat</label>
                 <input type="file" name="foto_sertifikat">
+                <label for="">Foto KTP Pemilik</label>
+                <input type="file" name="foto_ktp">
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

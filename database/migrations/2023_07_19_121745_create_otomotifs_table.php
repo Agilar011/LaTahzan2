@@ -22,11 +22,17 @@ return new class extends Migration
             $table->integer('kilometer');
             $table->integer('tahun');
             $table->enum('status',['baru','bekas']);
-            $table->string('lokasi');
+            $table->string('alamat');
+            $table->string('kecamatan');
+            $table->string('kota');
             $table->integer('harga');
             $table->string('foto1');
             $table->string('foto2');
             $table->string('foto3');
+            $table->string('foto_bpkb');
+            $table->string('foto_stnk');
+            $table->string('foto_ktp');
+            $table->enum('status_step',['input','etalase','transaksi','report']);
             $table->timestamps();
         });
     }

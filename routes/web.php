@@ -114,9 +114,14 @@ Route::get('/deletedataprop/{id}',[PropertiController::class,'deletedataprop'])-
 
 
 
-//RETRIEVE DATA OTO ADMIN
+//RETRIEVE DATA OTO INPUT ADMIN
 
 Route::get('/input-oto',[OtomotifController::class,'index'])->name('otomotif');
+
+//RETRIEVE DATA OTO ETALASE ADMIN
+
+Route::get('/crd-oto',[OtomotifController::class,'etalaseOto'])->name('otomotifEtls');
+
 
 
 //TAMBAH DATA OTO ADMIN
@@ -133,6 +138,10 @@ Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->
 
 Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
 
+//STATUS STEP OTO ADMIN
+
+Route::get('/updatestatusoto/{id}',[OtomotifController::class,'updatestatusoto'])->name('updatestatusoto');
+
 
 
 
@@ -145,10 +154,6 @@ Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->n
 
 Route::get('/crd-umroh', function () {
     return view('admin.admin-category-page.umroh.crd-umroh');
-});
-
-Route::get('/crd-oto', function () {
-    return view('admin.admin-category-page.oto.crd-oto');
 });
 
 Route::get('/crd-properti', function () {
