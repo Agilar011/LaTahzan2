@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Umrah;
 
@@ -20,6 +22,7 @@ class UmrahSeeder extends Seeder
                 'no_HP_User' => '08123456789',
                 'nama_paket' => 'Paket Umrah 9 Hari',
                 'jenis' => 'Umroh',
+                'deskripsi' => 'Paket Umrah 9 Hari',
                 'tgl_berangkat' => '2023-08-01',
                 'jumlah_jemaah' => 5,
                 'durasi' => 9,

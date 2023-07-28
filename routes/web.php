@@ -36,29 +36,29 @@ Route::middleware([
 
 // setting umrah
 // Input data umrah
-Route::get('/input-properti',[PropertyController::class,'index'])->name('property');
+Route::get('/input-umroh',[UmrahController::class,'index'])->name('umroh');
 // etalase otomotif
-Route::get('/crd-properti',[PropertyController::class,'showApprovedAndNotPurchasedPropertys'])->name('etalase-prop');
+Route::get('/crd-umroh',[UmrahController::class,'showApprovedAndNotPurchasedUmrahs'])->name('etalase-umroh');
 // route approve otomotif
-Route::middleware('auth')->post('/Propertys/{property}/approve', [PropertyController::class, 'approve'])->name('propertys.approve');
+Route::middleware('auth')->post('/umrahs/{umrah}/approve', [UmrahController::class, 'approve'])->name('umrahs.approve');
 
-// Menampilkan daftar paket umrah
-Route::get('/umrah', [UmrahController::class, 'index'])->name('umrah.index');
+// // Menampilkan daftar paket umrah
+// Route::get('/umrah', [UmrahController::class, 'index'])->name('umrah.index');
 
-// Menampilkan form tambah data umrah
-Route::get('/umrah/create', [UmrahController::class, 'create'])->name('umrah.create');
+// // Menampilkan form tambah data umrah
+// Route::get('/umrah/create', [UmrahController::class, 'create'])->name('umrah.create');
 
-// Menyimpan data umrah yang baru ditambahkan
-Route::post('/umrah', [UmrahController::class, 'store'])->name('umrah.store');
+// // Menyimpan data umrah yang baru ditambahkan
+// Route::post('/umrah', [UmrahController::class, 'store'])->name('umrah.store');
 
-// Menampilkan detail data umrah berdasarkan ID
-Route::get('/umrah/{id}', [UmrahController::class, 'show'])->name('umrah.show');
+// // Menampilkan detail data umrah berdasarkan ID
+// Route::get('/umrah/{id}', [UmrahController::class, 'show'])->name('umrah.show');
 
-// Menampilkan form edit data umrah berdasarkan ID
-Route::get('/umrah/{id}/edit', [UmrahController::class, 'edit'])->name('umrah.edit');
+// // Menampilkan form edit data umrah berdasarkan ID
+// Route::get('/umrah/{id}/edit', [UmrahController::class, 'edit'])->name('umrah.edit');
 
-// Menyimpan data umrah yang telah diubah
-Route::put('/umrah/{id}', [UmrahController::class, 'update'])->name('umrah.update');
+// // Menyimpan data umrah yang telah diubah
+// Route::put('/umrah/{id}', [UmrahController::class, 'update'])->name('umrah.update');
 
-// Menghapus data umrah berdasarkan ID
-Route::delete('/umrah/{id}', [UmrahController::class, 'destroy'])->name('umrah.destroy');
+// // Menghapus data umrah berdasarkan ID
+// Route::delete('/umrah/{id}', [UmrahController::class, 'destroy'])->name('umrah.destroy');

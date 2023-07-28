@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_user')->nullable();
             $table->string('no_HP_User')->nullable();
             $table->string('nama_paket');
+            $table->string('deskripsi');
             $table->string('jenis');
             $table->date('tgl_berangkat');
             $table->integer('jumlah_jemaah');
@@ -30,6 +31,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('approved_by_user_id')->nullable();
             $table->string('approved_by_user_name')->nullable();
+            $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
