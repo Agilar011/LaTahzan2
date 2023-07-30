@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style-dashboard-admin.css">
+    <link rel="stylesheet" href="/css/style-dashboard-admin.css">
+    <link rel="stylesheet" href="/css/style-table.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>Dashboard</title>
 </head>
@@ -23,12 +24,12 @@
                 <div class="header">
                     <div class="list-items">
                         <a href="#">
-                            <img src="img/admin/explore.png" alt="" class="icon">
+                            <img src="/img/admin/explore.png" alt="" class="icon">
                             <span class="desc-header">La Tahzan</span>
                         </a>
                     </div>
                     <div class="illustration">
-                        <img src="img/admin/admin.png" alt="">
+                        <img src="/img/admin/admin.png" alt="">
                     </div>
                 </div>
 
@@ -42,19 +43,19 @@
 
                     <div class="list-items">
                         <a href="/input-umroh">
-                            <img src="img/admin/in-umroh.png" alt="" class="icon">
+                            <img src="/img/admin/in-umroh.png" alt="" class="icon">
                             <span class="desc">Inp. Umroh</span>
                         </a>
                     </div>
                     <div class="list-items">
                         <a href="/input-oto">
-                            <img src="img/admin/in-oto.png" alt="" class="icon">
+                            <img src="/img/admin/in-oto.png" alt="" class="icon">
                             <span class="desc">Inp. Otomotif</span>
                         </a>
                     </div>
                     <div class="list-items">
                         <a href="/input-properti">
-                            <img src="img/admin/in-prop.png" alt="" class="icon">
+                            <img src="/img/admin/in-prop.png" alt="" class="icon">
                             <span class="desc">Inp. Properti</span>
                         </a>
                     </div>
@@ -67,19 +68,19 @@
 
                     <div class="list-items">
                         <a href="/crd-umroh">
-                            <img src="img/admin/umroh.png" alt="" class="icon">
+                            <img src="/img/admin/umroh.png" alt="" class="icon">
                             <span class="desc">Umroh</span>
                         </a>
                     </div>
                     <div class="list-items">
                         <a href="/crd-oto">
-                            <img src="img/admin/oto.png" alt="" class="icon">
+                            <img src="/img/admin/oto.png" alt="" class="icon">
                             <span class="desc">Otomotif</span>
                         </a>
                     </div>
                     <div class="list-items">
                         <a href="crd-properti">
-                            <img src="img/admin/prop.png" alt="" class="icon">
+                            <img src="/img/admin/prop.png" alt="" class="icon">
                             <span class="desc">Properti</span>
                         </a>
                     </div>
@@ -92,28 +93,28 @@
 
                     <div class="list-items">
                         <a href="/trx-umroh">
-                            <img src="img/admin/tr-umroh.png" alt="" class="icon">
+                            <img src="/img/admin/tr-umroh.png" alt="" class="icon">
                             <span class="desc">Transaksi Umroh</span>
                         </a>
                     </div>
 
                     <div class="list-items">
                         <a href="/trx-oto">
-                            <img src="img/admin/tr-oto.png" alt="" class="icon">
+                            <img src="/img/admin/tr-oto.png" alt="" class="icon">
                             <span class="desc">Transaksi Otomotif</span>
                         </a>
                     </div>
 
                     <div class="list-items">
                         <a href="/trx-properti">
-                            <img src="img/admin/tr-prop.png" alt="" class="icon">
+                            <img src="/img/admin/tr-prop.png" alt="" class="icon">
                             <span class="desc">Transaksi Properti</span>
                         </a>
                     </div>
 
                     <div class="list-items">
                         <a href="/report">
-                            <img src="img/admin/report.png" alt="" class="icon">
+                            <img src="/img/admin/report.png" alt="" class="icon">
                             <span class="desc">Laporan Transaksi</span>
                         </a>
                     </div>
@@ -126,7 +127,7 @@
 
                     <div class="list-items">
                         <a href="/customer">
-                            <img src="img/admin/team.png" alt="" class="icon">
+                            <img src="/img/admin/team.png" alt="" class="icon">
                             <span class="desc">Customer</span>
                         </a>
                     </div>

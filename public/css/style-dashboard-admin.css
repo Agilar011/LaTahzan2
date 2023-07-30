@@ -1,22 +1,26 @@
 *{
     font-family: Poppins;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
 .container{
     display: flex;
-    min-height: 110vh;
+    min-height: 100vh;
+    max-width: 100%;
 }
 
 .sidebar{
     background-color: #111827;
-    /* width: 260px; */
+    /* width: 20%; */
     padding: 24px;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    transition: all ease-in 3s;
+    transition: all ease-in 0.05s;
+    max-width: 30vh;
+
 }
 
 .sidebar.hide{
@@ -27,6 +31,8 @@
 .main-content{
     background-color: #eee;
     flex-grow: 1;
+    height: 170vh;
+    width: 70%;
 }
 
 .sidebar .header .desc-header{
@@ -122,10 +128,6 @@
 .sidebar .main .list-items:hover{
     background: #ff9900;
     transition: all ease-in .2s;
-}
-
-.main-content{
-
 }
 
 .main-content h1{

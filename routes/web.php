@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PropertiController;
+use App\Http\Controllers\OtomotifController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +34,84 @@ Route::middleware([
     })->name('dashboard');
 
 });
+
+// setting property
+// Input data property
+
+Route::get('/input-properti',[PropertiController::class,'index'])->name('property');
+
+// etalase property
+
+Route::get('/crd-properti',[PropertiController::class,'showApprovedAndNotPurchasedPropertys'])->name('etalase-prop');
+
+// route approve property
+
+Route::middleware('auth')->post('/Propertys/{property}/approve', [PropertiController::class, 'approve'])->name('propertys.approve');
+
+// route Buyed property
+
+Route::middleware('auth')->post('/Propertys/{property}/purchased', [PropertiController::class, 'purchase'])->name('propertys.purchased');
+
+// route show purchased property
+
+Route::get('/trx-properti',[PropertiController::class,'showPurchasedPropertys'])->name('transaksi-prop');
+
+//TAMBAH DATA PROP ADMIN
+
+Route::get('/tambahProp',[PropertiController::class,'tambahProp'])->name('tambahProp');
+Route::post('/insertdataprop',[PropertiController::class,'insertdataprop'])->name('insertdataprop');
+
+//UPDATE DATA PROP ADMIN
+
+Route::get('/tampilkandataprop/{id}',[PropertiController::class,'tampilkandataprop'])->name('tampilkandataprop');
+Route::post('/updatedataprop/{id}',[PropertiController::class,'updatedataprop'])->name('updatedataprop');
+
+//DELETE DATA PROP ADMIN
+
+Route::get('/deletedataprop/{id}',[PropertiController::class,'deletedataprop'])->name('deletedataprop');
+
+// setting otomotif
+// Input data otomotif
+
+Route::get('/input-oto',[OtomotifController::class,'index'])->name('otomotif');
+
+// etalase otomotif
+
+Route::get('/crd-oto',[OtomotifController::class,'showApprovedNotPurchasedOtomotifs'])->name('etalase-oto');
+
+// route approve otomotif
+
+Route::middleware('auth')->post('/Otomotif/{otomotif}/approve', [OtomotifController::class, 'approve'])->name('otomotifs.approve');
+
+// route Buyed otomotif
+
+Route::middleware('auth')->post('/Otomotif/{otomotif}/purchased', [OtomotifController::class, 'purchase'])->name('otomotifs.purchased');
+
+// route show purchased otomotif
+
+Route::get('/trx-oto',[OtomotifController::class,'showPurchasedOtomotifs'])->name('transaksi-oto');
+
+//TAMBAH DATA OTO ADMIN
+
+Route::get('/tambahOto',[OtomotifController::class,'tambahOto'])->name('tambahOto');
+Route::post('/insertdataoto',[OtomotifController::class,'insertdataoto'])->name('insertdataoto');
+
+//UPDATE DATA OTO ADMIN
+
+Route::get('/tampilkandataoto/{id}',[OtomotifController::class,'tampildataoto'])->name('tampilkandataoto');
+Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->name('updatedataoto');
+
+//DELETE DATA OTO ADMIN
+
+Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
+
+
+
+
+
+
+
+
+
+
+
