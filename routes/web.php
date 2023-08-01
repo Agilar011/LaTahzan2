@@ -43,6 +43,11 @@ Route::get('/umroh', function () {
     return view('customer.feature.umroh-page');
 });
 
+Route::get('/umroh-pesan', function () {
+    return view('customer.book.umroh-book');
+});
+
+
 // ADMIN
 
 Route::get('/login-admin', function () {

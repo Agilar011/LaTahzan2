@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style-landing.css">
     <link rel="stylesheet" href="css/style-login-register.css">
+    <link rel="stylesheet" href="css/style-pesan-cust.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>@yield('title')</title>
 </head>
+
 <body>
     <div class="container-all">
 
@@ -19,24 +22,26 @@
 
             <div class="navbar">
                 <div class="nav-title">
-                    <a href="/"><h1>LaTahzan</h1></a>
+                    <a href="/">
+                        <h1>LaTahzan</h1>
+                    </a>
                 </div>
-                
-                <div class="nav-btn">
+
+                {{-- <div class="nav-btn">
                     <ul>
                         <li><a href="#">Layanan</a></li>
                         <li><a href="#">Testimoni</a></li>
                         <li><a href="#">Kontak Kami</a></li>
                         <li><a href="#">Tentang</a></li>
                     </ul>
-                </div>
+                </div> --}}
 
-                <div class="searchbar">
+                {{-- <div class="searchbar">
                     <form>
                         <input type="text" placeholder="Temukan Motor, Rumah atau Paket Umroh Disini..">
                         <button type="submit">Cari</button>
                     </form>
-                </div>
+                </div> --}}
 
                 <div class="login-register">
                     <div class="content">
@@ -83,7 +88,7 @@
             </p>
 
             <p class="footer-company-name">Copyright © 2021 <strong>La Tahzan</strong>
-            All right reserved</p>
+                All right reserved</p>
         </div>
 
         <div class="footer-center">
@@ -120,11 +125,11 @@
 
 
     <script type="text/javascript">
-        function noTelp(evt){
+        function noTelp(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                 return false;
-            return true
+                return true
             }
         }
 
@@ -164,7 +169,7 @@
                     select.classList.remove('select-clicked');
                     caret.classList.remove('caret-rotate');
                     menu.classList.remove('menu-open');
-                    options.forEach(option =>{
+                    options.forEach(option => {
                         option.classList.remove('active');
                     });
                     option.classList.add('active');
