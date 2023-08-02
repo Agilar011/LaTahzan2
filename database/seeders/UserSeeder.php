@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'name' => 'Agilar Gumilar',
             'email' => 'agilar@admin.com',
             'password' => Hash::make('password'),
+            'NIK' => '1234567890123456',
             'birthplace' => 'Malang',
             'birthdate' => '2002-11-10',
             'address' => 'Jl Klayatan 3C 39',

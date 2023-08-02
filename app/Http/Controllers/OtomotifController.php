@@ -92,12 +92,12 @@ class OtomotifController extends Controller
         $data = Otomotif::create($request->all());
 
         // Jika ada foto yang diunggah, simpan nama file foto di kolom yang sesuai
-        $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : $fotoDefault1;
-        $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : $fotoDefault2;
-        $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : $fotoDefault3;
-        $data->foto_stnk = $request->hasFile('foto_stnk') ? $request->file('foto_stnk')->getClientOriginalName() : $fotoDefault1;
-        $data->foto_bpkb = $request->hasFile('foto_bpkb') ? $request->file('foto_bpkb')->getClientOriginalName() : $fotoDefault1;
-        $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : $fotoDefault1;
+        $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : null;
+        $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : null;
+        $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : null;
+        $data->foto_stnk = $request->hasFile('foto_stnk') ? $request->file('foto_stnk')->getClientOriginalName() : null;
+        $data->foto_bpkb = $request->hasFile('foto_bpkb') ? $request->file('foto_bpkb')->getClientOriginalName() : null;
+        $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : null;
 
         $data->save();
 

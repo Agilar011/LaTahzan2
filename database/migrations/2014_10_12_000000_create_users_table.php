@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('role')->default('user');
+            $table->string('NIK')->nullable();
+            $table->string('fotoktp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

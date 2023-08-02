@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertiController;
 use App\Http\Controllers\OtomotifController;
+use App\Http\Controllers\UmrohController;
+
 
 
 /*
@@ -105,13 +107,37 @@ Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->
 
 Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
 
+// setting Umrah
+//RETRIEVE DATA UMROH ADMIN
+
+Route::get('/input-umroh',[UmrohController::class,'index'])->name('umroh');
 
 
+//TAMBAH DATA UMROH ADMIN
+
+Route::get('/tambahUmroh',[UmrohController::class,'tambahUmroh'])->name('tambahUmroh');
+Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh');
+
+// route approve umroh
+
+Route::middleware('auth')->post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve');
+
+Route::middleware(['auth'])->group(function () {
+    // ...
+    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umroh.purchase');
+    Route::get('/umrohs/approved-not-purchased', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('umroh.showApprovedNotPurchasedUmrohs');
+    // ...
+});
+
+Route::middleware(['auth'])->group(function () {
+    // ...
+    Route::get('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');
+    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umroh.purchase');
+    // ...
+});
 
 
+// etalase Umroh
 
-
-
-
-
+Route::get('/crd-umroh',[UmrohController::class,'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
 

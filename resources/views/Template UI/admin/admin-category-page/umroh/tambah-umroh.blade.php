@@ -1,5 +1,7 @@
-@extends('layouts.admin-sidebar')
-
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+    </x-app-layout>
+@extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Tambah Produk Umroh</h1>
 
@@ -32,15 +34,15 @@
                     <option value="Lainnya">Lainnya</option>
                 </select>
                 <label for="">CP Travel</label>
-                <input type="number" name="cp_travel">
+                <input type="number" name="CP_Admin">
                 <label for="">Hotel</label>
-                <input type="text" name="hotel">
+                <input type="text" name="Hotel">
                 <label for="">Maskapai</label>
-                <input type="text" name="maskapai">
+                <input type="text" name="Maskapai">
                 <label for="">Harga</label>
                 <input type="number" name="harga">
-                <label for="">Foto</label>
-                <input type="file" name="foto">
+                <label for="thumbnail">Thumbnail</label>
+                <input type="file" name="thumbnail">
 
 
                 <button type="submit">Tambahkan Produk</button>
