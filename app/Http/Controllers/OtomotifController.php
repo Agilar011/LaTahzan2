@@ -29,36 +29,82 @@ class OtomotifController extends Controller
     public function tambahOto(){
         return view('Template UI.admin.admin-category-page.oto.tambah-oto');
     }
+    // amethod awal
+//     public function insertdataoto(Request $request){
 
-    public function insertdataoto(Request $request){
+//         // Mengambil id pengguna yang saat ini login
+//    $user_id = Auth::id();
+
+//    // Memasukkan id pengguna ke dalam data request
+//    $request->merge(['user_id' => $user_id]);
+//        $data = Otomotif::create($request->all());
+//        if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_stnk') && $request->hasFile('foto_bpkb') && $request->hasFile('foto_ktp')){
+//            $request->file('foto1')->move('fotoOto/', $request->file('foto1')->getClientOriginalName());
+//            $request->file('foto2')->move('fotoOto2/', $request->file('foto2')->getClientOriginalName());
+//            $request->file('foto3')->move('fotoOto3/', $request->file('foto3')->getClientOriginalName());
+//            $request->file('foto_stnk')->move('fotoStnk/', $request->file('foto_stnk')->getClientOriginalName());
+//            $request->file('foto_bpkb')->move('fotoBpkb/', $request->file('foto_bpkb')->getClientOriginalName());
+//            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
+//            $data->foto1 = $request->file('foto1')->getClientOriginalName();
+//            $data->foto2 = $request->file('foto2')->getClientOriginalName();
+//            $data->foto3 = $request->file('foto3')->getClientOriginalName();
+//            $data->foto_stnk = $request->file('foto_stnk')->getClientOriginalName();
+//            $data->foto_bpkb = $request->file('foto_bpkb')->getClientOriginalName();
+//            $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
 
 
-         // Mengambil id pengguna yang saat ini login
-    $user_id = Auth::id();
+//            $data->save();
+//        }
 
-    // Memasukkan id pengguna ke dalam data request
-    $request->merge(['user_id' => $user_id]);
-        $data = Otomotif::create($request->all());
-        if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_stnk') && $request->hasFile('foto_bpkb') && $request->hasFile('foto_ktp')){
+//        return redirect()->route('otomotif');
+//    }
+//    Method dummy
+
+    public function insertdataoto(Request $request)
+    {
+        // Mengambil id pengguna yang saat ini login
+        $user_id = Auth::id();
+
+        // Memasukkan id pengguna ke dalam data request
+        $request->merge(['user_id' => $user_id]);
+
+        // Cek apakah ada file foto yang diunggah
+        if ($request->hasFile('foto1')) {
             $request->file('foto1')->move('fotoOto/', $request->file('foto1')->getClientOriginalName());
-            $request->file('foto2')->move('fotoOto2/', $request->file('foto2')->getClientOriginalName());
-            $request->file('foto3')->move('fotoOto3/', $request->file('foto3')->getClientOriginalName());
-            $request->file('foto_stnk')->move('fotoStnk/', $request->file('foto_stnk')->getClientOriginalName());
-            $request->file('foto_bpkb')->move('fotoBpkb/', $request->file('foto_bpkb')->getClientOriginalName());
-            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
-            $data->foto1 = $request->file('foto1')->getClientOriginalName();
-            $data->foto2 = $request->file('foto2')->getClientOriginalName();
-            $data->foto3 = $request->file('foto3')->getClientOriginalName();
-            $data->foto_stnk = $request->file('foto_stnk')->getClientOriginalName();
-            $data->foto_bpkb = $request->file('foto_bpkb')->getClientOriginalName();
-            $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
-
-
-            $data->save();
         }
+        if ($request->hasFile('foto2')) {
+            $request->file('foto2')->move('fotoOto2/', $request->file('foto2')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto3')) {
+            $request->file('foto3')->move('fotoOto3/', $request->file('foto3')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto_stnk')) {
+            $request->file('foto_stnk')->move('fotoStnk/', $request->file('foto_stnk')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto_bpkb')) {
+            $request->file('foto_bpkb')->move('fotoBpkb/', $request->file('foto_bpkb')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto_ktp')) {
+            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
+        }
+
+        // Simpan data ke dalam database
+        $data = Otomotif::create($request->all());
+
+        // Jika ada foto yang diunggah, simpan nama file foto di kolom yang sesuai
+        $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : $fotoDefault1;
+        $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : $fotoDefault2;
+        $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : $fotoDefault3;
+        $data->foto_stnk = $request->hasFile('foto_stnk') ? $request->file('foto_stnk')->getClientOriginalName() : $fotoDefault1;
+        $data->foto_bpkb = $request->hasFile('foto_bpkb') ? $request->file('foto_bpkb')->getClientOriginalName() : $fotoDefault1;
+        $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : $fotoDefault1;
+
+        $data->save();
 
         return redirect()->route('otomotif');
     }
+
+
 
     //UPDATE DATA OTO
 

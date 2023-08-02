@@ -31,32 +31,46 @@ class PropertiController extends Controller
         return view('Template UI.admin.admin-category-page.prop.tambah-prop');
     }
 
-    public function insertdataprop(Request $request){
+    public function insertdataprop(Request $request)
+    {
+        // Mengambil id pengguna yang saat ini login
+        $user_id = Auth::id();
 
-         // Mengambil id pengguna yang saat ini login
-    $user_id = Auth::id();
+        // Memasukkan id pengguna ke dalam data request
+        $request->merge(['user_id' => $user_id]);
 
-    // Memasukkan id pengguna ke dalam data request
-    $request->merge(['user_id' => $user_id]);
-        // dd($request->all());
-        $data = Properti::create($request->all());
-        if($request->hasFile('foto1') && $request->hasFile('foto2') && $request->hasFile('foto3') && $request->hasFile('foto_sertifikat') && $request->hasFile('foto_ktp')){
+        // Cek apakah ada file foto yang diunggah
+        if ($request->hasFile('foto1')) {
             $request->file('foto1')->move('fotoProp1/', $request->file('foto1')->getClientOriginalName());
-            $request->file('foto2')->move('fotoProp2/', $request->file('foto2')->getClientOriginalName());
-            $request->file('foto3')->move('fotoProp3/', $request->file('foto3')->getClientOriginalName());
-            $request->file('foto_sertifikat')->move('fotoSertifikat/', $request->file('foto_sertifikat')->getClientOriginalName());
-            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
-
-            $data->foto1 = $request->file('foto1')->getClientOriginalName();
-            $data->foto2 = $request->file('foto2')->getClientOriginalName();
-            $data->foto3 = $request->file('foto3')->getClientOriginalName();
-            $data->foto_sertifikat = $request->file('foto_sertifikat')->getClientOriginalName();
-            $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
-
-            $data->save();
         }
+        if ($request->hasFile('foto2')) {
+            $request->file('foto2')->move('fotoProp2/', $request->file('foto2')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto3')) {
+            $request->file('foto3')->move('fotoProp3/', $request->file('foto3')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto_sertifikat')) {
+            $request->file('foto_sertifikat')->move('fotoSertifikat/', $request->file('foto_sertifikat')->getClientOriginalName());
+        }
+        if ($request->hasFile('foto_ktp')) {
+            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
+        }
+
+        // Simpan data ke dalam database
+        $data = Properti::create($request->all());
+
+        // Jika ada foto yang diunggah, simpan nama file foto di kolom yang sesuai
+        $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : null;
+        $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : null;
+        $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : null;
+        $data->foto_sertifikat = $request->hasFile('foto_sertifikat') ? $request->file('foto_sertifikat')->getClientOriginalName() : null;
+        $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : null;
+
+        $data->save();
+
         return redirect()->route('property');
     }
+
 
     //UPDATE DATA PROP
 
