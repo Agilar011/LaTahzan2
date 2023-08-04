@@ -12,21 +12,21 @@ class CreateJemaahTable extends Migration
     {
         Schema::create('jemaah', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_extended_umrah');
+            $table->unsignedBigInteger('id_etalase_umroh');
             $table->string('nama_jemaah');
             $table->string('NIK');
             $table->string('No_hp');
             $table->string('no_paspor');
             $table->string('foto_paspor');
             $table->string('foto_KTP');
-            $table->string('status_vaksin');
+            $table->enum('status_vaksin', ['Sudah', 'Belum'])->default('belum');
             $table->string('foto_vaksin');
-            $table->decimal('biaya_jasa_paspor', 10, 2);
-            $table->decimal('biaya_jasa_vaksin', 10, 2);
-            $table->decimal('biaya_akhir', 10, 2);
+            $table->decimal('biaya_jasa_paspor', 10, 2)->default(0);
+            $table->decimal('biaya_jasa_vaksin', 10, 2)->default(0);
+            $table->decimal('biaya_akhir', 10, 2)->default(0);
             $table->timestamps();
 
-            $table->foreign('id_extended_umrah')->references('id')->on('extended_umrah');
+            $table->foreign('id_etalase_umroh')->references('id')->on('etalase_umrah');
         });
     }
 
