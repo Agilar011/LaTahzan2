@@ -20,7 +20,7 @@
             <th>Maskapai</th>
             <th>Jasa Travel</th>
             <th rowspan="2">Foto</th>
-            <th>Tanggal Input</th>
+            <th>Approve oleh user</th>
             <th rowspan="2">Opsi</th>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
             <th>CP Admin</th>
             <th>Hotel</th>
             <th>Harga</th>
-            <th>Tanggal Update</th>
+            <th>Approve oleh user</th>
         </tr>
     </thead>
     <tbody>
@@ -39,19 +39,21 @@
             <td rowspan="2">{{ $row->jenis }}</td>
             <td rowspan="2">{{ $row->deskripsi }}</td>
             <td>{{ $row->tanggal_berangkat }}</td>
-            <td>{{ $row->admin_name }}</td>
+            <td>{{ $row->upload_by_user_name }}</td>
             <td>{{ $row->Maskapai }}</td>
             <td>Rp. {{ $row->jasa_travel }},-</td>
             <td rowspan="2"><img src="{{ asset('fotoUmroh/'.$row->thumbnail) }}" height="50px"></td>
-            <td>{{ $row->created_at }}</td>
+            <td>{{ $row->approved_by_user_name }}</td>
             <td rowspan="2">
                 <div class="btn">
                     <a href="/tampilkandataumroh/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataumroh/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                    <form action="{{ route('umroh.purchase', $row->id) }}" method="post">
+                    <a href="/tampilkandatabeli/{{ $row->id }}" class="btn-hapus">beli</a>
+
+                    <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
                         @csrf
                         <button type="submit" class="btn-ekspor">Purchase</button>
-
+                    </form>
 
                 </div>
             </td>
@@ -61,8 +63,9 @@
             <td>{{ $row->CP_Admin }}</td>
             <td>{{ $row->Hotel }}</td>
             <td>{{ $row->harga }}</td>
-            <td>{{ $row->updated_at }}</td>
+            <td>{{ $row->approved_by_user_id }}</td>
         </tr>
+
 
         @endforeach
     </tbody>

@@ -39,7 +39,6 @@ class CreateExtendedUmrahTable extends Migration
             $table->string('purchased_by_user_name')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','waiting validation','purchased'])->default('not yet purchased');
-            $table->foreign('id_user')->references('user_id')->on('etalase_umrah');
 
             $table->foreign('approved_by_user_id')->references('id')->on('users');
 
