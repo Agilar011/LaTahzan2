@@ -1,0 +1,185 @@
+.container-detail{
+    box-sizing: border-box;
+
+}
+
+.small-container{
+    max-width: 120vh;
+    margin: auto;
+    padding-left:25px;
+    padding-right:20px;
+}
+
+.row{
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
+    gap: 100px;
+}
+
+.single-product{
+    margin-top: 50px;
+
+}
+
+.small-img-row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+
+.col-2 .foto-umroh{
+    max-width: 100%;
+    padding: 50px 0;
+    border-radius: 20px;
+}
+
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+
+}
+
+.single-product .col-2 img{
+    padding: 0;
+}
+
+.single-product .col-2{
+
+}
+
+.col-2{
+    flex-basis: 100%;
+    line-height: 60px;
+    margin: 25px 0;
+}
+
+.col-2 .information{
+    background-color: #fbfbfb;
+    padding: 50px;
+}
+
+.col-2 .path{
+    color: #868686;
+}
+
+.col-2 h1{
+    font-size: 40px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+
+.col-2 .harga{
+    color: rgb(226, 171, 43);
+    font-size: 30px;
+}
+
+.single-product select{
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.single-product h4{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.single-product .attr-tgl{
+    margin-top: 50px;
+    font-size: 16px;
+}
+
+.single-product .attr-tgl span{
+    font-size: 16px;
+    color: #ff523b;
+}
+
+.single-product .attr span{
+    font-weight: bold;
+    color: #ff523b;
+}
+
+.single-product input{
+    display: none;
+    margin-top: 80px;
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid #ff523b;
+}
+
+.single-product input:focus{
+    outline: none;
+}
+
+.single-product a{
+    text-decoration: none;
+    color: #555;
+}
+
+.single-product .fa{
+    color: #ff523b;
+    margin-left: 10px;
+}
+
+.single-product p{
+    color: #000000;
+}
+
+.single-product .btn-beli{
+    background: #ff523b;
+    color: #ffffff;
+    margin-top: 50px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: background 0.5s;
+
+}
+
+.single-product p{
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.btn-beli:hover{
+    background-color: #563434;
+}
+
+.single-product p tr{
+    font-size: 15px;
+    line-height: 30px;
+}
+
+/* Row2 */
+
+.row2{
+
+}
+
+.row2-col1{
+    background-color: #fbfbfb;
+    padding: 15px 30px;
+}
+
+.row2-col2{
+    margin-top: 10px;
+    background-color: #fbfbfb;
+    padding: 15px 30px;
+}
+
+
+
+/* PAGE PESAN UMROHHHHHHHHHHH */
+
+
+
+
+
+
+

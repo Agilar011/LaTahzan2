@@ -19,9 +19,20 @@ use App\Http\Controllers\UmrohController;
 
 // CUSTOMER
 
-Route::get('/', function () {
-    return view('customer.landing');
-});
+//RETRIEVE DATA UMROH CUSTOMER
+
+Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
+
+//RETRIEVE DATA DETAIL PRODUK UMROH
+
+Route::get('/tampilkandetailumroh/{id}',[UmrohController::class,'tampilkandetailumroh'])->name('tampilkandetailumroh');
+Route::post('/exportdataumroh/{id}',[UmrohController::class,'exportdataumroh'])->name('exportdataumroh');
+
+
+
+//RETRIEVE DATA UMROH ADMIN
+
+Route::get('/input-umroh',[UmrohController::class,'index'])->name('umroh');
 
 Route::get('/login', function () {
     return view('customer.login');
@@ -45,6 +56,10 @@ Route::get('/umroh', function () {
 
 Route::get('/umroh-pesan', function () {
     return view('customer.book.umroh-book');
+});
+
+Route::get('/umroh-produk', function () {
+    return view('customer.detailpage.umroh-detail');
 });
 
 

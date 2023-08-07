@@ -45,7 +45,7 @@
                         <td>{{ $row->nama_kendaraan }} </td>
                         <td rowspan="3">{{ $row->warna }}</td>
                         <td>
-                            <img src="{{ asset('fotoOto/' . $row->foto1) }}" height="50px">
+                            <img src="{{ asset('storage/fotoOto/' . $row->foto1) }}" height="50px">
                         </td>
                         <td>
                             <img src="{{ asset('fotoBpkb/' . $row->foto_bpkb) }}" height="50px">

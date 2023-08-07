@@ -48,7 +48,7 @@ class UmrohController extends Controller
         return redirect()->route('umroh');
     }
 
-        //DELETE DATA OTO
+        //DELETE DATA UMROH
 
         public function deletedataumroh($id){
             $data = Umroh::find($id);
@@ -58,6 +58,22 @@ class UmrohController extends Controller
         }
 
 
+
+        //LANDING RETRIEVE UMROH
+
+        public function landingRead(){
+            $data = Umroh::all();
+            return view('customer.landing', compact('data'));
+        }
+
+        //DETAIL RETRIEVE UMROH
+
+
+        public function tampilkandetailumroh($id){
+        $data = Umroh::find($id);
+
+        return view('customer.detailpage.umroh-detail', compact('data'));
+        }
 
 
 

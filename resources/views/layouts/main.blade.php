@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style-landing.css">
-    <link rel="stylesheet" href="css/style-login-register.css">
+    <link rel="stylesheet" href="/css/style-landing.css">
+    <link rel="stylesheet" href="/css/style-login-register.css">
+    <link rel="stylesheet" href="/css/style-pesan-cust.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -21,7 +22,7 @@
                 <div class="nav-title">
                     <a href="/"><h1>LaTahzan</h1></a>
                 </div>
-                
+
                 <div class="nav-btn">
                     <ul>
                         <li><a href="#">Layanan</a></li>
@@ -171,6 +172,23 @@
                 });
             });
         });
+
+
+        var ProductImg = document.getElementById("productImg");
+        var smallImg = document.getElementsByClassName("small-img");
+
+        smallImg[0].onclick = function(){
+            ProductImg.src = smallImg[0].src;
+        }
+        smallImg[1].onclick = function(){
+            ProductImg.src = smallImg[1].src;
+        }
+        smallImg[2].onclick = function(){
+            ProductImg.src = smallImg[2].src;
+        }
+        smallImg[3].onclick = function(){
+            ProductImg.src = smallImg[3].src;
+        }
 
     </script>
 

@@ -10,3 +10,5 @@ class Otomotif extends Model
     use HasFactory;
     protected $guarded = [];
 }
+
+

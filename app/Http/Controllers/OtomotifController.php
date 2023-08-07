@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Otomotif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OtomotifController extends Controller
 {
@@ -71,8 +72,31 @@ class OtomotifController extends Controller
 
     //DELETE DATA OTO
 
-    public function deletedataoto($id){
+    public function deletedataoto($id)
+    {
         $data = Otomotif::find($id);
+
+        // Hapus foto dari direktori public/fotoOto
+        if (!empty($data->foto1)) {
+            Storage::delete('fotoOto/' . $data->foto1);
+        }
+        if (!empty($data->foto2)) {
+            Storage::delete('fotoOto2/' . $data->foto2);
+        }
+        if (!empty($data->foto3)) {
+            Storage::delete('fotoOto3/' . $data->foto3);
+        }
+        if (!empty($data->foto_stnk)) {
+            Storage::delete('fotoStnk/' . $data->foto_stnk);
+        }
+        if (!empty($data->foto_bpkb)) {
+            Storage::delete('fotoBpkb/' . $data->foto_bpkb);
+        }
+        if (!empty($data->foto_ktp)) {
+            Storage::delete('fotoKtp/' . $data->foto_ktp);
+        }
+
+        // Hapus data dari database
         $data->delete();
 
         return redirect()->route('otomotif');

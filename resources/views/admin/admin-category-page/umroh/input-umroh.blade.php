@@ -39,7 +39,7 @@
             <td>{{ $row->tanggal_berangkat }}</td>
             <td>{{ $row->jasa_travel }}</td>
             <td>{{ $row->hotel }}</td>
-            <td rowspan="2">Rp. {{ $row->harga }},-</td>
+            <td rowspan="2">Rp. {{ number_format($row->harga, 0, ',', '.') }},-</td>
             <td rowspan="2"><img src="{{ asset('fotoUmroh/'.$row->foto) }}" height="50px"></td>
             <td>{{ $row->created_at }}</td>
             <td rowspan="2">

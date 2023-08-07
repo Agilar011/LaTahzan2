@@ -41,7 +41,7 @@
                         </ul>
                     </div>
                     <div class="buy">
-                        <button>Beli Sekarang</button>
+                        <a href="/umroh-produk">Beli Sekarang</a>
                     </div>
                 </div>
 

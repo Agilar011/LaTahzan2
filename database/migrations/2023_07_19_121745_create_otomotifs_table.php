@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('kota');
             $table->integer('harga');
-            $table->string('foto1');
-            $table->string('foto2');
-            $table->string('foto3');
+            $table->string('foto1')->nullable();
+            $table->string('foto2')->nullable();
+            $table->string('foto3')->nullable();
             $table->string('foto_bpkb');
             $table->string('foto_stnk');
             $table->string('foto_ktp');

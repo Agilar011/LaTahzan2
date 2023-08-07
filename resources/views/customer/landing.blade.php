@@ -16,7 +16,6 @@
                 iure doloribus, illum iusto architecto
             </h5>
 
-
             <button type="button">Lihat Layanan Kami!</button>
         </div>
         <div class="layer1-right">
@@ -24,7 +23,7 @@
         </div>
     </div>
 
-    <div class="layer-2-container">
+    {{-- <div class="layer-2-container">
         <div class="layer-2">
             <div class="layer2-top">
                 <h1>Layanan Kami</h1>
@@ -54,7 +53,7 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
     {{-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
 
@@ -68,31 +67,46 @@
                 <h4>&nbsp</h4>
             </div>
 
+            @foreach ($data as $row)
             <div class="layer3-content">
                 <div class="product">
                     <div class="image">
                         <img src="img/umroh/umroh.jpeg" alt="cbr">
                     </div>
                     <div class="name-price">
-                        <h3>Paket Umroh Regular</h3>
-                        <h1>Rp. 29.000.000,-</h1>
+                        <h3>{{ $row->nama_paket }}</h3>
+                        <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
                     </div>
                     <div class="year">
-                        <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
+                        <?php
+                        $days = [
+                            'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'
+                        ];
+
+                        $months = [
+                            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                        ];
+
+                        $tanggal_berangkat = date('Y-m-d', strtotime($row->tanggal_berangkat));
+                        $tanggal_parts = explode('-', $tanggal_berangkat);
+                        $day = date('w', strtotime($tanggal_berangkat));
+                        $formatted_date = $days[$day] . ', ' . $tanggal_parts[2] . ' ' . $months[(int)$tanggal_parts[1] - 1] . ' ' . $tanggal_parts[0];
+                        ?>
+                        <h4>Tanggal Berangkat :</h4>
+                        <ul>
+                            <li>{{ $formatted_date }}</li>
+                        </ul>
+
                     </div>
 
                     <div class="fasilitas">
                         <h4>Fasilitas :</h4>
                         <ul>
                             <li>
-                                <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
+                                <p>Maskapai: {{ $row->maskapai }}</p>
                             </li>
                             <li>
-                                <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                            </li>
-                            <li>
-                                <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                    kaki ke Masjidil Haram)</p>
+                                <p>Hotel: {{ $row->hotel }}</p>
                             </li>
                             <li>
                                 <p>City Tour Madinah & Makkah</p>
@@ -118,178 +132,17 @@
                         </ul>
                     </div>
                     <div class="buy">
-                        <button>Beli Sekarang</button>
+                        <a href="/tampilkandetailumroh/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
                     </div>
                 </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/umroh/umroh.jpeg" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Paket Umroh Regular</h3>
-                        <h1>Rp. 29.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                    </div>
-
-                    <div class="fasilitas">
-                        <h4>Fasilitas :</h4>
-                        <ul>
-                            <li>
-                                <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                            </li>
-                            <li>
-                                <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                            </li>
-                            <li>
-                                <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                    kaki ke Masjidil Haram)</p>
-                            </li>
-                            <li>
-                                <p>City Tour Madinah & Makkah</p>
-                            </li>
-                            <li>
-                                <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                            </li>
-                            <li>
-                                <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                    Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                    Manasik)</p>
-                            </li>
-                            <li>
-                                <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                            </li>
-                            <li>
-                                <p>Manasik Umroh Offline di Hotel</p>
-                            </li>
-                            <li>
-                                <p>Kereta Cepat Madinah-Makkah</p>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/umroh/umroh.jpeg" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Paket Umroh Regular</h3>
-                        <h1>Rp. 29.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                    </div>
-
-                    <div class="fasilitas">
-                        <h4>Fasilitas :</h4>
-                        <ul>
-                            <li>
-                                <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                            </li>
-                            <li>
-                                <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                            </li>
-                            <li>
-                                <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                    kaki ke Masjidil Haram)</p>
-                            </li>
-                            <li>
-                                <p>City Tour Madinah & Makkah</p>
-                            </li>
-                            <li>
-                                <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                            </li>
-                            <li>
-                                <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                    Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                    Manasik)</p>
-                            </li>
-                            <li>
-                                <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                            </li>
-                            <li>
-                                <p>Manasik Umroh Offline di Hotel</p>
-                            </li>
-                            <li>
-                                <p>Kereta Cepat Madinah-Makkah</p>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/umroh/umroh.jpeg" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Paket Umroh Regular</h3>
-                        <h1>Rp. 29.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                    </div>
-
-                    <div class="fasilitas">
-                        <h4>Fasilitas :</h4>
-                        <ul>
-                            <li>
-                                <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                            </li>
-                            <li>
-                                <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                            </li>
-                            <li>
-                                <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                    kaki ke Masjidil Haram)</p>
-                            </li>
-                            <li>
-                                <p>City Tour Madinah & Makkah</p>
-                            </li>
-                            <li>
-                                <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                            </li>
-                            <li>
-                                <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                    Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                    Manasik)</p>
-                            </li>
-                            <li>
-                                <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                            </li>
-                            <li>
-                                <p>Manasik Umroh Offline di Hotel</p>
-                            </li>
-                            <li>
-                                <p>Kereta Cepat Madinah-Makkah</p>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-
-
             </div>
+            @endforeach
 
 
 
-            <div class="layer4-btn">
+            {{-- <div class="layer4-btn">
                 <button type="button" onclick="umroh()">Lihat Selengkapnya Paket Umroh / Haji</button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -471,11 +324,171 @@
                     </div>
                 </div>
 
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/motor/cbr.jpg" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>All New CBR150R</h3>
+                        <h1>Rp. 37.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>2021</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="layer4-btn">
+            {{-- <div class="layer4-btn">
                 <button type="button" onclick="oto()">Lihat Selengkapnya Otomotif</button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -664,9 +677,9 @@
 
             </div>
 
-            <div class="layer4-btn">
+            {{-- <div class="layer4-btn">
                 <button type="button" onclick="prop()">Lihat Selengkapnya Properti</button>
-            </div>
+            </div> --}}
 
         </div>
     </div>
