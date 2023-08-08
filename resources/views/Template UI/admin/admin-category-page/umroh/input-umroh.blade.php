@@ -41,9 +41,9 @@
             <td rowspan="2">{{ $row->jenis }}</td>
             <td rowspan="2">{{ $row->deskripsi }}</td>
             <td>{{ $row->tanggal_berangkat }}</td>
-            <td>{{ $row->admin_name }}</td>
+            <td>{{ $row->upload_by_user_name }}</td>
             <td>{{ $row->Maskapai }}</td>
-            <td>Rp. {{ $row->jasa_travel }},-</td>
+            <td>{{ $row->jasa_travel }}</td>
             <td rowspan="2"><img src="{{ asset('fotoUmroh/'.$row->thumbnail) }}" height="50px"></td>
             <td>{{ $row->created_at }}</td>
             <td rowspan="2">
@@ -63,9 +63,9 @@
         </tr>
         <tr>
             <td>{{ $row->durasi }} Hari</td>
-            <td>{{ $row->CP_Admin }}</td>
+            <td>{{ $row->No_hp_uploader }}</td>
             <td>{{ $row->Hotel }}</td>
-            <td>{{ $row->harga }}</td>
+            <td>Rp. {{ $row->harga_awal }}</td>
             <td>{{ $row->updated_at }}</td>
         </tr>
 
