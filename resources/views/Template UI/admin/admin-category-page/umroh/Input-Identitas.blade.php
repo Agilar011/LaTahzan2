@@ -15,7 +15,6 @@
                 <input type="number" name="jumlah_jemaah" value="{{ $data->jumlah_jemaah }}" disabled>
                 <label for="id_etalase_umroh"></label>
                 <input type="text" name="id_etalase_umroh" value="{{ $data->id }}" disabled>
-
                 <label for="">Data Jemaah</label>
                 {{-- <div class="form-input">
                     <label for="nama_jemaah{{ 1 }}">Nama Jemaah {{ 1 }}</label>
@@ -48,6 +47,12 @@
 
                 @if ($data->jumlah_jemaah > 0)
                 @for ($i = 1; $i <= $data->jumlah_jemaah; $i++)
+                @if ()
+
+                @else
+
+                @endif
+                if
                     <div class="form-input">
                         <label for="nama_jemaah{{ $i }}">Nama Jemaah {{ $i }}</label>
                         <input type="text" name="nama_jemaah[]" id="nama_jemaah{{ $i }}" required>
