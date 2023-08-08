@@ -20,7 +20,7 @@ class Jemaah extends Model
         'biaya_jasa_paspor',
         'status_vaksin',
         'foto_vaksin',
-        'biaya_vaksin',
+        'biaya_jasa_vaksin',
         'biaya_awal',
         'biaya_akhir',
     ];

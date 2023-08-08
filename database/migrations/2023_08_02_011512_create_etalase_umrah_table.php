@@ -12,29 +12,38 @@ class CreateEtalaseUmrahTable extends Migration
     {
         Schema::create('etalase_umrah', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail')->default(null);
+            $table->unsignedBigInteger('upload_by_user_id');
+            $table->string('upload_by_user_name');
+            $table->string('No_hp_uploader');
+            $table->string('thumbnail')->default('default.jpg');
             $table->string('nama_paket');
-            $table->string('jenis');
-            $table->string('deskripsi');
+            $table->enum('jenis',['Umroh','Haji']);
+            $table->text('deskripsi');
+            $table->string('fasilitas1')->nullable();
+            $table->string('fasilitas2')->nullable();
+            $table->string('fasilitas3')->nullable();
+            $table->string('fasilitas4')->nullable();
+            $table->string('fasilitas5')->nullable();
+            $table->string('fasilitas6')->nullable();
+            $table->string('fasilitas7')->nullable();
+            $table->string('fasilitas8')->nullable();
+            $table->string('fasilitas9')->nullable();
+            $table->string('fasilitas10')->nullable();
             $table->date('tanggal_berangkat');
             $table->integer('durasi');
             $table->string('jasa_travel');
-            $table->string('CP_Admin');
             $table->string('Hotel');
             $table->string('Maskapai');
-            $table->decimal('harga', 10, 2);
-            $table->timestamps();
-
-            $table->unsignedBigInteger('user_id');
-            $table->string('admin_name');
+            $table->integer('harga_awal');
             $table->unsignedBigInteger('approved_by_user_id')->nullable();
             $table->string('approved_by_user_name')->nullable();
-            $table->unsignedBigInteger('purchased_by_user_id')->nullable();
-            $table->string('purchased_by_user_name')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
-            $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
+            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            // Jika menggunakan foreign key, tambahkan baris berikut:
+            $table->foreign('upload_by_user_id')->references('id')->on('users');
+            $table->foreign('approved_by_user_id')->references('id')->on('users');
+
 
         });
     }

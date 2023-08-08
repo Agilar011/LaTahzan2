@@ -12,39 +12,46 @@ class CreateExtendedUmrahTable extends Migration
     {
         Schema::create('extended_umrah', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user')->nullable();
-            $table->string('nama_user')->nullable();
-            $table->string('No_hp')->nullable();
-            $table->string('thumbnail');
+            $table->unsignedBigInteger('upload_by_user_id')->nullable();
+            $table->string('upload_by_user_name')->nullable();
+            $table->string('No_hp_uploader')->nullable();
+            $table->string('thumbnail')->default('default.jpg');
             $table->string('nama_paket');
-            $table->string('jenis');
-            $table->string('deskripsi');
+            $table->enum('jenis',['Umroh','Haji']);
+            $table->text('deskripsi');
+            $table->string('fasilitas1')->nullable();
+            $table->string('fasilitas2')->nullable();
+            $table->string('fasilitas3')->nullable();
+            $table->string('fasilitas4')->nullable();
+            $table->string('fasilitas5')->nullable();
+            $table->string('fasilitas6')->nullable();
+            $table->string('fasilitas7')->nullable();
+            $table->string('fasilitas8')->nullable();
+            $table->string('fasilitas9')->nullable();
+            $table->string('fasilitas10')->nullable();
             $table->date('tanggal_berangkat');
-            $table->integer('jumlah_jemaah');
             $table->integer('durasi');
             $table->string('jasa_travel');
-            $table->unsignedBigInteger('id_Admin');
-            $table->string('Nama_Admin');
-            $table->string('CP_Admin');
             $table->string('Hotel');
             $table->string('Maskapai');
-            $table->decimal('harga_estimasi', 10, 2)->default(0); // Default value 0, bisa diganti sesuai kebutuhan
-            $table->string('no_kk');
-            $table->string('foto_kk');
-            $table->decimal('harga_total', 12, 2)->default(0);
-            $table->timestamps();
+            $table->integer('harga_awal');
             $table->unsignedBigInteger('approved_by_user_id')->nullable();
             $table->string('approved_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
-            $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
-            $table->enum('status_pembelian',['not yet purchased','waiting validation','purchased'])->default('not yet purchased');
-            $table->foreign('id_user')->references('user_id')->on('etalase_umrah');
+            $table->integer('jumlah_jemaah');
+            $table->string('no_kk')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->integer('harga_total')->nullable();
+            $table->enum('status_pembelian',['not yet purchased','pending','purchased'])->default('not yet purchased');
+            $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
+            $table->timestamps();
 
+            // Jika menggunakan foreign key, tambahkan baris berikut:
+            $table->foreign('upload_by_user_id')->references('id')->on('users');
             $table->foreign('approved_by_user_id')->references('id')->on('users');
-
-            // Add foreign key constraint for purchased_by_user_id
             $table->foreign('purchased_by_user_id')->references('id')->on('users');
+            $table->foreign('approved_payment_by_user_id')->references('id')->on('users');
         });
     }
 
