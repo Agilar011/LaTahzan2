@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class EtalaseUmrah extends Model
 {
     protected $table = 'etalase_umrah';
+
     protected $fillable = [
+        'admin_name', // tambahkan atribut `admin_name` pada array ini
+        'user_id',
         'thumbnail',
+        'deskripsi', // tambahkan atribut `deskripsi` pada array ini
         'nama_paket',
         'jenis',
-        'deskripsi',
         'tanggal_berangkat',
         'durasi',
         'jasa_travel',
@@ -19,25 +22,9 @@ class EtalaseUmrah extends Model
         'Hotel',
         'Maskapai',
         'harga',
-        'upload_by_user_id',
-        'upload_by_user_name',
-        'approved_by_user_id',
-        'approved_by_user_name',
-        'purchased_by_user_id',
-        'purchased_by_user_name',
-        'status_etalase',
-        'status_pembelian',
     ];
 
-    public function jemaah()
-    {
-        return $this->hasMany(Jemaah::class, 'id_etalase_umroh');
-    }
-
-    // Define relationships, if any
-    // For example:
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'Upload_by_user_id');
-    // }
+    // Jika atribut `Id` merupakan primary key dengan auto increment, tambahkan baris berikut:
+    // protected $primaryKey = 'Id';
+    // public $incrementing = true;
 }

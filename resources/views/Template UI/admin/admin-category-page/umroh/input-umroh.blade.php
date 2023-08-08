@@ -41,7 +41,7 @@
             <td rowspan="2">{{ $row->jenis }}</td>
             <td rowspan="2">{{ $row->deskripsi }}</td>
             <td>{{ $row->tanggal_berangkat }}</td>
-            <td>{{ $row->upload_by_user_name }}</td>
+            <td>{{ $row->admin_name }}</td>
             <td>{{ $row->Maskapai }}</td>
             <td>Rp. {{ $row->jasa_travel }},-</td>
             <td rowspan="2"><img src="{{ asset('fotoUmroh/'.$row->thumbnail) }}" height="50px"></td>

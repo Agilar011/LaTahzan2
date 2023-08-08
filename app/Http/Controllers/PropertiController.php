@@ -6,20 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Properti;
 use Illuminate\Support\Facades\Auth;
 
+
 class PropertiController extends Controller
 {
+
     //RETRIEVE DATA PROP
 
-    public function index()
-    {
+    public function index(){
         $data = Properti::where('status_etalase', 'not yet approved')->get();
         return view('Template UI.admin.admin-category-page.prop.input-prop', compact('data'));
     }
 
     //RETRIEVE DATA PROP ETALASE
 
-    public function etalaseProp()
-    {
+    public function etalaseProp(){
         $data = Properti::where('status_etalase', 'not yet approved')->get();
 
         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('data'));
@@ -27,8 +27,7 @@ class PropertiController extends Controller
 
     //CREATE DATA PROP
 
-    public function tambahProp()
-    {
+    public function tambahProp(){
         return view('Template UI.admin.admin-category-page.prop.tambah-prop');
     }
 
@@ -72,18 +71,17 @@ class PropertiController extends Controller
         return redirect()->route('property');
     }
 
+
     //UPDATE DATA PROP
 
-    public function tampilkandataprop($id)
-    {
+    public function tampilkandataprop($id){
         // $data = Otomotif::find($id);
         $data = Properti::find($id);
 
         return view('Template UI.admin.admin-category-page.prop.update-prop', compact('data'));
     }
 
-    public function updatedataprop(Request $request, $id)
-    {
+    public function updatedataprop(Request $request, $id){
         $data = Properti::find($id);
         $data->update($request->all());
 
@@ -92,8 +90,7 @@ class PropertiController extends Controller
 
     //DELETE DATA OTO
 
-    public function deletedataprop($id)
-    {
+    public function deletedataprop($id){
         $data = Properti::find($id);
         $data->delete();
 
@@ -101,6 +98,7 @@ class PropertiController extends Controller
     }
 
     //UPDATE STATUS
+
 
     public function approve(Request $request, $id)
     {
@@ -119,15 +117,15 @@ class PropertiController extends Controller
         // Redirect back to the previous page or any other page you prefer
         return back()->with('success', 'Product has been approved.');
     }
-    // method show approved and not purchased otomotif
-    public function showApprovedAndNotPurchasedPropertys()
-    {
-        $approvedNotPurchasedPropertys = Properti::where('status_etalase', 'approved')
-            ->where('status_pembelian', 'not yet purchased')
-            ->get();
+     // method show approved and not purchased otomotif
+     public function showApprovedAndNotPurchasedPropertys()
+     {
+         $approvedNotPurchasedPropertys = Properti::where('status_etalase', 'approved')
+             ->where('status_pembelian', 'not yet purchased')
+             ->get();
 
-        return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
-    }
+         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
+     }
 
     //  Purchased Method
     public function purchase(Request $request, $id)
@@ -136,8 +134,8 @@ class PropertiController extends Controller
 
         // Ensure the product is available for purchase (for example, check if it's not already purchased)
         // Add your business logic here
-        // Get the ID of the currently logged-in user
-        $user = Auth::user();
+         // Get the ID of the currently logged-in user
+         $user = Auth::user();
 
         // Mark the product as purchased and associate it with the logged-in user
         $property->purchased_by_user_id = $user->id;
@@ -152,8 +150,13 @@ class PropertiController extends Controller
 
     // show approve the productpublic function showPurchasedPropertys()
     public function showPurchasedPropertys()
-    {
-        $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
-        return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
-    }
+{
+    $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
+    return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
+}
+
+
+
+
+
 }

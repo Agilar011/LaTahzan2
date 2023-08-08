@@ -129,11 +129,10 @@ Route::middleware(['auth'])->group(function () {
     // ...
 });
 
-
 Route::middleware(['auth'])->group(function () {
     // ...
     Route::get('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');
-    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umrohs.purchase');
+    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umroh.purchase');
     // ...
 });
 
@@ -141,30 +140,4 @@ Route::middleware(['auth'])->group(function () {
 // etalase Umroh
 
 Route::get('/crd-umroh',[UmrohController::class,'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
-
-// route show purchased Umroh
-Route::get('/konfirmasi-umroh',[UmrohController::class,'Belipaket'])->name('konfirmasi-umroh');
-
-Route::get('/tampilkandataumroh/{id}',[UmrohController::class,'tampilkandataumroh'])->name('tampilkandataumroh');
-
-Route::post('/updatedataumroh/{id}',[UmrohController::class,'updatedataumroh'])->name('updatedataumroh');
-
-Route::get('/tampilkandatabeli/{id}',[UmrohController::class,'tampilkandatabeliumroh'])->name('beliumroh');
-Route::group(['middleware' => 'auth'], function () {
-    // ... other routes ...
-
-    Route::post('updatedatabeliumroh/{id}', [UmrohController::class, 'updatedatabeliumroh'])->name('updatedatabeliumroh');
-    Route::get('insertjemaah/{id}', [UmrohController::class, 'createjemaah'])->name('identitasjemaah');
-    Route::post('insertjemaah/{id}', [UmrohController::class, 'storejemaah'])->name('storejemaah');
-
-    // ... other routes ...
-});
-
-// Route::post('/updatedatabeli/{id}',[UmrohController::class,'updatedatabeliumroh'])->name('updatedatabeliumroh');
-
-// // Route::GET('inputjemaah',[UmrohController::class,'createjemaah'])->name('identitasjemaah');
-
-// Route::GET('insertjemaah/{id}',[UmrohController::class,'createjemaah'])->name('identitasjemaah');
-
-
 
