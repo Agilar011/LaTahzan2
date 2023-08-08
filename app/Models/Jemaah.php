@@ -9,17 +9,19 @@ class Jemaah extends Model
     protected $table = 'jemaah';
 
     protected $fillable = [
-        'id_etalase_umroh', // tambahkan atribut ini
+        'id_extended_umroh', // tambahkan atribut ini
         'nama_jemaah',
         'NIK',
         'No_hp',
+        'foto_identitas',
+        'status_paspor',
         'no_paspor',
         'foto_paspor',
-        'foto_KTP',
+        'biaya_jasa_paspor',
         'status_vaksin',
         'foto_vaksin',
-        'biaya_jasa_paspor',
-        'biaya_jasa_vaksin',
+        'biaya_vaksin',
+        'biaya_awal',
         'biaya_akhir',
     ];
 

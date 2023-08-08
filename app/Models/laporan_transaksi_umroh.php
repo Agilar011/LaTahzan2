@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExtendedUmrah extends Model
+class laporan_transaksi_umroh extends Model
 {
-    protected $table = 'extended_umrah';
+    use HasFactory;
+    protected $table = 'laporan_transaksi_umroh';
 
     protected $fillable = [
-        'id_etalase_umroh',
-        'upload_by_user_id',
+        'id_user_uploader',
         'upload_by_user_name',
         'No_hp_uploader',
         'thumbnail',
@@ -33,19 +34,14 @@ class ExtendedUmrah extends Model
         'Hotel',
         'Maskapai',
         'harga_awal',
-        'approved_display_by_user_id',
-        'approved_display_by_user_name',
+        'jumlah_jemaah',
         'purchased_by_user_id',
         'purchased_by_user_name',
         'jumlah_jemaah',
         'no_kk',
         'foto_kk',
+        'total_biaya_tambahan',
         'harga_total',
-        'status_pembelian',
-        'approved_payment_by_user_id',
     ];
 
-    // Jika atribut `Id` merupakan primary key dengan auto increment, tambahkan baris berikut:
-    // protected $primaryKey = 'Id';
-    // public $incrementing = true;
 }
