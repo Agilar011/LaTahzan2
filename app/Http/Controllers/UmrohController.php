@@ -219,7 +219,7 @@ class UmrohController extends Controller
         // Update other attributes based on your needs
 
 
-        ExtendedUmrah::create([
+        $ExtendedUmrah=ExtendedUmrah::create([
             'id_etalase_umroh' => $etalase->id,
             'upload_by_user_id' => $etalase->upload_by_user_id,
             'upload_by_user_name' => $etalase->upload_by_user_name,
@@ -251,16 +251,18 @@ class UmrohController extends Controller
             'jumlah_jemaah' => $request->input('jumlah_jemaah'),
             // 'no_kk' => $data->no_kk,
             // 'foto_kk' => $data->foto_kk,
-
         ]);
 
+        $id = $ExtendedUmrah->id; // Mendapatkan ID yang baru saja dibuat
+        // dd($ExtendedUmrah);
 
-        return redirect()->route('identitasjemaah', ['id' => $etalase->id]);
+
+        return redirect()->route('identitasjemaah', ['id' => $ExtendedUmrah->id]);
     }
 
     public function createjemaah(Request $request, $id)
     {
-        $jumlahJemaah = $request->input('jumlah_jemaah');
+        // $jumlahJemaah = $request->input('jumlah_jemaah');
         $data = ExtendedUmrah::find($id);
         $user = Auth::user();
 
@@ -269,31 +271,53 @@ class UmrohController extends Controller
 
     public function storejemaah(Request $request, $id)
     {
-        $data = EtalaseUmrah::find($id);
-        $etalase = EtalaseUmrah::findOrFail($id);
+        // $data = EtalaseUmrah::find($id);
+        $etalase = ExtendedUmrah::findOrFail($id);
+        // dd($etalase);
 
-        $jumlahJemaah = $data->jumlah_jemaah;
+
+        $jumlahJemaah = $etalase->jumlah_jemaah;
 
         for ($i = 0; $i < $jumlahJemaah; $i++) {
-            // dd($etalase);
+            // dd($request);
             Jemaah::create([
-                'id_etalase_umroh' => $etalase->id,
+                'id_extended_umroh' => $etalase->id,
                 'nama_jemaah' => $request->input('nama_jemaah')[$i],
                 'NIK' => $request->input('NIK')[$i],
                 'No_hp' => $request->input('No_hp')[$i],
                 'no_paspor' => $request->input('no_paspor')[$i],
                 'foto_paspor' => $request->file('foto_paspor')[$i],
-                'foto_KTP' => $request->file('foto_KTP')[$i],
+                'foto_identitas' => $request->file('foto_KTP')[$i],
                 'status_vaksin' => $request->input('status_vaksin')[$i],
                 'foto_vaksin' => $request->file('foto_vaksin')[$i],
                 // Add other jemaah-related data
             ]);
         }
 
+        $etalase->status_pembelian = 'pending';
+        $etalase->save();
+
+
+
         return redirect()
             ->route('umroh')
             ->with('success', 'Data jemaah berhasil disimpan.');
     }
+    public function tampilkandatatransaksi()
+    {
+        $data = ExtendedUmrah::where('status_pembelian' , 'pending')->get();
+        // dd($data);
+        $firstData = $data->first(); // Mengambil objek pertama dari koleksi
+        $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
+
+        $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
+        // dd($id_extended_umroh);
+        $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
+
+        return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
+    }
+
+
 
     // method show approved and not purchased otomotif
     //  Purchased Method

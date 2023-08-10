@@ -160,4 +160,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ... other routes ...
 });
+Route::get('/trx-umroh',[UmrohController::class,'tampilkandatatransaksi'])->name('tampilkandatatransaksi');
 
