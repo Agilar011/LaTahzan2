@@ -107,58 +107,35 @@ Route::post('/updatedataoto/{id}',[OtomotifController::class,'updatedataoto'])->
 
 Route::get('/deletedataoto/{id}',[OtomotifController::class,'deletedataoto'])->name('deletedataoto');
 
-// setting Umrah
-//RETRIEVE DATA UMROH ADMIN
 
-Route::get('/input-umroh',[UmrohController::class,'index'])->name('umroh');
-
-
-//TAMBAH DATA UMROH ADMIN
-
-Route::get('/tambahUmroh',[UmrohController::class,'tambahUmroh'])->name('tambahUmroh');
-Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh');
-
-// route approve umroh
-
-Route::middleware('auth')->post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve');
-
+// Setting Umrah
 Route::middleware(['auth'])->group(function () {
-    // ...
-    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umroh.purchase');
+    Route::get('/input-umroh', [UmrohController::class, 'index'])->name('umroh');
+
+    Route::get('/tambahUmroh', [UmrohController::class, 'tambahUmroh'])->name('tambahUmroh');
+    Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh');
+
+    Route::post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve');
+
+    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');
+    Route::post('/umrohs/purchase/{umroh}', [UmrohController::class, 'purchase'])->name('umroh.purchase');
     Route::get('/umrohs/approved-not-purchased', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('umroh.showApprovedNotPurchasedUmrohs');
-    // ...
+
+    Route::get('/tampilkandatabeliumroh/{id}', [UmrohController::class, 'tampilkandatabeliumroh'])->name('konfirmasi-umroh');
+
+    Route::get('/tampilkandataumroh/{id}', [UmrohController::class, 'tampilkandataumroh'])->name('tampilkandataumroh');
+    Route::post('/updatedataumroh/{id}', [UmrohController::class, 'updatedataumroh'])->name('updatedataumroh');
+
+    Route::post('/updatedatabeliumroh/{id}', [UmrohController::class, 'updatedatabeliumroh'])->name('updatedatabeliumroh');
+
+    Route::get('/insertjemaah/{id}', [UmrohController::class, 'createjemaah'])->name('identitasjemaah');
+    Route::post('/insertjemaah/{id}', [UmrohController::class, 'storejemaah'])->name('storejemaah');
+
+    Route::get('/trx-umroh', [UmrohController::class, 'tampilkandatatransaksi'])->name('tampilkandatatransaksi');
+
+    // Rute untuk aksi approvepayment
+    Route::post('/umrohs/{id}/approvepayment', [UmrohController::class, 'approvepayment'])->name('umrohs.approvepayment');
 });
 
-
-Route::middleware(['auth'])->group(function () {
-    // ...
-    Route::get('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');
-    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'purchase'])->name('umrohs.purchase');
-    // ...
-});
-
-
-// etalase Umroh
-
-Route::get('/crd-umroh',[UmrohController::class,'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
-
-// route show purchased Umroh
-Route::get('/tampilkandatabeliumroh/{id}',[UmrohController::class,'tampilkandatabeliumroh'])->name('konfirmasi-umroh');
-// dipake
-
-Route::get('/tampilkandataumroh/{id}',[UmrohController::class,'tampilkandataumroh'])->name('tampilkandataumroh');
-
-Route::post('/updatedataumroh/{id}',[UmrohController::class,'updatedataumroh'])->name('updatedataumroh');
-
-// Route::get('/tampilkandatabeli/{id}',[UmrohController::class,'tampilkandatabeliumroh'])->name('beliumroh');
-Route::group(['middleware' => 'auth'], function () {
-    // ... other routes ...
-
-    Route::post('updatedatabeliumroh/{id}', [UmrohController::class, 'updatedatabeliumroh'])->name('updatedatabeliumroh');
-    Route::get('insertjemaah/{id}', [UmrohController::class, 'createjemaah'])->name('identitasjemaah');
-    Route::post('insertjemaah/{id}', [UmrohController::class, 'storejemaah'])->name('storejemaah');
-
-    // ... other routes ...
-});
-Route::get('/trx-umroh',[UmrohController::class,'tampilkandatatransaksi'])->name('tampilkandatatransaksi');
-
+// Etalase Umroh
+Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\EtalaseUmrah;
 use App\Models\ExtendedUmrah;
 use App\Models\Jemaah;
+use App\Models\laporan_transaksi_umroh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class UmrohController extends Controller
 {
@@ -91,35 +94,7 @@ class UmrohController extends Controller
 
         $etalaseUmrah->save();
 
-        // Redirect to the previous page or any other relevant page
-
-        // Get data from the selected package
-
-        // // Calculate total harga based on estimasi harga and jumlah jemaah
-        // $harga_total = $etalaseUmrah->harga * $validatedData['jumlah_jemaah'];
-
-        // // Add attributes from etalase_umrah to validatedData
-        // $validatedData['thumbnail'] = $etalaseUmrah->thumbnail; // Change this as needed
-        // $validatedData['nama_paket'] = $etalaseUmrah->nama_paket;
-        // $validatedData['jenis'] = $etalaseUmrah->jenis;
-        // $validatedData['deskripsi'] = $etalaseUmrah->deskripsi;
-        // $validatedData['tanggal_berangkat'] = $etalaseUmrah->tanggal_berangkat;
-        // $validatedData['jumlah_jemaah'] = $etalaseUmrah->tanggal_pulang;
-        // $validatedData['durasi'] = $etalaseUmrah->durasi;
-        // $validatedData['jasa_travel'] = $etalaseUmrah->jasa_travel;
-        // $validatedData['id_Admin'] = $etalaseUmrah->user_id; // Change this as needed
-        // $validatedData['nama_Admin'] = $etalaseUmrah->admin_name; // Change this as needed
-        // $validatedData['approved_by_user_id'] = $user->id; // Change this as needed
-        // $validatedData['approved_by_user_name'] = $user->name; // Change this as needed
-        // $validatedData['CP_Admin'] = $etalaseUmrah->CP_Admin;
-        // $validatedData['Hotel'] = $etalaseUmrah->Hotel;
-        // $validatedData['Maskapai'] = $etalaseUmrah->Maskapai;
-        // $validatedData['status_etalase'] = 'approved';
-
-        // // Create the extended_umroh record
-        // ExtendedUmrah::create($validatedData);
-
-        // Redirect back to the previous page or any other page you prefer
+                // Redirect back to the previous page or any other page you prefer
         return back()->with('success', 'Product has been approved.');
     }
 
@@ -308,6 +283,7 @@ class UmrohController extends Controller
         $data = ExtendedUmrah::where('status_pembelian' , 'pending')->get();
         // dd($data);
         $firstData = $data->first(); // Mengambil objek pertama dari koleksi
+        // dd($data);
         $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
 
         $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
@@ -320,5 +296,67 @@ class UmrohController extends Controller
 
 
     // method show approved and not purchased otomotif
-    //  Purchased Method
+    //  Aprroved payment Method
+    public function approvepayment(Request $request, $id)
+    {
+       // Find the extended_umrah record by ID
+       $etalaseUmrah = ExtendedUmrah::findOrFail($id);
+
+       // Ensure the product is available for approval (for example, check if it's not already approved)
+       // Add your business logic here
+
+       // Get the ID of the currently logged-in user
+       $user = Auth::user();
+
+       // Mark the product as approved and associate it with the logged-in user
+       $etalaseUmrah->approved_payment_by_user_id = $user->id;
+       $etalaseUmrah->status_pembelian = 'purchased';
+
+       $etalaseUmrah->save();
+    //    dd($etalaseUmrah);
+
+        laporan_transaksi_umroh::create([
+            'id_user_uploader' => $etalaseUmrah->upload_by_user_id,
+            'nama_user_uploader' => $etalaseUmrah->upload_by_user_name,
+            'No_hp_uploader' => $etalaseUmrah->No_hp_uploader,
+            'nama_paket' => $etalaseUmrah->nama_paket,
+            'jenis' => $etalaseUmrah->jenis,
+            'deskripsi' => $etalaseUmrah->deskripsi,
+            'fasilitas1' => $etalaseUmrah->fasilitas_1,
+            'fasilitas2' => $etalaseUmrah->fasilitas_2,
+            'fasilitas3' => $etalaseUmrah->fasilitas_3,
+            'fasilitas4' => $etalaseUmrah->fasilitas_4,
+            'fasilitas5' => $etalaseUmrah->fasilitas_5,
+            'fasilitas6' => $etalaseUmrah->fasilitas_6,
+            'fasilitas7' => $etalaseUmrah->fasilitas_7,
+            'fasilitas8' => $etalaseUmrah->fasilitas_8,
+            'fasilitas9' => $etalaseUmrah->fasilitas_9,
+            'fasilitas10' => $etalaseUmrah->fasilitas_10,
+            'tanggal_berangkat' => $etalaseUmrah->tanggal_berangkat,
+            'durasi' => $etalaseUmrah->durasi,
+            'jasa_travel' => $etalaseUmrah->jasa_travel,
+            'Hotel' => $etalaseUmrah->Hotel,
+            'Maskapai' => $etalaseUmrah->Maskapai,
+            'harga_awal' => $etalaseUmrah->harga_awal,
+            'purchased_by_user_id' => $etalaseUmrah->purchased_by_user_id,
+            'purchased_by_user_name' => $etalaseUmrah->purchased_by_user_name,
+            'jumlah_jemaah' => $etalaseUmrah->jumlah_jemaah,
+            'no_kk' => $etalaseUmrah->no_kk,
+            'foto_kk' => $etalaseUmrah->foto_ktp,
+            'harga_total' => $etalaseUmrah->harga_total,
+            'total_biaya_tambahan' => $etalaseUmrah->harga_total,
+        ]);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+    // Hapus data extended_umrah (baris induk)
+    $etalaseUmrah->delete();
+
+    // Mengaktifkan kembali kunci asing
+    DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+
+                // Redirect back to the previous page or any other page you prefer
+        return route('umroh')->with('success', 'Product has been approved.');
+    }
 }

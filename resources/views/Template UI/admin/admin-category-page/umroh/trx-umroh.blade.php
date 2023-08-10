@@ -48,14 +48,10 @@
                         </td>
                     <td rowspan="2">
                         <div class="btn">
-                            @if ($row->approved_by_user_id === null)
-                                <form action="{{ route('umrohs.approve', $row->id) }}" metdod="POST">
-                                    @csrf
-                                    <button type="submit" class="btn-ekspor">Approve</button>
-                                    </form>
-                            @else
-                                <button class="btn-ekspor">Approved by User {{ $row->approved_by_user_name }}</button>
-                            @endif
+                            <form action="{{ route('umrohs.approvepayment', $row->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn-ekspor">Approve</button>
+                            </form>
                             </div>
                         </td>
                     </tr>

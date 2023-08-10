@@ -12,7 +12,7 @@ class laporan_transaksi_umroh extends Model
 
     protected $fillable = [
         'id_user_uploader',
-        'upload_by_user_name',
+        'nama_user_uploader',
         'No_hp_uploader',
         'thumbnail',
         'nama_paket',

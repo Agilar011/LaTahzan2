@@ -38,10 +38,10 @@ return new class extends Migration
             $table->integer('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
             $table->integer('jumlah_jemaah');
-            $table->string('no_kk');
-            $table->string('foto_kk');
-            $table->integer('total_biaya_tambahan');
-            $table->integer('harga_total');
+            $table->string('no_kk')->nullable();
+            $table->string('foto_kk')->nullable();
+            $table->integer('total_biaya_tambahan')->nullable();
+            $table->integer('harga_total')->nullable();
             $table->timestamps();
         });
         //
