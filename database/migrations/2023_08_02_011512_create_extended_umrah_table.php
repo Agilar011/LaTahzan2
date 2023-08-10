@@ -12,6 +12,7 @@ class CreateExtendedUmrahTable extends Migration
     {
         Schema::create('extended_umrah', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_etalase_umroh');
             $table->unsignedBigInteger('upload_by_user_id')->nullable();
             $table->string('upload_by_user_name')->nullable();
             $table->string('No_hp_uploader')->nullable();
@@ -35,8 +36,8 @@ class CreateExtendedUmrahTable extends Migration
             $table->string('Hotel');
             $table->string('Maskapai');
             $table->integer('harga_awal');
-            $table->unsignedBigInteger('approved_by_user_id')->nullable();
-            $table->string('approved_by_user_name')->nullable();
+            $table->unsignedBigInteger('approved_display_by_user_id')->nullable();
+            $table->string('approved_display_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
             $table->integer('jumlah_jemaah');
@@ -49,7 +50,7 @@ class CreateExtendedUmrahTable extends Migration
 
             // Jika menggunakan foreign key, tambahkan baris berikut:
             $table->foreign('upload_by_user_id')->references('id')->on('users');
-            $table->foreign('approved_by_user_id')->references('id')->on('users');
+            $table->foreign('approved_display_by_user_id')->references('id')->on('users');
             $table->foreign('purchased_by_user_id')->references('id')->on('users');
             $table->foreign('approved_payment_by_user_id')->references('id')->on('users');
         });

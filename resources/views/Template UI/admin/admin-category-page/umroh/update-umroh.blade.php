@@ -40,8 +40,6 @@
                 <input type="text" name="maskapai" value="{{ $data->maskapai }}">
                 <label for="">Harga</label>
                 <input type="number" name="harga" value="{{ $data->harga }}">
-                <label for="">Foto</label>
-                <input type="text" name="foto" value="{{ $data->foto }}">
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

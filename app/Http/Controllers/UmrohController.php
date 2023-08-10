@@ -126,7 +126,9 @@ class UmrohController extends Controller
     // Method untuk menampilkan data umroh yang sudah di approve dan belum di beli
     public function showApprovedNotPurchasedUmrohs()
     {
+
         $showApprovedNotPurchasedUmrohs = EtalaseUmrah::where('status_etalase', 'approved')->get();
+        // dd($showApprovedNotPurchasedUmrohs);
 
         return view('Template UI.admin.admin-category-page.umroh.crd-umroh', compact('showApprovedNotPurchasedUmrohs'));
     }
@@ -206,27 +208,60 @@ class UmrohController extends Controller
         // Get the ID of the currently logged-in user
         $user = Auth::user();
 
-        $data = EtalaseUmrah::find($id);
+        $etalase = EtalaseUmrah::find($id);
+
 
         // Mark the product as approved and associate it with the logged-in user
-        $data->id_user = $user->id;
-        $data->nama_user = $user->name;
-        $data->No_hp = $user->phone;
+        // $data->id_user = $user->id;
+        // $data->nama_user = $user->name;
+        // $data->No_hp = $user->phone;
 
         // Update other attributes based on your needs
-        $data->update($request->all());
 
-        // Update the jumlah_jemaah attribute
-        $data->jumlah_jemaah = $request->input('jumlah_jemaah');
-        $data->save();
 
-        return redirect()->route('identitasjemaah', ['id' => $data->id]);
+        ExtendedUmrah::create([
+            'id_etalase_umroh' => $etalase->id,
+            'upload_by_user_id' => $etalase->upload_by_user_id,
+            'upload_by_user_name' => $etalase->upload_by_user_name,
+            'No_hp_uploader' => $etalase->No_hp_uploader,
+            'thumbnail' => $etalase->thumbnail,
+            'nama_paket' => $etalase->nama_paket,
+            'jenis' => $etalase->jenis,
+            'deskripsi' => $etalase->deskripsi,
+            'fasilitas1'=> $etalase->fasilitas1,
+            'fasilitas2'=> $etalase->fasilitas2,
+            'fasilitas3'=> $etalase->fasilitas3,
+            'fasilitas4'=> $etalase->fasilitas4,
+            'fasilitas5'=> $etalase->fasilitas5,
+            'fasilitas6'=> $etalase->fasilitas6,
+            'fasilitas7'=> $etalase->fasilitas7,
+            'fasilitas8'=> $etalase->fasilitas8,
+            'fasilitas9'=> $etalase->fasilitas9,
+            'fasilitas10'=> $etalase->fasilitas10,
+            'tanggal_berangkat' => $etalase->tanggal_berangkat,
+            'durasi' => $etalase->durasi,
+            'jasa_travel' => $etalase->jasa_travel,
+            'Hotel' => $etalase->Hotel,
+            'Maskapai' => $etalase->Maskapai,
+            'harga_awal' => $etalase->harga_awal,
+            'approved_display_by_user_id' => $etalase->approved_by_user_id,
+            'approved_display_by_user_name' => $etalase->approved_by_user_name,
+            'purchased_by_user_id'=> $user->id,
+            'purchased_by_user_name'=> $user->name,
+            'jumlah_jemaah' => $request->input('jumlah_jemaah'),
+            // 'no_kk' => $data->no_kk,
+            // 'foto_kk' => $data->foto_kk,
+
+        ]);
+
+
+        return redirect()->route('identitasjemaah', ['id' => $etalase->id]);
     }
 
     public function createjemaah(Request $request, $id)
     {
         $jumlahJemaah = $request->input('jumlah_jemaah');
-        $data = EtalaseUmrah::find($id);
+        $data = ExtendedUmrah::find($id);
         $user = Auth::user();
 
         return view('Template UI.admin.admin-category-page.umroh.input-identitas', compact('data', 'user'));
