@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action\Fortify;
+namespace App\Actions\Fortify;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
