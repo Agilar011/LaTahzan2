@@ -18,9 +18,8 @@ use App\Http\Controllers\UmrohController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
+
 
 Route::middleware([
     'auth:sanctum',

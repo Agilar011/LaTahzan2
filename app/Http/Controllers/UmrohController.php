@@ -62,6 +62,8 @@ class UmrohController extends Controller
     {
         $data = EtalaseUmrah::find($id);
         $data->update($request->all());
+        // dd($request);
+        // dd($data);
 
         return redirect()->route('umroh');
     }
@@ -357,6 +359,20 @@ class UmrohController extends Controller
 
 
                 // Redirect back to the previous page or any other page you prefer
-        return route('umroh')->with('success', 'Product has been approved.');
+                return redirect()
+                ->route('umroh')
+                ->with('success', 'Data jemaah berhasil disimpan.');    }
+    public function landingRead(){
+        $data = EtalaseUmrah::all();
+        return view('Template UI.customer.landing', compact('data'));
+    }
+
+    //DETAIL RETRIEVE UMROH
+
+
+    public function tampilkandetailumroh($id){
+    $data = EtalaseUmrah::find($id);
+
+    return view('resources.views.Template UI.customer.umroh-detail', compact('data'));
     }
 }

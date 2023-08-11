@@ -33,13 +33,13 @@
                     <option value="Jasa Travel C">Jasa Travel C</option>
                 </select>
                 <label for="">CP Travel</label>
-                <input type="number" name="cp_travel" value="{{ $data->cp_travel }}">
+                <input type="number" name="cp_travel" value="{{ $data->No_hp_uploader }}">
                 <label for="">Hotel</label>
-                <input type="text" name="hotel" value="{{ $data->hotel }}">
+                <input type="text" name="hotel" value="{{ $data->Hotel }}">
                 <label for="">Maskapai</label>
-                <input type="text" name="maskapai" value="{{ $data->maskapai }}">
+                <input type="text" name="maskapai" value="{{ $data->Maskapai }}">
                 <label for="">Harga</label>
-                <input type="number" name="harga" value="{{ $data->harga }}">
+                <input type="number" name="harga" value="{{ $data->harga_awal }}">
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

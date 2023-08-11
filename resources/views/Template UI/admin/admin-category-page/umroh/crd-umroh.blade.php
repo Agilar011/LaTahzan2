@@ -48,11 +48,6 @@
                 <div class="btn">
                     <a href="/tampilkandataumroh/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataumroh/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                    <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
-                        @csrf
-                        <button type="submit" class="btn-ekspor">Purchase</button>
-                    </form>
-
 
 
                 </div>

@@ -40,10 +40,10 @@
                     <td rowspan="2">{{ $row->jumlah_jemaah }}</td>
                     <td rowspan="2">
                         <ul>
-                            @foreach ($jemaah as $jemaah)
+                            {{-- @foreach ($jemaah as $jemaah)
                                 <li>{{ $jemaah->nama_jemaah }}</li>
                                 <br>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                         </td>
                     <td rowspan="2">

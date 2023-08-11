@@ -53,7 +53,7 @@
                     @if ($row->approved_by_user_id === null)
                     <form action="{{ route('umrohs.approve', $row->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn-approved">Approve</button>
+                        <button type="submit" class="btn-ekspor">Masukkan Ke etalase</button>
                     </form>
                 @else
                     <button class="btn-ekspor">Approved by User {{ $row->approved_by_user_name }}</button>
