@@ -96,7 +96,7 @@ class UmrohController extends Controller
 
         $etalaseUmrah->save();
 
-                // Redirect back to the previous page or any other page you prefer
+        // Redirect back to the previous page or any other page you prefer
         return back()->with('success', 'Product has been approved.');
     }
 
@@ -196,7 +196,7 @@ class UmrohController extends Controller
         // Update other attributes based on your needs
 
 
-        $ExtendedUmrah=ExtendedUmrah::create([
+        $ExtendedUmrah = ExtendedUmrah::create([
             'id_etalase_umroh' => $etalase->id,
             'upload_by_user_id' => $etalase->upload_by_user_id,
             'upload_by_user_name' => $etalase->upload_by_user_name,
@@ -205,16 +205,16 @@ class UmrohController extends Controller
             'nama_paket' => $etalase->nama_paket,
             'jenis' => $etalase->jenis,
             'deskripsi' => $etalase->deskripsi,
-            'fasilitas1'=> $etalase->fasilitas1,
-            'fasilitas2'=> $etalase->fasilitas2,
-            'fasilitas3'=> $etalase->fasilitas3,
-            'fasilitas4'=> $etalase->fasilitas4,
-            'fasilitas5'=> $etalase->fasilitas5,
-            'fasilitas6'=> $etalase->fasilitas6,
-            'fasilitas7'=> $etalase->fasilitas7,
-            'fasilitas8'=> $etalase->fasilitas8,
-            'fasilitas9'=> $etalase->fasilitas9,
-            'fasilitas10'=> $etalase->fasilitas10,
+            'fasilitas1' => $etalase->fasilitas1,
+            'fasilitas2' => $etalase->fasilitas2,
+            'fasilitas3' => $etalase->fasilitas3,
+            'fasilitas4' => $etalase->fasilitas4,
+            'fasilitas5' => $etalase->fasilitas5,
+            'fasilitas6' => $etalase->fasilitas6,
+            'fasilitas7' => $etalase->fasilitas7,
+            'fasilitas8' => $etalase->fasilitas8,
+            'fasilitas9' => $etalase->fasilitas9,
+            'fasilitas10' => $etalase->fasilitas10,
             'tanggal_berangkat' => $etalase->tanggal_berangkat,
             'durasi' => $etalase->durasi,
             'jasa_travel' => $etalase->jasa_travel,
@@ -223,8 +223,8 @@ class UmrohController extends Controller
             'harga_awal' => $etalase->harga_awal,
             'approved_display_by_user_id' => $etalase->approved_by_user_id,
             'approved_display_by_user_name' => $etalase->approved_by_user_name,
-            'purchased_by_user_id'=> $user->id,
-            'purchased_by_user_name'=> $user->name,
+            'purchased_by_user_id' => $user->id,
+            'purchased_by_user_name' => $user->name,
             'jumlah_jemaah' => $request->input('jumlah_jemaah'),
             // 'no_kk' => $data->no_kk,
             // 'foto_kk' => $data->foto_kk,
@@ -280,20 +280,55 @@ class UmrohController extends Controller
             ->route('umroh')
             ->with('success', 'Data jemaah berhasil disimpan.');
     }
+    // public function tampilkandatatransaksi()
+    // {
+    //     $data = ExtendedUmrah::where('status_pembelian' , 'pending')->get();
+    //     // dd($data);
+    //     $firstData = $data->first(); // Mengambil objek pertama dari koleksi
+    //     // dd($data);
+    //     $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
+
+    //     $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
+    //     // dd($id_extended_umroh);
+    //     $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
+
+    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
+    // }
+
     public function tampilkandatatransaksi()
     {
-        $data = ExtendedUmrah::where('status_pembelian' , 'pending')->get();
-        // dd($data);
-        $firstData = $data->first(); // Mengambil objek pertama dari koleksi
-        // dd($data);
-        $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
+        $data = ExtendedUmrah::where('status_pembelian', 'pending')->get();
 
-        $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
-        // dd($id_extended_umroh);
-        $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
+        $jemaahData = [];
 
-        return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
+        foreach ($data as $umrah) {
+            $jemaah = Jemaah::where('id_extended_umroh', $umrah->id)->get();
+            $jemaahData[$umrah->id] = $jemaah;
+        }
+
+        return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaahData'));
     }
+    // $data = ExtendedUmrah::where('status_pembelian', 'pending')->get();
+
+    // if ($data->isEmpty()) {
+    //     // Koleksi kosong, Anda dapat mengambil tindakan yang sesuai
+    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data'));
+
+    //     // Contoh: return view('tidak-ada-data');
+    // }
+
+    // $firstData = $data->first();
+
+    // if ($firstData) {
+    //     $id_extended_umroh = $firstData->id;
+    //     $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
+
+    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
+    // } else {
+    //     // Objek pertama tidak ditemukan, Anda dapat mengambil tindakan yang sesuai
+    //     // Contoh: return view('tidak-ada-data');
+    // }
+
 
 
 
@@ -301,21 +336,20 @@ class UmrohController extends Controller
     //  Aprroved payment Method
     public function approvepayment(Request $request, $id)
     {
-       // Find the extended_umrah record by ID
-       $etalaseUmrah = ExtendedUmrah::findOrFail($id);
+        // Find the extended_umrah record by ID
+        $etalaseUmrah = ExtendedUmrah::findOrFail($id);
 
-       // Ensure the product is available for approval (for example, check if it's not already approved)
-       // Add your business logic here
+        // Ensure the product is available for approval (for example, check if it's not already approved)
+        // Add your business logic here
 
-       // Get the ID of the currently logged-in user
-       $user = Auth::user();
+        // Get the ID of the currently logged-in user
+        $user = Auth::user();
 
-       // Mark the product as approved and associate it with the logged-in user
-       $etalaseUmrah->approved_payment_by_user_id = $user->id;
-       $etalaseUmrah->status_pembelian = 'purchased';
+        // Mark the product as approved and associate it with the logged-in user
+        $etalaseUmrah->approved_payment_by_user_id = $user->id;
+        $etalaseUmrah->status_pembelian = 'purchased';
 
-       $etalaseUmrah->save();
-    //    dd($etalaseUmrah);
+        $etalaseUmrah->save();
 
         laporan_transaksi_umroh::create([
             'id_user_uploader' => $etalaseUmrah->upload_by_user_id,
@@ -324,16 +358,16 @@ class UmrohController extends Controller
             'nama_paket' => $etalaseUmrah->nama_paket,
             'jenis' => $etalaseUmrah->jenis,
             'deskripsi' => $etalaseUmrah->deskripsi,
-            'fasilitas1' => $etalaseUmrah->fasilitas_1,
-            'fasilitas2' => $etalaseUmrah->fasilitas_2,
-            'fasilitas3' => $etalaseUmrah->fasilitas_3,
-            'fasilitas4' => $etalaseUmrah->fasilitas_4,
-            'fasilitas5' => $etalaseUmrah->fasilitas_5,
-            'fasilitas6' => $etalaseUmrah->fasilitas_6,
-            'fasilitas7' => $etalaseUmrah->fasilitas_7,
-            'fasilitas8' => $etalaseUmrah->fasilitas_8,
-            'fasilitas9' => $etalaseUmrah->fasilitas_9,
-            'fasilitas10' => $etalaseUmrah->fasilitas_10,
+            'fasilitas1' => $etalaseUmrah->fasilitas1,
+            'fasilitas2' => $etalaseUmrah->fasilitas2,
+            'fasilitas3' => $etalaseUmrah->fasilitas3,
+            'fasilitas4' => $etalaseUmrah->fasilitas4,
+            'fasilitas5' => $etalaseUmrah->fasilitas5,
+            'fasilitas6' => $etalaseUmrah->fasilitas6,
+            'fasilitas7' => $etalaseUmrah->fasilitas7,
+            'fasilitas8' => $etalaseUmrah->fasilitas8,
+            'fasilitas9' => $etalaseUmrah->fasilitas9,
+            'fasilitas10' => $etalaseUmrah->fasilitas10,
             'tanggal_berangkat' => $etalaseUmrah->tanggal_berangkat,
             'durasi' => $etalaseUmrah->durasi,
             'jasa_travel' => $etalaseUmrah->jasa_travel,
@@ -351,18 +385,20 @@ class UmrohController extends Controller
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-    // Hapus data extended_umrah (baris induk)
-    $etalaseUmrah->delete();
+        // Hapus data extended_umrah (baris induk)
+        $etalaseUmrah->delete();
 
-    // Mengaktifkan kembali kunci asing
-    DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // Mengaktifkan kembali kunci asing
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
+        // Redirect back to the previous page or any other page you prefer
+        return redirect()
+            ->route('umroh')
+            ->with('success', 'Data jemaah berhasil disimpan.');
+    }
 
-                // Redirect back to the previous page or any other page you prefer
-                return redirect()
-                ->route('umroh')
-                ->with('success', 'Data jemaah berhasil disimpan.');    }
-    public function landingRead(){
+    public function landingRead()
+    {
         $data = EtalaseUmrah::all();
         return view('Template UI.customer.landing', compact('data'));
     }
@@ -370,9 +406,10 @@ class UmrohController extends Controller
     //DETAIL RETRIEVE UMROH
 
 
-    public function tampilkandetailumroh($id){
-    $data = EtalaseUmrah::find($id);
+    public function tampilkandetailumroh($id)
+    {
+        $data = EtalaseUmrah::find($id);
 
-    return view('resources.views.Template UI.customer.umroh-detail', compact('data'));
+        return view('resources.views.Template UI.customer.umroh-detail', compact('data'));
     }
 }

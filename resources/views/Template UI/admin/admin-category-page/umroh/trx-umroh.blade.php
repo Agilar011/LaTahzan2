@@ -28,40 +28,53 @@
             </tr>
         </thead>
         <tbody>
+            @if ($data->isEmpty())
+                <tr>
+                    <td colspan="10" style="text-align: center">Data Kosong</td>
+                </tr>
+
+            @else
             @foreach ($data as $row)
-                <tr>
-                    <td scope="row" rowspan="2">{{ $row->id }}</td>
-                    <td rowspan="2">{{ $row->id_etalase_umroh }}</td>
-                    <td>{{ $row->upload_by_user_name }}</td>
-                    <td>{{ $row->nama_paket }}</td>
-                    <td>{{ $row->durasi }} Hari</td>
-                    <td>{{ $row->jasa_travel }}</td>
-                    <td rowspan="2">{{ $row->purchased_by_user_name }}</td>
-                    <td rowspan="2">{{ $row->jumlah_jemaah }}</td>
-                    <td rowspan="2">
-                        <ul>
-                            {{-- @foreach ($jemaah as $jemaah)
-                                <li>{{ $jemaah->nama_jemaah }}</li>
-                                <br>
-                            @endforeach --}}
-                        </ul>
-                        </td>
-                    <td rowspan="2">
-                        <div class="btn">
-                            <form action="{{ route('umrohs.approvepayment', $row->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn-ekspor">Approve</button>
-                            </form>
-                            </div>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>{{ $row->No_hp_uploader}}</td>
-                    <td>{{ $row->jenis}}</td>
-                    <td>{{ $row->tanggal_berangkat}}</td>
-                    <td>{{$row->Maskapai}}</td>
-                    </tr>
-            @endforeach
+            <tr>
+                <td scope="row" rowspan="2">{{ $row->id }}</td>
+                <td rowspan="2">{{ $row->id_etalase_umroh }}</td>
+                <td>{{ $row->upload_by_user_name }}</td>
+                <td>{{ $row->nama_paket }}</td>
+                <td>{{ $row->durasi }} Hari</td>
+                <td>{{ $row->jasa_travel }}</td>
+                <td rowspan="2">{{ $row->purchased_by_user_name }}</td>
+                <td rowspan="2">{{ $row->jumlah_jemaah }}</td>
+                <td rowspan="2">
+                    <ul>
+                        @foreach ($jemaahData[$row->id] as $jemaah) <!-- Menggunakan $row->id sebagai kunci untuk data jemaah -->
+                        <li>{{ $jemaah->nama_jemaah }}</li>
+                        <br>
+                    @endforeach
+                        {{-- @foreach ($jemaahData as $jemaah)
+                            <li>{{ $jemaah->nama_jemaah }}</li>
+                            <br>
+                        @endforeach --}}
+                    </ul>
+                    </td>
+                <td rowspan="2">
+                    <div class="btn">
+                        <form action="{{ route('umrohs.approvepayment', $row->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-ekspor">Approve</button>
+                        </form>
+                        </div>
+                    </td>
+                </tr>
+            <tr>
+                <td>{{ $row->No_hp_uploader}}</td>
+                <td>{{ $row->jenis}}</td>
+                <td>{{ $row->tanggal_berangkat}}</td>
+                <td>{{$row->Maskapai}}</td>
+                </tr>
+        @endforeach
+
+            @endif
+
         </tbody>
     </table>
 @endsection
