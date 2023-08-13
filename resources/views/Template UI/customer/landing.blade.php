@@ -71,83 +71,114 @@
             </div>
 
             @foreach ($data as $row)
-            <div class="layer3-content">
-                <div class="product">
-                    <div class="image">
-                        <img src="img/umroh/umroh.jpeg" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>{{ $row->nama_paket }}</h3>
-                        <h1>Rp. {{ number_format($row->harga_awal, 0, ',', '.') }},-</h1>
-                    </div>
-                    <div class="year">
-                        <?php
-                        $days = [
-                            'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'
-                        ];
+                <div class="layer3-content">
+                    <div class="product">
+                        <div class="image">
+                            <img src="img/umroh/umroh.jpeg" alt="cbr">
+                        </div>
+                        <div class="name-price">
+                            <h3>{{ $row->nama_paket }}</h3>
+                            <h1>Rp. {{ number_format($row->harga_awal, 0, ',', '.') }},-</h1>
+                        </div>
+                        <div class="year">
+                            <?php
+                            $days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
-                        $months = [
-                            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-                        ];
+                            $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-                        $tanggal_berangkat = date('Y-m-d', strtotime($row->tanggal_berangkat));
-                        $tanggal_parts = explode('-', $tanggal_berangkat);
-                        $day = date('w', strtotime($tanggal_berangkat));
-                        $formatted_date = $days[$day] . ', ' . $tanggal_parts[2] . ' ' . $months[(int)$tanggal_parts[1] - 1] . ' ' . $tanggal_parts[0];
-                        ?>
-                        <h4>Tanggal Berangkat :</h4>
-                        <ul>
-                            <li>{{ $formatted_date }}</li>
-                        </ul>
+                            $tanggal_berangkat = date('Y-m-d', strtotime($row->tanggal_berangkat));
+                            $tanggal_parts = explode('-', $tanggal_berangkat);
+                            $day = date('w', strtotime($tanggal_berangkat));
+                            $formatted_date = $days[$day] . ', ' . $tanggal_parts[2] . ' ' . $months[(int) $tanggal_parts[1] - 1] . ' ' . $tanggal_parts[0];
+                            ?>
+                            <h4>Tanggal Berangkat :</h4>
+                            <ul>
+                                <li>{{ $formatted_date }}</li>
+                            </ul>
 
-                    </div>
+                        </div>
 
-                    <div class="fasilitas">
-                        <h4>Fasilitas :</h4>
-                        <ul>
-                            <li>
-                                <p>Maskapai: {{ $row->Maskapai }}</p>
-                            </li>
-                            <li>
-                                <p>Hotel: {{ $row->Hotel }}</p>
-                            </li>
-                            <li>
-                                <p>{{ $row->fasilitas1}}</p>
-                            </li>
-                            <li>
-                                <p>@if ($row->fasilitas2 != null)
-                                    {{ $row->fasilitas2 }}
-
+                        <div class="fasilitas">
+                            <h4>Fasilitas :</h4>
+                            <ul>
+                                <li>
+                                    <p>Maskapai: {{ $row->Maskapai }}</p>
+                                </li>
+                                <li>
+                                    <p>Hotel: {{ $row->Hotel }}</p>
+                                </li>
+                                @if ($row->fasilitas1 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas1 }}</p>
+                                    </li>
                                 @else
-                                    -
+                                @endif
+                                @if ($row->fasilitas2 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas2 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas3 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas3 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas4 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas4 }}</p>
+                                    </li>
+                                @else
+                                @endif
 
-                                @endif</p>
-                            </li>
-                            <li>
-                                <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                    Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                    Manasik)</p>
-                            </li>
-                            <li>
-                                <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                            </li>
-                            <li>
-                                <p>Manasik Umroh Offline di Hotel</p>
-                            </li>
-                            <li>
-                                <p>Kereta Cepat Madinah-Makkah</p>
-                            </li>
+                                @if ($row->fasilitas5 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas5 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas6 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas6 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas7 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas7 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas8 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas8 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas9 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas9 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas10 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas10 }}</p>
+                                    </li>
+                                @else
+                                @endif
 
-                        </ul>
-                    </div>
-                    <div class="buy">
-                        <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
-                            @csrf
-                            <button type="submit" class="btn-ekspor">Purchase</button>
-                        </form>
+                            </ul>
+                        </div>
+                        <div class="buy">
+                            <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn-ekspor">Purchase</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
 

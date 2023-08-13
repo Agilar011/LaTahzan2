@@ -48,6 +48,12 @@
                     <label for="foto_vaksin{{ $i }}">Foto Vaksin {{ $i }}</label>
                     <input type="file" name="foto_vaksin[]" id="foto_vaksin{{ $i }}" accept="image/*" required>
 
+                    <label for="no_kk{{ $i }}">No KK {{ $i }}</label>
+                    <input type="text" name="no_kk[]" id="no_kk{{ $i }}" required>
+
+                    <label for="foto_kk{{ $i }}">Foto KK {{ $i }}</label>
+                    <input type="file" name="foto_kk[]" id="foto_kk{{ $i }}" accept="image/*" required>
+
                     <!-- Include other input fields for jemaah data (foto_KTP, etc.) -->
                 </div>
 

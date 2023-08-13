@@ -9,7 +9,7 @@ use App\Models\laporan_transaksi_umroh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 
 class UmrohController extends Controller
 {
@@ -46,6 +46,7 @@ class UmrohController extends Controller
 
             $data->save();
         }
+
         return redirect()->route('umroh');
     }
 
@@ -186,6 +187,7 @@ class UmrohController extends Controller
         $user = Auth::user();
 
         $etalase = EtalaseUmrah::find($id);
+        // dd($etalase);
 
 
         // Mark the product as approved and associate it with the logged-in user
@@ -194,6 +196,7 @@ class UmrohController extends Controller
         // $data->No_hp = $user->phone;
 
         // Update other attributes based on your needs
+        // dd($request);
 
 
         $ExtendedUmrah = ExtendedUmrah::create([
@@ -226,8 +229,6 @@ class UmrohController extends Controller
             'purchased_by_user_id' => $user->id,
             'purchased_by_user_name' => $user->name,
             'jumlah_jemaah' => $request->input('jumlah_jemaah'),
-            // 'no_kk' => $data->no_kk,
-            // 'foto_kk' => $data->foto_kk,
         ]);
 
         $id = $ExtendedUmrah->id; // Mendapatkan ID yang baru saja dibuat
@@ -250,10 +251,19 @@ class UmrohController extends Controller
     {
         // $data = EtalaseUmrah::find($id);
         $etalase = ExtendedUmrah::findOrFail($id);
-        // dd($etalase);
+        // dd($etalase->all());
 
 
         $jumlahJemaah = $etalase->jumlah_jemaah;
+        $etalase->no_kk = $request->input('no_kk')[0];
+        if ($request->hasFile('foto_kk')) {
+            $request->file('foto_kk')[0]->move('fotoUmroh/', $request->file('foto_kk')[0]->getClientOriginalName());
+            $etalase->foto_kk = $request->file('foto_kk')[0]->getClientOriginalName();
+
+            $etalase->save();
+        }
+
+
 
         for ($i = 0; $i < $jumlahJemaah; $i++) {
             // dd($request);
@@ -263,6 +273,7 @@ class UmrohController extends Controller
                 'NIK' => $request->input('NIK')[$i],
                 'No_hp' => $request->input('No_hp')[$i],
                 'no_paspor' => $request->input('no_paspor')[$i],
+
                 'foto_paspor' => $request->file('foto_paspor')[$i],
                 'foto_identitas' => $request->file('foto_KTP')[$i],
                 'status_vaksin' => $request->input('status_vaksin')[$i],

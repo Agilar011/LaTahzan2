@@ -42,7 +42,7 @@ class CreateExtendedUmrahTable extends Migration
             $table->string('purchased_by_user_name')->nullable();
             $table->integer('jumlah_jemaah');
             $table->string('no_kk')->nullable();
-            $table->string('foto_ktp')->nullable();
+            $table->string('foto_kk')->nullable();
             $table->integer('harga_total')->nullable();
             $table->enum('status_pembelian',['not yet purchased','pending','purchased'])->default('not yet purchased');
             $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
