@@ -15,6 +15,7 @@
             <th rowspan="2">Nama Paket</th>
             <th rowspan="2">Jenis Paket</th>
             <th rowspan="2">Deskripsi</th>
+            <th rowspan="2">Fasilitas</th>
             <th>Tanggal Berangkat</th>
             <th>Nama Admin</th>
             <th>Maskapai</th>
@@ -38,6 +39,72 @@
             <td rowspan="2">{{ $row->nama_paket }}</td>
             <td rowspan="2">{{ $row->jenis }}</td>
             <td rowspan="2">{{ $row->deskripsi }}</td>
+            <td rowspan="2">
+                <div>
+                    <ul>
+                        <li>
+                            @if ($row->fasilitas1 != null)
+                                {{ $row->fasilitas1 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas2 != null)
+                                {{ $row->fasilitas2 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas3 != null)
+                                {{ $row->fasilitas3 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas4 != null)
+                                {{ $row->fasilitas4 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas5 != null)
+                                {{ $row->fasilitas5 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas6 != null)
+                                {{ $row->fasilitas6 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas7 != null)
+                                {{ $row->fasilitas7 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas8 != null)
+                                {{ $row->fasilitas8 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas9 != null)
+                                {{ $row->fasilitas9 }}
+                            @else
+                            @endif
+                        </li>
+                        <li>
+                            @if ($row->fasilitas10 != null)
+                                {{ $row->fasilitas10 }}
+                            @else
+                            @endif
+                        </li>
+                    </ul>
+                </div>
+            </td>
             <td>{{ $row->tanggal_berangkat }}</td>
             <td>{{ $row->upload_by_user_name }}</td>
             <td>{{ $row->Maskapai }}</td>
@@ -48,6 +115,10 @@
                 <div class="btn">
                     <a href="/tampilkandataumroh/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataumroh/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                    {{-- <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn-ekspor">Purchase</button>
+                    </form> --}}
 
 
                 </div>

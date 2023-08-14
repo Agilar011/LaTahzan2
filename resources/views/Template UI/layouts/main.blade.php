@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style-landing.css">
+    <link rel="stylesheet" href="/css/style-landing.css">
+    <link rel="stylesheet" href="/css/style-pesan-cust.css">
+    <link rel="stylesheet" href="/css/style-konfirmasi.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -86,62 +88,6 @@
             </div>
         </div>
     </footer>
-
-
-    <script type="text/javascript">
-        function noTelp(evt){
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57)){
-                return false;
-            return true
-            }
-        }
-
-        function welcome() {
-            window.open("/login")
-        }
-
-        function oto() {
-            window.open("/otomotif")
-        }
-
-        function prop() {
-            window.open("/properti")
-        }
-
-        function umroh() {
-            window.open("/umroh")
-        }
-
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdowns => {
-            const select = dropdowns.querySelector('.select');
-            const caret = dropdowns.querySelector('.caret');
-            const menu = dropdowns.querySelector('.menu');
-            const options = dropdowns.querySelector('.menu li');
-            const selected = dropdowns.querySelector('.selected');
-
-            select.addEventListener('click', () => {
-                select.classList.toggle('select-clicked');
-                caret.classList.toggle('caret-rotate');
-                menu.classList.toggle('menu-open');
-            });
-
-            options.forEach(option => {
-                option.addEventListener('click', () => {
-                    selected.innerText = option.innerText;
-                    select.classList.remove('select-clicked');
-                    caret.classList.remove('caret-rotate');
-                    menu.classList.remove('menu-open');
-                    options.forEach(option =>{
-                        option.classList.remove('active');
-                    });
-                    option.classList.add('active');
-                });
-            });
-        });
-
-    </script>
 
 </body>
 

@@ -1,8 +1,7 @@
 <x-app-layout>
     {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
-@extends('Template UI.layouts.admin-sidebar')
-@section('content')
+    @extends('Template UI.layouts.main')
+    @section('content')
 
     <h1>Beli Paket Umroh</h1>
 
@@ -45,3 +44,4 @@
         </form>
     </div>
 @endsection
+</x-app-layout>

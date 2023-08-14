@@ -36,6 +36,7 @@ class UserSeeder extends Seeder
             'name' => 'siuser',
             'email' => 'user@admin.com',
             'password' => Hash::make('passworduser'),
+            'NIK' => '1234567890123456',
             'birthplace' => 'Malang',
             'birthdate' => '2002-11-10',
             'address' => 'Jl Klayatan 3C 39',

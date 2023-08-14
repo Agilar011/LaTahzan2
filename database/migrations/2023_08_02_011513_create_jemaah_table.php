@@ -19,7 +19,7 @@ class CreateJemaahTable extends Migration
             $table->string('foto_identitas');
             $table->enum('status_paspor', ['Sudah', 'Belum'])->default('belum');
             $table->string('no_paspor');
-            $table->string('foto_paspor');
+            // $table->string('foto_paspor');
             $table->integer('biaya_jasa_paspor')->default(0);
             $table->enum('status_vaksin', ['Sudah', 'Belum'])->default('belum');
             $table->string('foto_vaksin');
