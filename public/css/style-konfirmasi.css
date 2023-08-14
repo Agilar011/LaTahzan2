@@ -1,0 +1,75 @@
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500;
+    margin: 50px 0;
+}
+
+.inp-disable{
+    display: none;
+}
+
+.cont-form {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+span{
+    color: red;
+}
+
+.form-input {
+    display: grid;
+    gap: 15px;
+}
+
+.form-input .jasa_travel{
+    display: none;
+}
+
+.form-input label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cont-form h2{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.form-input p{
+    margin-bottom: 15px;
+}
+
+.form-input h5{
+    font-size: 12px;
+    font-style: italic ;
+}
+
+.form-input input,
+.form-input select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-input button:hover {
+    background-color: #0056b3;
+}
