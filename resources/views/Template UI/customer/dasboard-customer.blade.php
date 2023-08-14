@@ -198,7 +198,7 @@
         menu,
         ol,
         ul {
-            list-style: none;
+
             margin: 0;
             padding: 0
         }
@@ -870,7 +870,7 @@
                     </h5>
 
 
-                    <button type="button">Lihat Layanan Kami!</button>
+                    <button type="button">Beli Sekarang Layanan Kami!</button>
                 </div>
                 <div class="layer1-right">
                     <img src="img/logo-1.png">
@@ -1087,7 +1087,7 @@
 
 
                     <div class="layer4-btn">
-                        <button type="button" onclick="umroh()">Lihat Selengkapnya Paket Umroh / Haji</button>
+                        <button type="button" onclick="umroh()">Beli Sekarang Selengkapnya Paket Umroh / Haji</button>
                     </div>
 
                 </div>
@@ -1273,7 +1273,7 @@
                     </div>
 
                     <div class="layer4-btn">
-                        <button type="button" onclick="oto()">Lihat Selengkapnya Otomotif</button>
+                        <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
                     </div>
 
                 </div>
@@ -1464,7 +1464,7 @@
                     </div>
 
                     <div class="layer4-btn">
-                        <button type="button" onclick="prop()">Lihat Selengkapnya Properti</button>
+                        <button type="button" onclick="prop()">Beli Sekarang Selengkapnya Properti</button>
                     </div>
 
                 </div>

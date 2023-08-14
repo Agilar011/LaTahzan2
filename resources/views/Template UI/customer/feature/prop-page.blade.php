@@ -193,7 +193,7 @@
             </div>
 
             <div class="layer4-btn">
-                <button type="button" onclick="oto()" >Lihat Selengkapnya Properti</button>
+                <button type="button" onclick="oto()" >Beli Sekarang Selengkapnya Properti</button>
             </div>
 
         </div>

@@ -18,7 +18,11 @@ use App\Http\Controllers\UmrohController;
 |
 */
 
-Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
+// Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::middleware([
@@ -30,11 +34,12 @@ Route::middleware([
         if (auth()->user()->hasRole('admin')) {
             return view('Template UI.admin.dasboard-admin');
         } else {
-            return view('template UI.customer.dasboard-customer');
+            return redirect()->route('landing'); // Mengubah nilai return menjadi redirect ke rute 'landing'
         }
     })->name('dashboard');
-
 });
+
+Route::get('/', [UmrohController::class, 'landingRead'])->name('landing'); // Menambahkan rute 'landing'
 
 // setting property
 // Input data property

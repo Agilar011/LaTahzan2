@@ -323,7 +323,7 @@
 
 
             <div class="layer3-btn">
-                <button type="button">Lihat Selengkapnya Paket Umroh / Haji</button>
+                <button type="button">Beli Sekarang Selengkapnya Paket Umroh / Haji</button>
             </div>
 
         </div>

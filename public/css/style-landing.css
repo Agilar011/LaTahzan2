@@ -1,455 +1,174 @@
-/* Setup Universal -----------------------------------------------------------------------------------------------> */
-*{
-    font-family: Poppins;
-}
-
-body{
-    background-color: rgb(255, 255, 255);
+* {
     margin: 0;
     padding: 0;
-}
-
-.container-all{
-    width: 100%;
-}
-/* Setup Universal END -----------------------------------------------------------------------------------------------> */
-
-
-
-
-/* NAVBAR SETTING -----------------------------------------------------------------------------------------------> */
-.container-navbar{
-    width: 80%;
-    margin: auto;
-}
-
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.nav-title{
-
-}
-
-.nav-title a{
-    text-decoration: none;
-    color: black;
-}
-
-.nav-btn{
-
-}
-
-.nav-btn ul{
-    display: flex;
-    list-style: none;
-}
-
-.nav-btn ul li{
-    margin-left: 40px;
-}
-
-.nav-btn ul li a{
-    color: black;
-    text-decoration: none;
-}
-
-.nav-btn ul li a:hover{
-    color: red;
-    transition: ease-in 0.15s;
-}
-
-.searchbar{
-    display: flex;
-}
-
-.searchbar form{
-    background-color: #ffffff;
-}
-
-.searchbar form input{
-    flex: 1;
-    font-size: 13px;
-    height: 30px;
-    width: 325px;
-    padding-left: 20px;
-    border: 2.5px solid rgb(226, 171, 43);
-
-}
-
-.searchbar form button{
-    font-size: 14px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(226, 171, 43);
-    width: 50px;
-    height: 39px;
-    cursor: pointer;
-}
-
-.login-register{
-
-}
-
-.login-register a{
-    color: black;
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-.login-register a:hover{
-    color: red;
-    transition: ease-in 0.15s;
-}
-
-.login-register button{
-    font-size: 14px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(7, 72, 236);
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-/* NAVBAR SETTING END -----------------------------------------------------------------------------------------------> */
-
-/* CATEGORY MENU -----------------------------------------------------------------------------------------------> */
-.category-menu{
-    display: flex;
-    margin-left: auto;
-    width: 92%;
-}
-
-.dropdown{
-    min-width: 15em;
-    position: relative;
-    margin: 2em;
-}
-
-.dropdown *{
     box-sizing: border-box;
 }
 
-.select{
-    background: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px #e0ac1c solid;
-    border-radius: 0.5em;
-    padding: 1em;
-    cursor: pointer;
-    transition: background 0.3s;
-
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
 }
 
-.select-clicked{
-    border: 2px gray solid;
-    box-shadow: 0 0 0.8em gray;
-}
-
-.select:hover{
-    background: #e0e1e4;
-}
-
-.caret{
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #000000;
-    transition: 0.3s;
-}
-
-.caret-rotate{
-    transform: rotate(180deg);
-}
-
-.menu{
-    list-style: none;
-    padding: 0.2em 0.5em;
-    background: #323741;
-    border: 1px #363a43;
-    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-    border-radius: 0.5em;
-    color: #9fa5b5;
-    position: absolute;
-    top: 3em;
-    left: 50%;
+.container-all,
+.container-content {
     width: 100%;
-    transform: translateX(-50%);
-    opacity: 0;
-    display: none;
-    transition: 0.2s;
-    z-index: 1;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.menu li{
-    padding: 0.7em 0.5em;
-    margin: 0.3em 0;
-    border-radius: 0.5em;
-    cursor: pointer;
+.layer-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 20px;
 }
 
-.menu li a{
-    text-decoration: none;
-    color: white;
+.layer1-left {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
 }
 
-.menu li:hover{
-    background-color: #2a2d35;
-}
-
-.active{
-    background-color: #23242a;
-}
-
-.menu-open{
-    display: block;
-    opacity: 1;
-}
-
-/* CATEGORY MENU END -----------------------------------------------------------------------------------------------> */
-
-
-/* LAYER 1 -----------------------------------------------------------------------------------------------> */
-
-.container-content{
-    width: 80%;
-    margin: auto;
-    margin-top: 50px;
-}
-
-.layer-1{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-}
-
-.layer-1 h1 {
-    color: rgb(217, 160, 28);
-    font-size: 55px;
-    margin: 5px 0px 5px 0px;
-}
-
-.layer-1 h5 {
-    color: rgb(35, 34, 34);
-    font-size: 16px;
-    font-weight: 1000;
-}
-
-.layer-1 button{
-    color: rgb(255, 255, 255);
-    font-size: 17px;
-    width: 250px;
-    height: 70px;
-    background-color: rgb(7, 72, 236);
-    border-radius: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.layer-1 img{
-    width: 650px;
-    height: 650px;
-}
-
-.layer1-right{
+.layer1-right {
+    flex: 1;
     margin-left: 40px;
 }
 
-/* LAYER 1 END -----------------------------------------------------------------------------------------------> */
-
-
-
-/* LAYER 2-----------------------------------------------------------------------------------------------> */
-
-
-.layer-2{
-    display: grid;
-    justify-content: center;
-    margin-top: 225px;
-    text-align: center;
-    background-color: rgb(253, 253, 253);
-    padding-bottom: 50px;
+.layer-1 h1 {
+    font-size: 2.7em;
+    font-weight: 500;
+    margin-right: 20px;
+    color: rgb(217, 160, 28);
 }
 
-.layer2-top{
-
+.layer-1 h5 {
+    color: rgb(103, 103, 103);
+    font-size: 1em;
+    font-weight: 1000;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
-.layer2-top h1{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: rgb(226, 171, 43);
-    border-radius: 30px;
-    text-transform: uppercase;
-}
-
-.layer-2 h1{
-    font-size: 25px;
-    color:black;
-    font-weight: 700;
-}
-
-.layer-2 h5{
-    font-size: 15px;
-    color: rgb(59, 58, 58) ;
-    display: none;
-}
-
-.layer-2 p{
-    font-size: 15px;
-    margin: 0 40px 0 40px;
-}
-
-.layer2-bottom{
-    display: flex;
-    align-items: center;
-    justify-self: center;
-}
-
-.layer-2 button{
-    background-color: white;
-    border: 5px solid rgb(226, 171, 43);
-    border-radius: 200px;
-    width: 175px;
-    height: 175px;
-    margin: 60px 30px 0px 30px;
+.layer-1 button {
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    width: 250px;
+    background-color: rgb(7, 72, 236);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 15px 20px;
     cursor: pointer;
-    transition: 0.5s;
 }
 
-.layer-2 button:hover{
-    transform: translateY(-15px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+.layer-1 img {
+    width: 80%;
 }
 
-
-
-.layer-2 button img{
-    width: 100px;
-    height: 100px;
-}
-
-
-/* LAYER 2 END -----------------------------------------------------------------------------------------------> */
-
-
-
-/* LAYER 3 ---------------------------------------------------------------------------------------------------> */
-
-.layer-3-container{
+.layer-3-container {
     display: grid;
     place-items: center;
-}
-
-.layer-3{
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     background-color: rgb(253, 253, 253);
-
+    padding: 50px 0;
 }
 
-.line h4{
+.line h4 {
     width: 100%;
     height: 5px;
     background-color: rgb(226, 171, 43);
+    margin: 10px 0;
 }
 
-.layer3-title{
+.line h4 {
+    width: 100%;
+    height: 5px;
+    background-color: rgb(226, 171, 43);
+    margin: 10px 0;
+}
+
+.layer3-title {
     width: 100%;
     text-align: center;
     background-color: rgb(226, 171, 43);
     border-radius: 10px;
+    padding: 10px;
 }
 
-.layer3-title h1{
-    font-size: 17px;
+.layer3-title h1 {
+    font-size: 15px;
     text-transform: uppercase;
     color: black;
+    margin: 0;
+    font-weight: 700;
 }
 
-.layer3-content{
-    width: 100%;
+.layer3-content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 60px;
-    margin-top: 50px;
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.layer3-content .product{
-    position: relative;
+.layer3-content .product {
     background-color: white;
-    width: 350px;
+    width: calc(25% - 20px); /* 4 kolom dalam satu baris, dengan gap 20px */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px 20px 40px;
     border-radius: 10px;
+    padding: 20px;
     transition: 0.3s;
 }
 
-.layer3-content .product:hover{
+.layer3-content .product:hover {
     transform: translateY(-15px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.layer3-content .product img{
-    width: 350px;
-    height: 230px;
+.layer3-content .product img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
 
-.layer3-content .product .name-price{
-
+.layer3-content .product h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(68, 68, 68);
 }
 
-.layer3-content .product .name-price h3{
-    color: gray;
-    font-size: 17px;
-    font-weight: 100;
-    display: flex;
-    justify-content: space-between;
+.layer3-content .product h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: rgb(217, 160, 28);
+    margin: 20px 0;
 }
 
-.layer3-content .product .name-price h1{
-    font-size: 35px;
-    margin-top: -10px;
-    font-weight: 1000;
-    color: rgb(226, 171, 43);
-
-}
-
-
-.layer3-content .product .year{
-    font-weight: -190;
+.layer3-content .product .year {
     color: rgb(0, 0, 0);
-    margin-top: -30px;
     font-size: 15px;
+    margin: 20px 0;
 }
 
-.layer3-content .product .fasilitas h4{
-
+.layer-3 .product .fasilitas ul{
+    list-style:disc;
+    margin: 20px 15px;
 }
 
-.layer3-content .product .fasilitas ul li p{
-   font-size: 12px;
+.layer-3 .product .fasilitas ul li p{
+    font-size: 12px;
 }
 
-.layer3-content .buy{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+
+
+.layer3-content .buy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }
 
-.layer3-content .buy button{
+.layer3-content .buy a {
     padding: 10px 20px;
     border-radius: 7px;
     background-color: rgb(226, 171, 43);
@@ -459,18 +178,18 @@ body{
     transition: 0.5s;
 }
 
-.layer3-content .buy button:hover{
+.layer3-content .buy a:hover {
     transform: scale(1.1);
 }
 
-.layer3-btn{
+.layer3-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.layer3-btn button{
+.layer3-btn a {
     padding: 10px 20px;
     border-radius: 7px;
     background-color: rgb(7, 72, 236);
@@ -480,51 +199,51 @@ body{
     transition: 0.5s;
 }
 
-
-
 /* LAYER 3 END ---------------------------------------------------------------------------------------------------> */
 
-
-
-
-/* LAYER 4 -----------------------------------------------------------------------------------------------> */
-
-.layer-4-container{
+.layer-4-container {
     display: grid;
     place-items: center;
+    background-color: rgb(253, 253, 253);
+    padding: 50px 0;
 }
 
-.layer-4{
-    width: 80vw;
+.layer-4 {
+    width: 100%; /* Ubah menjadi 100% */
+    max-width: 1300px; /* Sesuaikan dengan max-width dari .container-all */
+    margin: 0 auto;
+    padding: 0 20px; /* Tambahkan padding kiri dan kanan */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 75px;
     background-color: rgb(253, 253, 253);
     padding-bottom: 15px;
-
 }
 
-.line h4{
+.line h4 {
     width: 100%;
     height: 5px;
     background-color: rgb(226, 171, 43);
 }
 
-.layer4-title{
+.layer4-title {
     width: 100%;
     text-align: center;
     background-color: rgb(226, 171, 43);
     border-radius: 10px;
+    padding: 10px;
 }
 
-.layer4-title h1{
-    font-size: 17px;
+.layer4-title h1 {
+    font-size: 15px;
     text-transform: uppercase;
     color: black;
+    margin: 0;
+    font-weight: 700;
 }
 
-.layer4-content{
+.layer4-content {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -533,11 +252,11 @@ body{
     margin-top: 50px;
 }
 
-.layer4-content .product{
+.layer4-content .product {
     position: relative;
     background-color: white;
-    width: 200px;
-    height: 100%;
+    width: 220px;
+    height: 350px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -547,48 +266,45 @@ body{
     transition: 0.3s;
 }
 
-.layer4-content .product:hover{
+.layer4-content .product:hover {
     transform: translateY(-15px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.layer4-content .product img{
+.layer4-content .product img {
     width: 200px;
     height: 175px;
 }
 
-.layer4-content .name-price{
-
-}
-
-.layer4-content .name-price h3{
-    color: gray;
+.layer4-content .name-price h3 {
     font-size: 12px;
-    font-weight: 100;
-    display: flex;
-    justify-content: space-between;
+    color: rgb(68, 68, 68);
 }
 
-.layer4-content .name-price h1{
+
+.layer4-content .name-price h1 {
     font-size: 20px;
-    margin-top: -10px;
-
+    font-weight: 700;
+    color: rgb(203, 105, 0);
 }
 
-.layer4-content .year{
-    font-weight: -190;
+.layer4-content .year {
+    font-weight: 700; /* Perbaiki value font-weight */
     color: rgb(0, 0, 0);
-    margin-top: -30px;
     font-size: 15px;
 }
 
-.layer4-content .buy{
+.layer4-content .buy {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    top: 290px; /* Mengubah bottom ke 0 */
+    left: 70%; /* Menambahkan left 50% */
+    transform: translateX(-50%); /* Mentranslasi sebanyak setengah lebar elemen */
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    width: 100%; /* Menetapkan lebar ke 100% */
+    margin-top: 10px; /* Menambahkan jarak atas */
 }
 
-.layer4-content .buy button{
+.layer4-content .buy button {
     padding: 10px 20px;
     border-radius: 7px;
     background-color: rgb(226, 171, 43);
@@ -598,18 +314,18 @@ body{
     transition: 0.5s;
 }
 
-.buy button:hover{
+.buy button:hover {
     transform: scale(1.1);
 }
 
-.layer4-btn{
+.layer4-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.layer4-btn button{
+.layer4-btn button {
     padding: 10px 20px;
     border-radius: 7px;
     background-color: rgb(7, 72, 236);
@@ -617,6 +333,36 @@ body{
     font-size: 14px;
     cursor: pointer;
     transition: 0.5s;
+}
+
+@media screen and (max-width: 847px) {
+    .layer-1 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .layer1-left {
+        margin-bottom: 20px;
+    }
+
+    .layer-1 h1 {
+        margin-right: 0;
+    }
+
+    .layer1-right {
+        flex: 1;
+        margin-left: 0px;
+        overflow: hidden; /* Menyembunyikan bagian gambar yang mungkin terpotong */
+    }
+
+    .layer1-right img {
+        position: absolute;
+        bottom: 200px;
+        right: 400px;
+        width: 70%;
+        object-fit: cover;
+        z-index: -1;
+    }
 }
 
 /* FOOTER -----------------------------------------------------------------------------------------------> */
@@ -784,18 +530,48 @@ footer {
     color: #3F71EA;
 }
 
-
-
 /* FOOTER END -----------------------------------------------------------------------------------------------> */
 
-@media (max-width: 880px) {
-    .footer-container .footer-left, .footer-container .footer-center, .footer-container .footer-right {
-        display: block;
-        width: 100%;
-        margin-bottom: 40px;
+@media screen and (max-width: 640px) {
+    .layer-1 {
+        flex-direction: column;
         text-align: center;
     }
-    .footer-container .footer-center i {
-        margin-left: 0;
+
+    .layer1-left {
+        margin-bottom: 20px;
+    }
+
+    .layer-1 h1 {
+        margin-right: 0;
+    }
+
+    .layer1-right {
+        flex: 1;
+        margin-left: 0px;
+        overflow: hidden; /* Menyembunyikan bagian gambar yang mungkin terpotong */
+    }
+
+    .layer1-right img {
+        position: absolute;
+        bottom: 150px;
+        right: 200px;
+        width: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.3;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .layer3-content .product {
+        width: calc(95% - 20px); /* 2 card dalam satu baris, dengan gap 20px */
+    }
+    .layer1-right img {
+        opacity: 0.3;
+    }
+}
+
+
+
+
