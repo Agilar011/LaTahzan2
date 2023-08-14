@@ -28,7 +28,6 @@ class CreateJemaahTable extends Migration
             $table->decimal('biaya_akhir', 10, 2)->default(0);
             $table->timestamps();
 
-            $table->foreign('id_extended_umroh')->references('id')->on('extended_umrah');
         });
     }
 

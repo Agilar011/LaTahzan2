@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th rowspan="3">id</th>
-                <th colspan="4">Jemaah</th>
+                <th colspan="5">Jemaah</th>
                 <th colspan="5">Paket</th>
                 <th colspan="2">Paket</th>
                 <th rowspan="3">Opsi</th>
@@ -21,6 +21,7 @@
                 <th rowspan="2">No Hp</th>
                 <th>No KK</th>
                 <th>No KTP</th>
+                <th>Status Vaksin</th>
                 <th>Nama Paket</th>
                 <th>Tgl Berangkat</th>
                 <th rowspan="2">Fasilitas</th>
@@ -32,6 +33,7 @@
             <tr>
                 <th>Foto KK</th>
                 <th>Foto Ktp</th>
+                <th>Status Paspor</th>
                 <th>Jenis</th>
                 <th>Durasi</th>
                 <th>CP Travel</th>
@@ -41,7 +43,7 @@
         <tbody>
             @if ($data->isEmpty())
             <tr>
-                <td colspan="10" style="text-align: center">Data Kosong</td>
+                <td colspan="14" style="text-align: center">Data Kosong</td>
             </tr>
             @else
             @foreach ($data as $row)
@@ -68,6 +70,13 @@
                     <ul>
                         @foreach ($jemaahData[$row->id] as $jemaah) <!-- Menggunakan $row->id sebagai kunci untuk data jemaah -->
                         <li>{{ $jemaah->NIK }}</li>
+                    @endforeach
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach ($jemaahData[$row->id] as $jemaah) <!-- Menggunakan $row->id sebagai kunci untuk data jemaah -->
+                        <li>{{ $jemaah->status_vaksin }}</li>
                     @endforeach
                     </ul>
                 </td>
@@ -154,14 +163,24 @@
             </tr>
             <tr>
                 <td><img src="{{ asset('fotoUmroh/'.$row->foto_kk) }}" height="50px"></td>
-                <td>{{ $row->foto_kk }}</td>
                 <td>
                     <ul>
                         @foreach ($jemaahData[$row->id] as $jemaah) <!-- Menggunakan $row->id sebagai kunci untuk data jemaah -->
-                        <li>{{ $jemaah->foto_identitas }}</li>
+
+                        <li>
+                            <img src="{{ asset('fotoUmroh/'.$jemaah->foto_identitas) }}" height="50px"></li>
                     @endforeach
                     </ul>
                 </td>
+                <td>
+                    <ul>
+                        @foreach ($jemaahData[$row->id] as $jemaah) <!-- Menggunakan $row->id sebagai kunci untuk data jemaah -->
+                        <li>{{ $jemaah->status_paspor }}</li>
+                    @endforeach
+                    </ul>
+                </td>
+
+
                 <td>{{ $row->jenis }}</td>
                 <td>{{ $row->durasi }} Hari</td>
                 <td>{{ $row->No_hp_uploader}}</td>

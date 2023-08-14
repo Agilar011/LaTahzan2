@@ -119,6 +119,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tambahUmroh', [UmrohController::class, 'tambahUmroh'])->name('tambahUmroh');
     Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh');
 
+    Route::get('/deletedataumroh/{id}',[UmrohController::class,'deletedataumroh'])->name('deletedataumroh');
+
     Route::post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve');
 
     Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');

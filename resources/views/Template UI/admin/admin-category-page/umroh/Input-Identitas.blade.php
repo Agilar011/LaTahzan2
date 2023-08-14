@@ -29,14 +29,21 @@
                     <label for="No_hp{{ $i }}">No HP Jemaah {{ $i }}</label>
                     <input type="text" name="No_hp[]" id="No_hp{{ $i }}" value="{{ $user->phone }}" readonly>
 
+                    <label for="foto_identitas{{ $i }}">Foto Identitas {{ $i }}</label>
+                    <input type="file" name="foto_identitas[]" id="foto_identitas{{ $i }}" accept="image/*" required>
+
+                    <label for="status_paspor{{ $i }}">Status Paspor {{ $i }}</label>
+                    <select class="status" name="status_paspor[]">
+                        <option selected disabled>Pilih Status Paspor Anda</option>
+                        <option value="Sudah">Sudah</option>
+                        <option value="Belum">Belum</option>
+                    </select>
+
                     <label for="no_paspor{{ $i }}">No Paspor {{ $i }}</label>
                     <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}" required>
 
                     <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }}</label>
                     <input type="file" name="foto_paspor[]" id="foto_paspor{{ $i }}" accept="image/*" required>
-
-                    <label for="foto_KTP{{ $i }}">Foto KTP {{ $i }}</label>
-                    <input type="file" name="foto_KTP[]" id="foto_KTP{{ $i }}" accept="image/*" required>
 
                     <label for="status_vaksin{{ $i }}">Status Vaksin {{ $i }}</label>
                     <select class="status" name="status_vaksin[]">
@@ -68,14 +75,21 @@
                     <label for="No_hp{{ $i }}">No HP Jemaah {{ $i }}</label>
                     <input type="text" name="No_hp[]" id="No_hp{{ $i }}" required>
 
+                    <label for="status_paspor{{ $i }}">Status Paspor {{ $i }}</label>
+                    <select class="status" name="status_paspor[]">
+                        <option selected disabled>Pilih Status Paspor Anda</option>
+                        <option value="Sudah">Sudah</option>
+                        <option value="Belum">Belum</option>
+                    </select>
+
                     <label for="no_paspor{{ $i }}">No Paspor {{ $i }}</label>
                     <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}" required>
 
                     <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }}</label>
                     <input type="file" name="foto_paspor[]" id="foto_paspor{{ $i }}" accept="image/*" required>
 
-                    <label for="foto_KTP{{ $i }}">Foto KTP {{ $i }}</label>
-                    <input type="file" name="foto_KTP[]" id="foto_KTP{{ $i }}" accept="image/*" required>
+                    <label for="foto_identitas{{ $i }}">Foto KTP {{ $i }}</label>
+                    <input type="file" name="foto_identitas[]" id="foto_identitas{{ $i }}" accept="image/*" required>
 
                     <label for="status_vaksin{{ $i }}">Status Vaksin {{ $i }}</label>
                     <select class="status" name="status_vaksin[]">

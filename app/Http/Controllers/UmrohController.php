@@ -55,18 +55,46 @@ class UmrohController extends Controller
     public function tampilkandataumroh($id)
     {
         $data = EtalaseUmrah::find($id);
-
         return view('Template UI.admin.admin-category-page.umroh.update-umroh', compact('data'));
     }
 
     public function updatedataumroh(Request $request, $id)
     {
         $data = EtalaseUmrah::find($id);
-        $data->update($request->all());
+        $data->nama_paket = $request->nama_paket;
+        $data->jenis = $request->jenis;
+        $data->deskripsi = $request->deskripsi;
+        $data->fasilitas1 = $request->fasilitas1;
+        $data->fasilitas2 = $request->fasilitas2;
+        $data->fasilitas3 = $request->fasilitas3;
+        $data->fasilitas4 = $request->fasilitas4;
+        $data->fasilitas5 = $request->fasilitas5;
+        $data->fasilitas6 = $request->fasilitas6;
+        $data->fasilitas7 = $request->fasilitas7;
+        $data->fasilitas8 = $request->fasilitas8;
+        $data->fasilitas9 = $request->fasilitas9;
+        $data->fasilitas10 = $request->fasilitas10;
+        $data->tanggal_berangkat = $request->tanggal_berangkat;
+        $data->durasi = $request->durasi;
+        $data->No_hp_uploader = $request->No_hp_uploader;
+        $data->jasa_travel = $request->jasa_travel;
+        $data->Hotel = $request->Hotel;
+        $data->Maskapai = $request->Maskapai;
+        $data->harga_awal = $request->harga_awal;
+        $data->save();
+
         // dd($request);
         // dd($data);
+        if ($data->status_etalase == 'not yet approved') {
+            return redirect()->route('umroh');
+            # co...
+        } else {
+            return redirect()->route('etalase-umroh');
+            # code...
+        }
 
-        return redirect()->route('umroh');
+
+        // return back()->with('success', 'Product has been updated.');
     }
 
     //DELETE DATA OTO
@@ -74,9 +102,17 @@ class UmrohController extends Controller
     public function deletedataumroh($id)
     {
         $data = EtalaseUmrah::find($id);
+        $datasementara = $data->status_etalase;
         $data->delete();
 
-        return redirect()->route('umroh');
+        if ($datasementara == 'not yet approved') {
+            return redirect()->route('umroh');
+
+        } else {
+            return redirect()->route('etalase-umroh');
+
+        }
+
     }
     // Method untuk menampilkan data umroh yang sudah di approve dan belum di beli
     public function approve(Request $request, $id)
@@ -231,7 +267,7 @@ class UmrohController extends Controller
             'jumlah_jemaah' => $request->input('jumlah_jemaah'),
         ]);
 
-        $id = $ExtendedUmrah->id; // Mendapatkan ID yang baru saja dibuat
+        $id = $etalase->id; // Mendapatkan ID yang baru saja dibuat
         // dd($ExtendedUmrah);
 
 
@@ -263,24 +299,52 @@ class UmrohController extends Controller
             $etalase->save();
         }
 
-
-
         for ($i = 0; $i < $jumlahJemaah; $i++) {
-            // dd($request);
-            Jemaah::create([
-                'id_extended_umroh' => $etalase->id,
-                'nama_jemaah' => $request->input('nama_jemaah')[$i],
-                'NIK' => $request->input('NIK')[$i],
-                'No_hp' => $request->input('No_hp')[$i],
-                'no_paspor' => $request->input('no_paspor')[$i],
+            $jemaah = new Jemaah();
+            $jemaah->id_extended_umroh = $etalase->id;
+            $jemaah->nama_jemaah = $request->input('nama_jemaah')[$i];
+            $jemaah->NIK = $request->input('NIK')[$i];
+            $jemaah->No_hp = $request->input('No_hp')[$i];
+            $jemaah->no_paspor = $request->input('no_paspor')[$i];
+            $jemaah->status_vaksin = $request->input('status_vaksin')[$i];
+            $jemaah->status_paspor = $request->input('status_paspor')[$i];
 
-                'foto_paspor' => $request->file('foto_paspor')[$i],
-                'foto_identitas' => $request->file('foto_KTP')[$i],
-                'status_vaksin' => $request->input('status_vaksin')[$i],
-                'foto_vaksin' => $request->file('foto_vaksin')[$i],
-                // Add other jemaah-related data
-            ]);
+
+            if ($request->hasFile('foto_identitas') && isset($request->file('foto_identitas')[$i])) {
+                $fotoIdentitas = $request->file('foto_identitas')[$i];
+                $fotoIdentitas->move('fotoUmroh/', $fotoIdentitas->getClientOriginalName());
+                $jemaah->foto_identitas = $fotoIdentitas->getClientOriginalName();
+            }
+
+            if ($request->hasFile('foto_vaksin') && isset($request->file('foto_vaksin')[$i])) {
+                $fotoVaksin = $request->file('foto_vaksin')[$i];
+                $fotoVaksin->move('fotoUmroh/', $fotoVaksin->getClientOriginalName());
+                $jemaah->foto_vaksin = $fotoVaksin->getClientOriginalName();
+            }
+
+            if ($request->hasFile('foto_paspor') && isset($request->file('foto_paspor')[$i])) {
+                $foto_paspor = $request->file('foto_paspor')[$i];
+                $foto_paspor->move('foto_paspor/', $foto_paspor->getClientOriginalName());
+                $jemaah->foto_paspor = $foto_paspor->getClientOriginalName();
+            }
+
+            // Add other jemaah-related data
+
+            if ($request->status_vaksin[$i] == 'Belum') {
+                $jemaah->biaya_jasa_vaksin = 300000;
+            }
+            if ($request->status_paspor[$i] == 'Belum') {
+                $jemaah->biaya_jasa_paspor = 500000;
+            }
+            $jemaah->biaya_akhir = $etalase->harga_awal + $jemaah->biaya_jasa_vaksin + $jemaah->biaya_jasa_paspor;
+
+            $etalase->harga_total = $etalase->harga_total + $jemaah->biaya_akhir;
+
+            $etalase->save();
+
+            $jemaah->save();
         }
+        $jumlahJemaah = Jemaah::findorfail($id);
 
         $etalase->status_pembelian = 'pending';
         $etalase->save();
