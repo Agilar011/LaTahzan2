@@ -348,12 +348,17 @@ class UmrohController extends Controller
 
         $etalase->status_pembelian = 'pending';
         $etalase->save();
-
-
-
-        return redirect()
+        if (Auth::user()->role == 'admin') {
+            return redirect()
             ->route('umroh')
             ->with('success', 'Data jemaah berhasil disimpan.');
+
+        } else {
+            return redirect()
+            ->route('landing')
+            ->with('success', 'Data jemaah berhasil disimpan.');
+            # code...
+        }
     }
     // public function tampilkandatatransaksi()
     // {
