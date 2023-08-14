@@ -426,7 +426,8 @@ class UmrohController extends Controller
 
         $etalaseUmrah->save();
 
-        laporan_transaksi_umroh::create([
+        // Redirect to the product approval page
+        $laporan_transaksi_umroh = laporan_transaksi_umroh::create([
             'id_user_uploader' => $etalaseUmrah->upload_by_user_id,
             'nama_user_uploader' => $etalaseUmrah->upload_by_user_name,
             'No_hp_uploader' => $etalaseUmrah->No_hp_uploader,
@@ -458,6 +459,8 @@ class UmrohController extends Controller
             'total_biaya_tambahan' => $etalaseUmrah->harga_total,
         ]);
 
+        $laporan_transaksi_umroh->save();
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
         // Hapus data extended_umrah (baris induk)
@@ -474,7 +477,8 @@ class UmrohController extends Controller
 
     public function landingRead()
     {
-        $data = EtalaseUmrah::all();
+        $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
+
         return view('Template UI.customer.landing', compact('data'));
     }
 
@@ -485,6 +489,6 @@ class UmrohController extends Controller
     {
         $data = EtalaseUmrah::find($id);
 
-        return view('resources.views.Template UI.customer.umroh-detail', compact('data'));
+        return view('Template UI.customer.detailpage.umroh-detail', compact('data'));
     }
 }

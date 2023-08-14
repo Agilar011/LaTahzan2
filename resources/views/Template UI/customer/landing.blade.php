@@ -172,11 +172,14 @@
                             </ul>
                         </div>
                         <div class="buy">
+                            <a href="/tampilkandetailumroh/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
+                        </div>
+                        {{-- <div class="buy">
                             <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn-ekspor">Purchase</button>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach

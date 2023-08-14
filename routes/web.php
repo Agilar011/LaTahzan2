@@ -23,8 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Tampilkan Etalase Umroh
 Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
-
 
 Route::middleware([
     'auth:sanctum',
@@ -145,3 +145,5 @@ Route::middleware(['auth'])->group(function () {
 
 // Etalase Umroh
 Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
+
+Route::get('/tampilkandetailumroh/{id}',[UmrohController::class,'tampilkandetailumroh'])->name('tampilkandetailumroh');
