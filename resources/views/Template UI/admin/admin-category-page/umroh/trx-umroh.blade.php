@@ -155,7 +155,10 @@
                 <td rowspan="2">
                     <div class="btn">
                         <a href="" class="btn-hapus">Hapus</a>
-                        <a href="" class="btn-ekspor">Approve</a>
+                        <form action="{{ route('umrohs.approvepayment', $row->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-ekspor">Approve</button>
+                        </form>
                     </div>
                 </td>
 

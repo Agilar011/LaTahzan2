@@ -38,7 +38,7 @@
                 <label for="">Foto</label>
                 <input type="file" name="foto" value="{{ $data->foto }}"disabled>
                 <label for="">Jumlah Jemaah</label>
-                <input type="number" name="jumlah_jemaah" value="{{ $data->jumlah_jemaah }}">
+                <input type="number" name="jumlah_jemaah" value="{{ $data->jumlah_jemaah }}" required>
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

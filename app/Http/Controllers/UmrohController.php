@@ -360,20 +360,7 @@ class UmrohController extends Controller
             # code...
         }
     }
-    // public function tampilkandatatransaksi()
-    // {
-    //     $data = ExtendedUmrah::where('status_pembelian' , 'pending')->get();
-    //     // dd($data);
-    //     $firstData = $data->first(); // Mengambil objek pertama dari koleksi
-    //     // dd($data);
-    //     $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
 
-    //     $id_extended_umroh = $firstData->id; // Mengambil properti 'id' dari objek pertama
-    //     // dd($id_extended_umroh);
-    //     $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
-
-    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
-    // }
 
     public function tampilkandatatransaksi()
     {
@@ -388,31 +375,7 @@ class UmrohController extends Controller
 
         return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaahData'));
     }
-    // $data = ExtendedUmrah::where('status_pembelian', 'pending')->get();
 
-    // if ($data->isEmpty()) {
-    //     // Koleksi kosong, Anda dapat mengambil tindakan yang sesuai
-    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data'));
-
-    //     // Contoh: return view('tidak-ada-data');
-    // }
-
-    // $firstData = $data->first();
-
-    // if ($firstData) {
-    //     $id_extended_umroh = $firstData->id;
-    //     $jemaah = Jemaah::where('id_extended_umroh', $id_extended_umroh)->get();
-
-    //     return view('Template UI.admin.admin-category-page.umroh.trx-umroh', compact('data', 'jemaah'));
-    // } else {
-    //     // Objek pertama tidak ditemukan, Anda dapat mengambil tindakan yang sesuai
-    //     // Contoh: return view('tidak-ada-data');
-    // }
-
-
-
-
-    // method show approved and not purchased otomotif
     //  Aprroved payment Method
     public function approvepayment(Request $request, $id)
     {
@@ -475,8 +438,7 @@ class UmrohController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         // Redirect back to the previous page or any other page you prefer
-        return redirect()
-            ->route('umroh')
+        return back()
             ->with('success', 'Data jemaah berhasil disimpan.');
     }
 
