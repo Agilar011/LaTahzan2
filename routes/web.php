@@ -23,6 +23,7 @@ use App\Http\Controllers\UmrohController;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 
 
 Route::middleware([
@@ -153,3 +154,5 @@ Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmroh
 //
 
 
+=======
+>>>>>>> parent of c2521a1 (Jetstream Installed)
