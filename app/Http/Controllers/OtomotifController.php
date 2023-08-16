@@ -6,6 +6,8 @@ use App\Models\Otomotif;
 use App\Models\laporan_transaksi_otomotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class OtomotifController extends Controller
 {

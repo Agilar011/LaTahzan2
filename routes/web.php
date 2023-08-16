@@ -146,13 +146,10 @@ Route::middleware(['auth'])->group(function () {
 // Etalase Umroh
 Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
 
-<<<<<<< Updated upstream
 Route::get('/tampilkandetailumroh/{id}',[UmrohController::class,'tampilkandetailumroh'])->name('tampilkandetailumroh');
-=======
 
 //route approve otomotif
-Route::post('/otomotif/{id}/approvepayment', [UmrohController::class, 'approved_payment'])->name('otomotif.approvepayment');
+Route::post('/otomotif/{id}/approvepayment', [OtomotifController::class, 'approved_payment'])->name('otomotif.approvepayment');
 
 
 
->>>>>>> Stashed changes
