@@ -170,12 +170,24 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
         $otomotif->status_pembelian = 'purchased';
+        if ($user->no_ktp_purchaser != null) {
+            $otomotif->no_ktp_purchaser = $user->nik;
+            $otomotif->foto_ktp_purchaser = $user->fotoktp;
+        } else {
+            $otomotif->no_ktp_purchaser = $request->no_ktp_purchaser;
+            if ($request->hasFile('foto_ktp_purchaser')) {
+                $foto_ktp_purchaser = $request->file('foto_ktp_purchaser');
+                $foto_ktp_purchaser->move('fotoOto/', $foto_ktp_purchaser->getClientOriginalName());
+                $otomotif->foto_ktp_purchaser = $foto_ktp_purchaser->getClientOriginalName();
+            }
+        }
+
 
         $otomotif->save();
 
 
         // Redirect to the show view or any other relevant page
-        return back()->with('success', 'Product has been purchased.');
+        return redirect()->route('landing');
     }
 
     // show approve the productpublic function showPurchasedPropertys()

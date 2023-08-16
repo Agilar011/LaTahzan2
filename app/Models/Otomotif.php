@@ -35,6 +35,8 @@ class Otomotif extends Model
         'approved_by_user_name',
         'purchased_by_user_id',
         'purchased_by_user_name',
+        'foto_ktp_purchaser',
+        'no_ktp_purchaser',
         'purchased_by_user_phone_number',
         'status_etalase',
         'status_pembelian',

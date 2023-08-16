@@ -5,13 +5,13 @@
     </div>
 
 
-    <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
+    <form action="{{ route('otomotifs.purchased', $data->id) }}" method="POST">
         @csrf
 
         <div class="form-input">
             <label for="">Nama Kendaraan :</label>
             <input type="text" class="inp-disable" name="nama_paket" value="{{ $data->nama_paket }}"disabled>
-            <p for="">{{ $data->nama_paket }}</p>
+            <p for="">{{ $data->nama_kendaraan }}</p>
 
             <label for="">Merk :</label>
             <input type="text" class="inp-disable" name="jenis" value="{{ $data->jenis }}" disabled>
@@ -22,8 +22,8 @@
             <p for="">{{ $data->tanggal_berangkat }}</p>
 
             <label for="">Kapasitas Mesin :</label>
-            <input type="text" class="inp-disable" name="durasi" value="{{ $data->durasi}}" disabled>
-            <p for="">{{ $data->durasi }} Hari</p>
+            <input type="text" name="durasi" value="{{ $data->kapasitas_mesin}}">
+            <p for="">{{ $data->kapasitas_mesin }} Hari</p>
 
             <label for="">Transmisi :</label>
             <input type="text" class="inp-disable" name="durasi" value="{{ $data->durasi}}" disabled>
@@ -59,12 +59,12 @@
             <p>{{ $data->jasa_travel }}</p>
 
             <label for="">No Ktp :</label>
-            <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}">
-            <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p>
+            <input type="number" name="no_ktp_purchaser" value="{{ $data->no_ktp_purchaser }}">
+            
 
             <label for="">Foto Ktp :</label>
-            <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}">
-            <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p>
+            <input type="file" name="foto_ktp_purchaser" value="{{ $data->foto_ktp_purchaser }}">
+            {{-- <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p> --}}
 
             <label for="">Harga :</label>
             <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}"disabled>
