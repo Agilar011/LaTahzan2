@@ -1,11 +1,9 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
+
 @extends('Template UI.layouts.admin-sidebar')
 
 @section('content')
 <div class="title">
-    <h1>Input Umroh</h1>
+    <h1>Etalase Umroh</h1>
 </div>
 
 <table class="content-table">

@@ -1,9 +1,13 @@
-<x-app-layout>
+
     {{-- penempatan di layout.app dan navigation-menu --}}
     @extends('Template UI.layouts.main')
     @section('content')
 
+    <div class="titles">
         <h1>Beli, &nbsp{{ $data->nama_paket }}</h1>
+    </div>
+
+
 
         <div class="cont-form">
             <form method="POST" action="{{ route('storejemaah', ['id' => $data->id]) }}" enctype="multipart/form-data">
@@ -170,4 +174,3 @@
         </script>
 
     @endsection
-</x-app-layout>

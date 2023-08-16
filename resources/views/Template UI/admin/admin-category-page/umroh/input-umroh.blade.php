@@ -1,6 +1,4 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-</x-app-layout>
+
 @extends('Template UI.layouts.admin-sidebar')
 
 @section('content')
@@ -41,8 +39,8 @@
                     <th scope="row" rowspan="2">{{ $row->id }}</th>
                     <td rowspan="2">{{ $row->nama_paket }}</td>
                     <td>{{ $row->jenis }}</td>
-                    <td rowspan="2">
-                        <div>
+                    <td rowspan="2" class="fasilitas-kolom">
+
                             <ul>
                                 <li>
                                     @if ($row->fasilitas1 != null)
@@ -105,7 +103,7 @@
                                     @endif
                                 </li>
                             </ul>
-                        </div>
+
                     </td>
                     <td>{{ $row->tanggal_berangkat }}</td>
                     <td>{{ $row->upload_by_user_name }}</td>
@@ -133,7 +131,7 @@
                     <td>{{ $row->durasi }} Hari</td>
                     <td>{{ $row->No_hp_uploader }}</td>
                     <td>{{ $row->Hotel }}</td>
-                    <td>Rp. {{ $row->harga_awal }}</td>
+                    <td>Rp.&nbsp;{{ number_format($row->harga_awal, 0, ',', '.') }},- </td>
                     <td>{{ $row->updated_at }}</td>
                 </tr>
             @endforeach

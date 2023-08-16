@@ -9,7 +9,9 @@ use App\Models\Properti;
 
     @extends('Template UI.layouts.admin-sidebar')
     @section('content')
-    <h1>Daftar Barang Terjual Properti</h1>
+    <div class="title">
+        <h1>Transaksi Properti</h1>
+    </div>
 
     <table class="content-table">
         <thead>
@@ -56,7 +58,7 @@ use App\Models\Properti;
                     <div class="btn">
                         <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                         <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                        
+
                         {{-- @if ($row->purchase_by_user_id === null)
                     <form action="{{ route('propertys.purchase', $row->id) }}" method="POST">
                         @csrf

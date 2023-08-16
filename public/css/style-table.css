@@ -1,4 +1,8 @@
 
+.title h1{
+    color:#111827;
+}
+
 .btn-tambahdata{
     margin-left: 50px;
     background-color:#089d46;
@@ -15,6 +19,7 @@
     /* border-collapse: collapse; */
     margin-left: 50px;
     margin-top: 50px;
+    /* display: none; */
 }
 
 .content-table th{
@@ -45,6 +50,15 @@
 
 .content-table tbody td .btn{
     display: grid;
+}
+
+.content-table tbody td ul li{
+    text-align: left;
+    margin: 10px 0;
+}
+
+.content-table tbody .fasilitas-kolom{
+    width: 200px;
 }
 
 .content-table tbody .btn-hapus{

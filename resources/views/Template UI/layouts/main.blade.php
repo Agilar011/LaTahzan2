@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,11 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>@yield('title')</title>
-</head>
+</head> --}}
+
+@extends('layouts.app')
+
+@section('conn')
 <body>
     <div class="container-all">
 
@@ -90,5 +94,6 @@
     </footer>
 
 </body>
+@endsection
 
-</html>
+{{-- </html> --}}

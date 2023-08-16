@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,17 @@
     <link rel="stylesheet" href="/css/style-table.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>Dashboard</title>
-</head>
-<body>
-    {{-- x-app-layout untuk button log out yang blom nemu lokasi e wkwkwkw --}}
+</head> --}}
+
+
+{{-- penempatan di layout.app dan navigation-menu --}}
+
+@extends('layouts.app')
+
+@section('conn-admin')
+
+    <body>
+        {{-- x-app-layout untuk button log out yang blom nemu lokasi e wkwkwkw --}}
 
         {{-- <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -31,6 +39,23 @@
                     <div class="illustration">
                         <img src="/img/admin/admin.png" alt="">
                     </div>
+                    <!-- Authentication -->
+                    <div class="logout-container">
+                        <div>
+                            <img src="/img/admin/logout.png" alt="" class="icon">
+                        </div>
+
+                        <div>
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();" style="font-size: 16px; color:#FA5252; width:100px;">
+                                    <p>{{ __('Log Out') }}</p>
+                                </x-responsive-nav-link>
+                            </form>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div class="main">
@@ -46,6 +71,7 @@
                             <img src="/img/admin/in-umroh.png" alt="" class="icon">
                             <span class="desc">Inp. Umroh</span>
                         </a>
+
                     </div>
                     <div class="list-items">
                         <a href="/input-oto">
@@ -53,6 +79,7 @@
                             <span class="desc">Inp. Otomotif</span>
                         </a>
                     </div>
+
                     <div class="list-items">
                         <a href="/input-properti">
                             <img src="/img/admin/in-prop.png" alt="" class="icon">
@@ -147,7 +174,8 @@
 
         </div>
 
+    </body>
+
 
     <script src="js/script.js"></script>
-</body>
-</html>
+@endsection

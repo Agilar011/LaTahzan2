@@ -8,7 +8,7 @@
 .container{
     display: flex;
     min-height: 100vh;
-    max-width: 100%;
+    max-width: 200vh;
 }
 
 .sidebar{
@@ -20,6 +20,9 @@
     flex-direction: column;
     transition: all ease-in 0.05s;
     max-width: 30vh;
+    position: fixed;
+    overflow-y: auto;
+    max-height: calc(100vh - 24px);
 
 }
 
@@ -30,9 +33,12 @@
 
 .main-content{
     background-color: #eee;
-    flex-grow: 1;
-    height: 170vh;
-    width: 70%;
+    flex-grow: 2;
+    min-width: 100vh;
+    overflow-y: auto;
+    margin-left: 250px;
+    margin-right: -100px;
+
 }
 
 .sidebar .header .desc-header{
@@ -86,6 +92,27 @@
     display: none;
 }
 
+
+.logout-container{
+    display: flex;
+    align-items: center;
+}
+
+.logout-container img{
+    width: 22px;
+}
+
+
+.sidebar .main .list-items a{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .main .list-items a.active {
+    background-color: #ff9900; /* Ganti dengan warna yang diinginkan saat tombol diklik */
+    /* Properti CSS lainnya sesuai kebutuhan */
+}
+
 .sidebar .main .list-items .desc{
     font-style: normal;
     font-weight: 400;
@@ -123,6 +150,7 @@
     /* width: 212px; */
     box-sizing: border-box;
     transition: all ease-in .2s;
+    margin: 20px 0;
 }
 
 .sidebar .main .list-items:hover{
@@ -137,12 +165,16 @@
     font-size: 45px;
 }
 
+
+
+
 /* Toggle Menu */
 
 #menu-button{
     width: 32px;
     position: absolute;
     overflow: hidden;
+    display: none;
 }
 
 #menu-label{

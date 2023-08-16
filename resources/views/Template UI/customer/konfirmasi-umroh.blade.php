@@ -1,13 +1,11 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
-    @extends('Template UI.layouts.main')
+ @extends('Template UI.layouts.main')
     @section('content')
+        <div class="titles">
+            <h1>Beli, {{ $data->nama_paket }}</h1>
+        </div>
 
-    <h1>Beli, {{ $data->nama_paket }}</h1>
 
-    <div class="cont-form">
-        <form action="{{ route('updatedatabeliumroh', $data->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updatedatabeliumroh', $data->id) }}" method="POST" enctype="multipart/form-data" class="cont-form">
             @csrf
             <div class="form-input">
                 <label for="">Nama Paket :</label>
@@ -57,5 +55,5 @@
                 <button type="submit">Tambahkan Produk</button>
             </div>
         </form>
-    </div>
+
 @endsection

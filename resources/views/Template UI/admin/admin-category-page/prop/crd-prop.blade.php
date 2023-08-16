@@ -9,7 +9,11 @@ use App\Models\Properti;
 
     @extends('Template UI.layouts.admin-sidebar')
     @section('content')
-    <h1>Etalase Properti</h1>
+    <div class="title">
+        <div class="title">
+            <h1>Etalase Properti</h1>
+        </div>
+    </div>
 
     <table class="content-table">
         <thead>

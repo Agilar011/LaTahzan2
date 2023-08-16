@@ -1,12 +1,9 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-</x-app-layout>
 @extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Tambah Produk Umroh</h1>
 
-    <div class="cont-form">
-        <form action="/insertdataumroh" method="POST" enctype="multipart/form-data">
+
+        <form action="/insertdataumroh" method="POST" enctype="multipart/form-data" class="cont-form">
             @csrf
 
             <div class="form-input">
@@ -89,5 +86,5 @@
                 <button type="submit">Tambahkan Produk</button>
             </div>
         </form>
-    </div>
+
 @endsection

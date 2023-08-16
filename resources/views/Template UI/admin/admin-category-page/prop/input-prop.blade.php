@@ -1,9 +1,9 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
 @extends('Template UI.layouts.admin-sidebar')
 @section('content')
-<h1>Input Properti</h1>
+<div class="title">
+    <h1>Input Properti</h1>
+</div>
+
 
 <a href="/tambahProp" class="btn-tambahdata"> + Tambah Produk</a>
 

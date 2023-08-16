@@ -1,11 +1,8 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-</x-app-layout>
-
-
-    @extends('Template UI.layouts.admin-sidebar')
+@extends('Template UI.layouts.admin-sidebar')
 @section('content')
-    <h1>Etalase Otomotif</h1>
+<div class="title">
+    <h1>Etalase Properti</h1>
+</div>
 
     <table class="content-table">
         <thead>
