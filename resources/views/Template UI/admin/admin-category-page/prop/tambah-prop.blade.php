@@ -1,7 +1,7 @@
 <x-app-layout>
     {{-- penempatan di layout.app dan navigation-menu --}}
     </x-app-layout>
-@extends('Template UI.layouts.admin-sidebar')
+@extends('Template UI.layouts.main')
 @section('content')
     <h1>Tambah Produk Properti</h1>
 

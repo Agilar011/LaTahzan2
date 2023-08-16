@@ -56,7 +56,7 @@ use App\Models\Properti;
                     <div class="btn">
                         <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                         <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                        
+
                         {{-- @if ($row->purchase_by_user_id === null)
                     <form action="{{ route('propertys.purchase', $row->id) }}" method="POST">
                         @csrf

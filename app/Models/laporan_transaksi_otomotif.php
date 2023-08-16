@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Otomotif extends Model
+class laporan_transaksi_otomotif extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'upload_by_user_id'	,
         'upload_by_user_name',

@@ -41,7 +41,7 @@
             <td rowspan="2"><img src="{{ asset('fotoSertifikat/'.$row->foto_sertifikat) }}" height="50px"></td>
             <td rowspan="3">{{ $row->deskripsi }}</td>
             <td>{{ $row->alamat }}</td>
-            <td rowspan="3">{{ $row->luas }}m2</td>
+            <td rowspan="3">{{ $row->luas }}m<sup>2</sup></td>
             <td rowspan="3">Rp. {{ $row->harga }},-</td>
             <td rowspan="2">{{ $row->created_at }}</td>
 
@@ -49,14 +49,10 @@
                 <div class="btn">
                     <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                    @if ($row->approved_by_user_id === null)
                     <form action="{{ route('propertys.approve', $row->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn-approved">Approve</button>
+                        <button type="submit" class="btn-ekspor">+Etalase</button>
                     </form>
-                @else
-                    <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                @endif
                 </div>
             </td>
         </tr>

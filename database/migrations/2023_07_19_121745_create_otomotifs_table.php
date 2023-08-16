@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('otomotifs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('upload_by_user_id');
+            $table->string('upload_by_user_name')->nullable();
+            $table->string('no_hp_uploader')->nullable();
             $table->string('nama_kendaraan');
             $table->string('deskripsi', 100);
             $table->string('merk');
@@ -38,17 +40,23 @@ return new class extends Migration
             $table->string('approved_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
+            $table->string('purchased_by_user_phone_number')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
+            $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
+            $table->string('approved_payment_by_user_name')->nullable();
 
             // Add foreign key constraint for user_id
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('upload_by_user_id')->references('id')->on('users');
 
             // Add foreign key constraint for approved_by_user_id
             $table->foreign('approved_by_user_id')->references('id')->on('users');
 
             // Add foreign key constraint for purchased_by_user_id
             $table->foreign('purchased_by_user_id')->references('id')->on('users');
+
+            // Add foreign key constraint for purchased_by_user_id
+            $table->foreign('approved_payment_by_user_id')->references('id')->on('users');
         });
     }
 

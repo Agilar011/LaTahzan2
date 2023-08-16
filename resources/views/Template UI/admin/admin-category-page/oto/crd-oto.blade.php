@@ -62,14 +62,10 @@
                         <div class="btn">
                             <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
                             <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                            @if ($row->purchase_by_user_id === null)
                             <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn-approved">Purchase</button>
+                                <button type="submit" class="btn-ekspor">Purchase</button>
                             </form>
-                        @else
-                            <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                        @endif
                         </div>
                     </td>
                 </tr>
