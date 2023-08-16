@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Otomotif;
 
 class UmrohController extends Controller
 {
@@ -482,8 +483,8 @@ class UmrohController extends Controller
     public function landingRead()
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
-
-        return view('Template UI.customer.landing', compact('data'));
+        $dataOto = Otomotif::where('status_etalase', 'approved')->get();
+        return view('Template UI.customer.landing', compact('data','dataOto'));
     }
 
     //DETAIL RETRIEVE UMROH
@@ -495,4 +496,6 @@ class UmrohController extends Controller
 
         return view('Template UI.customer.umroh-detail', compact('data'));
     }
+
+
 }

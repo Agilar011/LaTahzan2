@@ -99,9 +99,9 @@
                                     <label for="no_paspor{{ $i }}">No Paspor {{ $i }} <span>*</span></label>
                                     <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}" required>
 
-                                    <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }} <span>*</span></label>
+                                    {{-- <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }} <span>*</span></label>
                                     <input type="file" name="foto_paspor[]" id="foto_paspor{{ $i }}"
-                                        accept="image/*" required>
+                                        accept="image/*" required> --}}
 
                                     <label for="foto_identitas{{ $i }}">Foto KTP {{ $i }} <span>*</span></label>
                                     <input type="file" name="foto_identitas[]" id="foto_identitas{{ $i }}"
@@ -115,10 +115,10 @@
                                         <option value="Belum">Belum</option>
                                     </select>
                                     <h5>* Akan dikenakan biaya tambahan sebesar Rp.200.000,- apabila anda belum memiliki Paspor</h5>
-
+{{--
                                     <label for="foto_vaksin{{ $i }}">Foto Vaksin {{ $i }} <span>*</span></label>
                                     <input type="file" name="foto_vaksin[]" id="foto_vaksin{{ $i }}"
-                                        accept="image/*" required>
+                                        accept="image/*" required> --}}
 
                                     <!-- Include other input fields for jemaah data (foto_KTP, etc.) -->
                                 </div>

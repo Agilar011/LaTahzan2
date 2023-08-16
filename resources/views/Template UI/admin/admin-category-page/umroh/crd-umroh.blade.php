@@ -106,7 +106,7 @@
             <td>{{ $row->tanggal_berangkat }}</td>
             <td>{{ $row->upload_by_user_name }}</td>
             <td>{{ $row->Maskapai }}</td>
-            <td>{{ $row->jasa_travel }},-</td>
+            <td>{{ $row->jasa_travel }}</td>
             <td rowspan="2"><img src="{{ asset('fotoUmroh/'.$row->thumbnail) }}" height="50px"></td>
             <td>{{ $row->created_at }}</td>
             <td rowspan="2">
@@ -126,7 +126,7 @@
             <td>{{ $row->durasi }} Hari</td>
             <td>{{ $row->No_hp_uploader }}</td>
             <td>{{ $row->Hotel }}</td>
-            <td>Rp. {{ $row->harga_awal }}</td>
+            <td>Rp.&nbsp;{{ number_format($row->harga_awal, 0, ',', '.') }},-</td>
             <td>{{ $row->updated_at }}</td>
         </tr>
 

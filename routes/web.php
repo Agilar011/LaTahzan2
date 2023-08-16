@@ -150,6 +150,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh');
 
 
-//
+//route approve otomotif
+Route::post('/otomotif/{id}/approvepayment', [OtomotifController::class, 'approved_payment'])->name('otomotif.approvepayment');
 
+Route::get('/tampilkandetailoto/{id}',[OtomotifController::class,'tampilkandetailoto'])->name('tampilkandetailoto');
 
+Route::get('/tampilkankonfirmasioto/{id}', [OtomotifController::class,'tampilkankonfirmasioto'])->name('tampilkankonfirmasioto');

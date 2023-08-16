@@ -32,7 +32,7 @@
                 <div class="header">
                     <div class="list-items">
                         <a href="#">
-                            <img src="/img/admin/explore.png" alt="" class="icon">
+                            <img src="" alt="" class="icon">
                             <span class="desc-header">La Tahzan</span>
                         </a>
                     </div>
@@ -154,9 +154,13 @@
 
                     <div class="list-items">
                         <a href="/customer">
-                            <img src="/img/admin/team.png" alt="" class="icon">
-                            <span class="desc">Customer</span>
+                            <img src="/img/admin/person.png" alt="" class="icon">
+                            <span class="desc">Admin/Customer</span>
                         </a>
+                    </div>
+
+                    <div class="line-end">
+
                     </div>
 
                 </div>

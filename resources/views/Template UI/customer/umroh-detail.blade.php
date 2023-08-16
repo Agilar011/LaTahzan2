@@ -1,4 +1,4 @@
-<x-app-layout>
+
 
     @extends('Template UI.layouts.main')
 
@@ -185,4 +185,4 @@
         </script>
     @endsection
 
-</x-app-layout>
+

@@ -45,7 +45,7 @@
                 <input type="text" class="inp-disable" name="maskapai" value="{{ $data->Maskapai }}"disabled>
                 <p>{{ $data->Maskapai }}</p>
 
-                <label for="">Harga :</label>
+                <label for="">Harga (Per Jemaah) :</label>
                 <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}"disabled>
                 <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p>
 

@@ -1,8 +1,11 @@
-@extends('Template UI.layouts.admin-sidebar')
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+</x-app-layout>
+
+
+    @extends('Template UI.layouts.admin-sidebar')
 @section('content')
-<div class="title">
-    <h1>Etalase Properti</h1>
-</div>
+    <h1>Etalase Otomotif</h1>
 
     <table class="content-table">
         <thead>
@@ -10,6 +13,7 @@
                 <th rowspan="3">id</th>
                 <th rowspan="2">Nama Produk</th>
                 <th rowspan="3">Warna</th>
+                <th rowspan="3">Nama Pemilik</th>
                 <th rowspan="3">Foto Kendaraan</th>
                 <th>Foto BPKB</th>
                 <th rowspan="3">Deskripsi (maks. 70 karakter)</th>
@@ -42,6 +46,7 @@
                     <th scope="row" rowspan="3">{{ $no++ }}</th>
                     <td>{{ $row->nama_kendaraan }} </td>
                     <td rowspan="3">{{ $row->warna }}</td>
+                    <td rowspan="3">{{ $row->upload_by_user_name }}</td>
                     <td>
                         <img src="{{ asset('fotoOto/' . $row->foto1) }}" height="50px">
                     </td>
@@ -59,14 +64,10 @@
                         <div class="btn">
                             <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
                             <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                            @if ($row->purchase_by_user_id === null)
                             <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn-approved">Purchase</button>
+                                <button type="submit" class="btn-ekspor">Purchase</button>
                             </form>
-                        @else
-                            <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                        @endif
                         </div>
                     </td>
                 </tr>

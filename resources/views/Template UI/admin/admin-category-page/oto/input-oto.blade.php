@@ -1,9 +1,11 @@
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+</x-app-layout>
 
-@extends('Template UI.layouts.admin-sidebar')
+
+    @extends('Template UI.layouts.admin-sidebar')
 @section('content')
-<div class="title">
     <h1>Input Otomotif</h1>
-</div>
 
     <a href="/tambahOto" class="btn-tambahdata"> + Tambah Produk</a>
 
@@ -63,15 +65,10 @@
                             <div class="btn">
                                 <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
                                 <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                                <a href="/updatestatusoto/{{ $row->id }}" class="btn-ekspor">+Etalase</a>
-                                @if ($row->approved_by_user_id === null)
-                    <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn-approved">Approve</button>
-                    </form>
-                @else
-                    <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                @endif
+                                <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn-ekspor">+Etalase</button>
+                                </form>
                             </div>
                         </td>
                     </tr>
