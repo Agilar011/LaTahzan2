@@ -66,6 +66,7 @@ class OtomotifController extends Controller
             $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
         }
 
+
         // Simpan data ke dalam database
         $data = Otomotif::create($request->all());
 
@@ -156,14 +157,19 @@ class OtomotifController extends Controller
          // Get the ID of the currently logged-in user
          $user = Auth::user();
 
-        //  Space untuk foto ktp
+        //  dd($request->all());
 
+        //  Space untuk foto ktp
         if ($request->hasFile('foto_ktp_buyer')) {
-            $request->file('foto_ktp_buyer')->move('fotoUmroh/', $request->file('foto_ktp_buyer')->getClientOriginalName());
+            $request->file('foto_ktp_buyer')->move('fotoKtp/', $request->file('foto_ktp_buyer')->getClientOriginalName());
             $otomotif->foto_ktp_buyer = $request->file('foto_ktp_buyer')->getClientOriginalName();
 
             $otomotif->save();
         }
+
+        $otomotif->foto_ktp_buyer = $request->hasFile('foto_ktp_buyer') ? $request->file('foto_ktp_buyer')->getClientOriginalName() : null;
+        // dd($otomotif->foto_ktp_buyer);
+
 
         // Mark the product as purchased and associate it with the logged-in user
         $otomotif->purchased_by_user_id = $user->id;
@@ -185,6 +191,7 @@ class OtomotifController extends Controller
         // dd($request->all());
 
         $otomotif->save();
+        // dd($otomotif);
 
 
         // Redirect to the show view or any other relevant page
