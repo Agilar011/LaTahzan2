@@ -42,8 +42,8 @@ return new class extends Migration
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
             $table->string('purchased_by_user_phone_number')->nullable();
-            $table->string('no_ktp_buyer')->nullable();
-            $table->string('foto_ktp_buyer')->nullable();
+            $table->string('no_ktp_purchaser')->nullable();
+            $table->string('foto_ktp_purchaser')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
             $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();

@@ -48,8 +48,8 @@
                         <form action="{{ route('tampilkankonfirmasioto', $data->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn-beli">Pesan Sekarang</button>
-                            {{-- <a href="" class="btn-beli">Pesan Sekarang</a> --}}
                         </form>
+
                         {{-- <h3>Deskripsi : <i class="fa fa-indent"></i></h3>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi neque velit doloremque cupiditate magnam impedit sequi debitis amet id culpa quaerat veritatis, facere totam fuga veniam sit odio ratione odit cum. Vero corrupti officia tenetur sed autem consectetur deserunt!</p>
