@@ -26,7 +26,7 @@
 
                                     <label for="NIK{{ $i }}">NIK Jemaah {{ $i }}</label>
                                     <input type="text" name="NIK[]" id="NIK{{ $i }}"
-                                        value="{{ $user->NIK }}" readonly>
+                                        value="{{ $user->nik }}" readonly>
 
                                     <label for="No_hp{{ $i }}">No HP Jemaah {{ $i }}</label>
                                     <input type="text" name="No_hp[]" id="No_hp{{ $i }}"
@@ -47,7 +47,7 @@
                                     <h5>* Akan dikenakan biaya tambahan sebesar Rp.500.000,- apabila anda belum memiliki Paspor</h5>
 
                                     <label for="no_paspor{{ $i }}">No Paspor {{ $i }} <span>*</span></label>
-                                    <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}" required>
+                                    <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}">
 
                                     {{-- <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }}<span>*</span></label>
                                     <input type="file" name="foto_paspor[]" id="foto_paspor{{ $i }}"
@@ -97,7 +97,7 @@
                                     <h5>* Akan dikenakan biaya tambahan sebesar Rp.500.000,- apabila anda belum memiliki Paspor</h5>
 
                                     <label for="no_paspor{{ $i }}">No Paspor {{ $i }} <span>*</span></label>
-                                    <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}" required>
+                                    <input type="text" name="no_paspor[]" id="no_paspor{{ $i }}">
 
                                     {{-- <label for="foto_paspor{{ $i }}">Foto Paspor {{ $i }} <span>*</span></label>
                                     <input type="file" name="foto_paspor[]" id="foto_paspor{{ $i }}"
@@ -138,14 +138,25 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const hargaAwal = {{ $data->harga_awal }};
+                const hargaTambahanPaspor = 500000; // Biaya tambahan jika status paspor "Belum"
                 const hargaTambahanVaksin = 200000; // Biaya tambahan jika status vaksin "Belum"
                 let jumlahJemaah = {{ $data->jumlah_jemaah }};
                 const totalBiayaElement = document.querySelector('#total-biaya');
 
+                const statusPasporSelects = document.querySelectorAll('select[name="status_paspor[]"]');
                 const statusVaksinSelects = document.querySelectorAll('select[name="status_vaksin[]"]');
+                const noPasporInputs = document.querySelectorAll('input[name="no_paspor[]"]');
+                const labelNoPaspor = document.querySelectorAll('label[for^="no_paspor"]');
+                const labelNoVaksin = document.querySelectorAll('label[for^="status_vaksin"]');
 
                 function updateTotalBiaya() {
                     let totalBiaya = hargaAwal * jumlahJemaah;
+
+                    statusPasporSelects.forEach(function (statusPasporSelect) {
+                        if (statusPasporSelect.value === "Belum") {
+                            totalBiaya += hargaTambahanPaspor;
+                        }
+                    });
 
                     statusVaksinSelects.forEach(function (statusVaksinSelect) {
                         if (statusVaksinSelect.value === "Belum") {
@@ -154,6 +165,16 @@
                     });
 
                     totalBiayaElement.textContent = `Rp. ${totalBiaya.toLocaleString()},-`;
+                }
+
+                function toggleNoPasporInput(index, show) {
+                    if (show) {
+                        noPasporInputs[index].style.display = 'none';
+                        labelNoPaspor[index].style.display = 'none'; // Tampilkan label
+                    } else {
+                        noPasporInputs[index].style.display = 'block';
+                        labelNoPaspor[index].style.display = 'block'; // Sembunyikan label
+                    }
                 }
 
                 // Panggil fungsi ini pertama kali untuk menginisialisasi total biaya
@@ -166,11 +187,23 @@
                     updateTotalBiaya();
                 });
 
+                // Tambahkan event listener untuk mengupdate total biaya jika status paspor berubah
+                statusPasporSelects.forEach(function (statusPasporSelect, index) {
+                    statusPasporSelect.addEventListener('change', function () {
+                        toggleNoPasporInput(index, statusPasporSelect.value === "Belum");
+                        updateTotalBiaya();
+                    });
+                    // Panggil fungsi toggleNoPasporInput saat halaman dimuat untuk status awal
+                    toggleNoPasporInput(index, statusPasporSelect.value === "Sudah");
+                });
+
                 // Tambahkan event listener untuk mengupdate total biaya jika status vaksin berubah
                 statusVaksinSelects.forEach(function (statusVaksinSelect) {
                     statusVaksinSelect.addEventListener('change', updateTotalBiaya);
                 });
             });
         </script>
+
+
 
     @endsection

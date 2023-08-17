@@ -58,9 +58,14 @@
             </select>
             <p>{{ $data->jasa_travel }}</p>
 
+            {{-- <label for="">Nama Pembeli</label>
+            <input type="text" name="purchased_by_user_name" value="{{ $data->purchased_by_user_name }}"> --}}
+
+
+
             <label for="">No Ktp :</label>
-            <input type="number" name="no_ktp_purchaser" value="{{ $data->no_ktp_purchaser }}">
-            
+            <input type="text" name="no_ktp_purchaser" value="{{ $user->nik }}">
+
 
             <label for="">Foto Ktp :</label>
             <input type="file" name="foto_ktp_purchaser" value="{{ $data->foto_ktp_purchaser }}">

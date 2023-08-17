@@ -59,7 +59,7 @@
                         <td rowspan="2">{{ $row->kapasitas_mesin }}cc</td>
                         <td rowspan="2">{{ $row->tahun }}</td>
                         <td rowspan="1">{{ $row->alamat }}</td>
-                        <td rowspan="3">Rp. {{ $row->harga }},-</td>
+                        <td rowspan="3">Rp.&nbsp;{{ number_format($row->harga, 0, ',', '.') }},-</td>
                         <td rowspan="1">{{ $row->created_at }}</td>
                         <td rowspan="3">
                             <div class="btn">

@@ -22,7 +22,7 @@
     max-width: 30vh;
     position: fixed;
     overflow-y: auto;
-    max-height: calc(100vh - 24px);
+    max-height: calc(105vh - 24px);
 
 }
 
@@ -34,7 +34,7 @@
 .main-content{
     background-color: #eee;
     flex-grow: 2;
-    min-width: 100vh;
+    max-width: 145vh;
     overflow-y: auto;
     margin-left: 250px;
     margin-right: -100px;
@@ -86,19 +86,39 @@
 .sidebar .header .illustration img{
     width: 150px;
     height: 150px;
+    margin-bottom: 50px;
 }
 
 .sidebar.hide .illustration img{
     display: none;
 }
 
-
 .logout-container{
     display: flex;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .logout-container img{
+    width: 22px;
+    margin-left: 13px;
+}
+
+
+.admin-name{
+    margin-bottom: 20px;
+    margin-left: 13px;
+}
+
+
+.profile-container{
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+    margin-bottom: 10px;
+}
+
+.profile-container img{
     width: 22px;
 }
 

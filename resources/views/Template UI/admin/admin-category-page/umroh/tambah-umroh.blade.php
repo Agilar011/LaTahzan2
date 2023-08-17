@@ -25,7 +25,7 @@
                 <label for="">Jasa Travel</label>
                 <select class="status" name="jasa_travel">
                     <option selected>Pilih Jasa Travel</option>
-                    <option value="Anamiroh">Anamiroh</option>
+                    <option value="Anamiroh">An-namiroh</option>
                     <option value="Rihlah Saidah">Rihlah Saidah</option>
                     <option value="Antrav Mustika">Antrav Mustika</option>
                     <option value="Lainnya">Lainnya</option>
@@ -39,10 +39,11 @@
                 <label for="">Harga</label>
                 <input type="number" name="harga_awal">
                 <label for="thumbnail">Thumbnail</label>
-                <input type="file" name="thumbnail">
-                <table class="content-table">
+                <input type="file" name="thumbnail" class="thumbnail">
+
+                <table class="fasilitas-table">
                     <tr>
-                        <td colspan="5">Fasilitas </td>
+                        <td colspan="5"><h2>Fasilitas :</h2></td>
                     </tr>
                     <tr>
                         <td>

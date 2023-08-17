@@ -11,7 +11,9 @@
             <div class="small-container single-product">
                 <div class="row">
                     <div class="col-2">
-                        <img src="/fotoUmroh/kabah2.jpg" alt="" width="100%" id="productImg" class="foto-umroh">
+                        <div class="main-img-size">
+                            <img src="/fotoUmroh/kabah2.jpg" alt="" width="100%" id="productImg" class="foto-umroh">
+                        </div>
                         <div class="small-img-row">
                             <div class="small-img-col">
                                 <img src="/fotoUmroh/kabah2.jpg" alt="" width="100%" class="small-img"

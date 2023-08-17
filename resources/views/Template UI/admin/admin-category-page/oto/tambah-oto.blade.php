@@ -15,7 +15,7 @@
                 <label for="">Merk (Honda, Yamaha, Kawasaki, dll,.)</label>
                 <input type="text" name="merk">
                 <label for="">Kapasitas Mesin (125cc, 150cc, 250cc, dll,.)</label>
-                <input type="text" name="kapasitas_mesin">
+                <input type="number" name="kapasitas_mesin">
                 <label for="">Warna</label>
                 <input type="text" name="warna">
                 <label for="">Transmisi</label>
@@ -42,18 +42,44 @@
                 <input type="text" name="kota">
                 <label for="">Harga</label>
                 <input type="number" name="harga">
-                <label for="">Upload Foto 1</label>
-                <input type="file" name="foto1">
-                <label for="">Upload Foto 2</label>
-                <input type="file" name="foto2">
-                <label for="">Upload Foto 3</label>
-                <input type="file" name="foto3">
-                <label for="">Upload Foto Bpkb</label>
-                <input type="file" name="foto_bpkb">
-                <label for="">Upload Foto Stnk</label>
-                <input type="file" name="foto_stnk">
-                <label for="">Upload Foto Ktp Pemilik</label>
-                <input type="file" name="foto_ktp">
+
+
+                <table class="fasilitas-table">
+                    <tr>
+                        <td colspan="5"><h2>Upload Foto :</h2></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">Upload Foto 1</label>
+                            <input type="file" name="foto1" class="thumbnail">
+                        </td>
+                        <td>
+                            <label for="">Upload Foto 2</label>
+                            <input type="file" name="foto2" class="thumbnail">
+                        </td>
+                        <td>
+                            <label for="">Upload Foto 3</label>
+                         <input type="file" name="foto3" class="thumbnail">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">Upload Foto Bpkb</label>
+                            <input type="file" name="foto_bpkb" class="thumbnail">
+                        </td>
+                        <td>
+                            <label for="">Upload Foto Stnk</label>
+                            <input type="file" name="foto_stnk" class="thumbnail">
+                        </td>
+                        <td>
+                            <label for="">Upload Foto Ktp Pemilik</label>
+                            <input type="file" name="foto_ktp" class="thumbnail">
+                        </td>
+                    </tr>
+                </table>
+
+
                 <button type="submit">Tambahkan Produk</button>
             </div>
         </form>

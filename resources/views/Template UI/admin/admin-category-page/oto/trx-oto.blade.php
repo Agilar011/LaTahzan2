@@ -104,7 +104,7 @@
                      <td>Rp.{{ $row->harga }}</td>
                      <td rowspan="1">{{ $row->kota }}</td>
                      <td>{{ $row->purchased_by_user_phone_number }}</td>
-                     <td> {{ $row->approved_payment_by_user_name }}</td>
+                     <td> {{ $row->no_ktp_purchaser }}</td>
                  </tr>
              @endforeach
          </tbody>

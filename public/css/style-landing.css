@@ -271,9 +271,14 @@ body {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.layer4-content .product img {
-    width: 200px;
+.layer4-content .product .img-size{
+    display: flex;
+    align-items: center;
     height: 175px;
+    justify-content: center;
+}
+
+.layer4-content .product .img-size img {
 }
 
 .layer4-content .name-price h3 {
@@ -304,7 +309,7 @@ body {
     margin-top: 10px; /* Menambahkan jarak atas */
 }
 
-.layer4-content .buy button {
+.layer4-content .buy a {
     padding: 10px 20px;
     border-radius: 7px;
     background-color: rgb(226, 171, 43);
@@ -314,7 +319,7 @@ body {
     transition: 0.5s;
 }
 
-.buy button:hover {
+.buy a:hover {
     transform: scale(1.1);
 }
 

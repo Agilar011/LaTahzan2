@@ -58,16 +58,16 @@
                     <td rowspan="2">{{ $row->kapasitas_mesin }}cc</td>
                     <td rowspan="2">{{ $row->tahun }}</td>
                     <td rowspan="1">{{ $row->alamat }}</td>
-                    <td rowspan="3">Rp. {{ $row->harga }},-</td>
+                    <td rowspan="3">Rp.&nbsp;{{ number_format($row->harga, 0, ',', '.') }},-</td>
                     <td rowspan="1">{{ $row->created_at }}</td>
                     <td rowspan="3">
                         <div class="btn">
                             <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
                             <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                            <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
+                            {{-- <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn-ekspor">Purchase</button>
-                            </form>
+                            </form> --}}
                         </div>
                     </td>
                 </tr>

@@ -169,8 +169,10 @@
 
                 @foreach ($dataOto as $row)
                     <div class="product">
-                        <div class="image">
-                            <img src="{{ asset('fotoOto/' . $row->foto1) }}">
+                        <div class="img-size">
+                            <div class="image">
+                                <img src="{{ asset('fotoOto/' . $row->foto1) }}">
+                            </div>
                         </div>
                         <div class="name-price">
                             <h3>{{ $row->nama_kendaraan }}</h3>

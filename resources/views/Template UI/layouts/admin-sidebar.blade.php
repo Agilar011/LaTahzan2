@@ -33,13 +33,34 @@
                     <div class="list-items">
                         <a href="#">
                             <img src="" alt="" class="icon">
-                            <span class="desc-header">La Tahzan</span>
+                            <span class="desc-header">Admin La Tahzan</span>
                         </a>
                     </div>
                     <div class="illustration">
-                        <img src="/img/admin/admin.png" alt="">
+                        <img src="/img/logo-1.png" alt="">
                     </div>
                     <!-- Authentication -->
+
+                    <div class="admin-name">
+                        <div>
+                            <p style="color: #ffffff">{{ Auth::user()->name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-container">
+                        <div>
+                            <img src="/img/admin/profile.png" alt="" class="icon">
+                        </div>
+
+                        <div>
+                            <x-dropdown-link href="{{ route('profile.show') }}" style="font-size: 16px; color:#14b74a; width:100px;">
+                                {{ __('SetProfile') }}
+                            </x-dropdown-link>
+                        </div>
+
+
+                    </div>
+
                     <div class="logout-container">
                         <div>
                             <img src="/img/admin/logout.png" alt="" class="icon">
@@ -157,10 +178,6 @@
                             <img src="/img/admin/person.png" alt="" class="icon">
                             <span class="desc">Admin/Customer</span>
                         </a>
-                    </div>
-
-                    <div class="line-end">
-
                     </div>
 
                 </div>

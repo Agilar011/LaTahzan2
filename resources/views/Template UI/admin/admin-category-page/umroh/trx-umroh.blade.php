@@ -147,8 +147,9 @@
             </ul></td>
             {{-- <td><img src="" height="50px"></td> --}}
             <td>{{ $row->jasa_travel }}</td>
-            <td rowspan="2">{{ $row->harga_awal }}</td>
-            <td rowspan="2">{{ $row->harga_total }}</td>
+            <td rowspan="2">Rp.&nbsp;{{ number_format($row->harga_awal, 0, ',', '.') }},-</td>
+            <td rowspan="2">Rp.&nbsp;{{ number_format($row->harga_total, 0, ',', '.') }},-</td>
+
             <td>{{ $row->created_at }}</td>
             <td rowspan="2">
                 <div class="btn">

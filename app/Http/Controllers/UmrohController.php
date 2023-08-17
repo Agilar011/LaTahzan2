@@ -483,7 +483,9 @@ class UmrohController extends Controller
     public function landingRead()
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
-        $dataOto = Otomotif::where('status_etalase', 'approved')->get();
+        $dataOto = Otomotif::where('status_etalase', 'approved')
+        ->where('status_pembelian', 'not yet purchased')
+        ->get();
         return view('Template UI.customer.landing', compact('data','dataOto'));
     }
 

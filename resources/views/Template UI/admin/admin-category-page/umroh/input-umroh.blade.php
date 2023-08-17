@@ -131,7 +131,7 @@
                     <td>{{ $row->durasi }} Hari</td>
                     <td>{{ $row->No_hp_uploader }}</td>
                     <td>{{ $row->Hotel }}</td>
-                    <td>Rp.&nbsp;{{ number_format($row->harga_awal, 0, ',', '.') }},- </td>
+                    <td>Rp.&nbsp;{{ number_format($row->harga_awal, 0, ',', '.') }},-</td>
                     <td>{{ $row->updated_at }}</td>
                 </tr>
             @endforeach

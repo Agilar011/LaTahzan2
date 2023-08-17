@@ -169,20 +169,20 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_id = $user->id;
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
-        $otomotif->status_pembelian = 'purchased';
-        if ($user->no_ktp_purchaser != null) {
+        // $otomotif->no_ktp_purchaser = $user->nik;
+        // $otomotif->foto_ktp_purchaser = $user->fotoktp;
+        if ($user->nik != null) {
             $otomotif->no_ktp_purchaser = $user->nik;
-            $otomotif->foto_ktp_purchaser = $user->fotoktp;
+            # code...
         } else {
             $otomotif->no_ktp_purchaser = $request->no_ktp_purchaser;
-            if ($request->hasFile('foto_ktp_purchaser')) {
-                $foto_ktp_purchaser = $request->file('foto_ktp_purchaser');
-                $foto_ktp_purchaser->move('fotoOto/', $foto_ktp_purchaser->getClientOriginalName());
-                $otomotif->foto_ktp_purchaser = $foto_ktp_purchaser->getClientOriginalName();
-            }
+            $user->nik = $request->no_ktp_purchaser;
+            $user->save();
+            # code...
         }
 
 
+        $otomotif->status_pembelian = 'purchased';
         $otomotif->save();
 
 
@@ -238,6 +238,8 @@ public function approved_payment(Request $request, $id)
         'approved_by_user_name' => $otomotif->approved_by_user_name, // tambahkan koma di sini
         'purchased_by_user_id' => $otomotif->purchased_by_user_id, // tambahkan koma di sini
         'purchased_by_user_name' => $otomotif->purchased_by_user_name, // tambahkan koma di sini
+        'no_ktp_purchaser' => $otomotif->no_ktp_purchaser,
+        'foto_ktp_purchaser' => $otomotif->foto_ktp_purchaser,
         'purchased_by_user_phone_number' => $otomotif->purchased_by_user_phone_number, // tambahkan koma di sini
         'status_etalase' => $otomotif->status_etalase, // tambahkan koma di sini
         'status_pembelian' => $otomotif->status_pembelian, // tambahkan koma di sini
@@ -265,7 +267,8 @@ public function approved_payment(Request $request, $id)
 
     public function tampilkankonfirmasioto($id){
         $data = Otomotif::find($id);
-        return view('Template UI.customer.konfirmasi-oto', compact('data'));
+        $user = Auth::user();
+        return view('Template UI.customer.konfirmasi-oto', compact('data', 'user'));
     }
 
 

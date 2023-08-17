@@ -56,17 +56,29 @@
 }
 
 .small-img-col {
-    flex-basis: 24%;
+    flex-basis: 25%;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .small-img-col.clicked {
     border: 2px solid #ff523b;
 }
 
+.single-product .main-img-size{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+    width: 100%;
+}
+
+.single-product .main-img-size .foto-umroh{
+    height: 400px;
+}
+
 .single-product .col-2 img {
-    padding: 0;
+    padding: 5px;
 }
 
 .col-2 {
