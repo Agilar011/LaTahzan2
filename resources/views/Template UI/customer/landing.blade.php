@@ -208,6 +208,25 @@
             </div>
 
             <div class="layer4-content">
+                @foreach ( $dataproperti as $row )
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp.&nbsp;670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                @endforeach
                 <div class="product">
                     <div class="image">
                         <img src="img/rumah/type26.png" alt="cbr">

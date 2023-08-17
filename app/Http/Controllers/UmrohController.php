@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Otomotif;
+use App\Models\Properti;
 
 class UmrohController extends Controller
 {
@@ -486,7 +487,8 @@ class UmrohController extends Controller
         $dataOto = Otomotif::where('status_etalase', 'approved')
         ->where('status_pembelian', 'not yet purchased')
         ->get();
-        return view('Template UI.customer.landing', compact('data','dataOto'));
+        $dataproperti = Properti::where('status_etalase', 'approved');
+        return view('Template UI.customer.landing', compact('data','dataOto','dataproperti'));
     }
 
     //DETAIL RETRIEVE UMROH

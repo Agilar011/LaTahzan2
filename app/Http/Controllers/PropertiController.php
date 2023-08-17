@@ -34,10 +34,12 @@ class PropertiController extends Controller
     public function insertdataprop(Request $request)
     {
         // Mengambil id pengguna yang saat ini login
-        $user_id = Auth::id();
+        $user = Auth::user();
 
         // Memasukkan id pengguna ke dalam data request
-        $request->merge(['user_id' => $user_id]);
+        $request->merge(['upload_by_user_id' => $user->id]);
+        $request->merge(['upload_by_user_name' => $user->name]);
+        $request->merge(['no_hp_uploader' => $user->phone]);
 
         // Cek apakah ada file foto yang diunggah
         if ($request->hasFile('foto1')) {
@@ -127,6 +129,20 @@ class PropertiController extends Controller
          return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
      }
 
+     public function tampilkandetailprop($id){
+        $data = Properti::find($id);
+        return view('Template UI.customer.prop-detail', compact('data'));
+    }
+
+
+     public function tampilkankonfirmasiprop(Request $request, $id){
+        // $data = Otomotif::find($id);
+        $data = Properti::find($id);
+
+        return view('Template UI.customer.konfirmasi-prop', compact('data'));
+
+     }
+
     //  Purchased Method
     public function purchase(Request $request, $id)
     {
@@ -140,7 +156,18 @@ class PropertiController extends Controller
         // Mark the product as purchased and associate it with the logged-in user
         $property->purchased_by_user_id = $user->id;
         $property->purchased_by_user_name = $user->name;
+        $property->purchased_by_user_phone = $user->phone;
+        $property->no_ktp_purchaser = $user->nik;
         $property->status_pembelian = 'purchased';
+
+        if ($request->hasFile('foto_ktp_buyer')) {
+            $request->file('foto_ktp_buyer')->move('fotoKtp/', $request->file('foto_ktp_buyer')->getClientOriginalName());
+            $property->foto_ktp_buyer = $request->file('foto_ktp_buyer')->getClientOriginalName();
+
+            $property->save();
+        }
+
+        $property->foto_ktp_buyer = $request->hasFile('foto_ktp_buyer') ? $request->file('foto_ktp_buyer')->getClientOriginalName() : null;
 
         $property->save();
 
