@@ -36,10 +36,9 @@ class laporan_transaksi_otomotif extends Model
         'approved_by_user_name',
         'purchased_by_user_id',
         'purchased_by_user_name',
+        'foto_ktp_purchaser',
+        'no_ktp_purchaser',
         'purchased_by_user_phone_number',
-        // Space untuk foto ktp uploader
-        'no_ktp_buyer',
-        'foto_ktp_buyer',
         'status_etalase',
         'status_pembelian',
         'approved_payment_by_user_id',

@@ -22,9 +22,6 @@
             @php
                 $no = 1;
             @endphp
-            <tr>
-                
-            </tr>
         </tbody>
     </table>
 @endsection
