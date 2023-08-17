@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertiController;
 use App\Http\Controllers\OtomotifController;
 use App\Http\Controllers\UmrohController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -157,6 +158,14 @@ Route::get('/tampilkandetailoto/{id}',[OtomotifController::class,'tampilkandetai
 
 Route::get('/tampilkankonfirmasioto/{id}', [OtomotifController::class,'tampilkankonfirmasioto'])->name('tampilkankonfirmasioto');
 
-Route::get('/customer', function(){
-    return view('Template UI.admin.admin-category-page.customer.customer');
-});
+// Route::get('/customer', function(){
+//     return view('Template UI.admin.admin-category-page.customer.customer');
+// });
+
+
+//Customer
+
+Route::get('/customer', [UserController::class, 'customerRead'])->name('customer');
+
+Route::post('/update-role/{userId}', [UserController::class, 'updateRole'])->name('updateRole');
+
