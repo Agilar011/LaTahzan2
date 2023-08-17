@@ -9,4 +9,11 @@ class Properti extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected $fillable =[
+                // Space untuk foto ktp uploader
+                'no_ktp_buyer',
+                'foto_ktp_buyer',
+
+    ];
 }

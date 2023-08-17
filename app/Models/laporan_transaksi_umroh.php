@@ -14,6 +14,8 @@ class laporan_transaksi_umroh extends Model
         'id_user_uploader',
         'nama_user_uploader',
         'No_hp_uploader',
+            // Space untuk foto ktp uploader
+        'foto_ktp_uploader',
         'thumbnail',
         'nama_paket',
         'jenis',

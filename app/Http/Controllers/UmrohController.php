@@ -6,6 +6,7 @@ use App\Models\EtalaseUmrah;
 use App\Models\ExtendedUmrah;
 use App\Models\Jemaah;
 use App\Models\laporan_transaksi_umroh;
+use App\Models\Otomotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -445,8 +446,10 @@ class UmrohController extends Controller
     public function landingRead()
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
+        $dataOto = Otomotif::where('status_etalase', 'approved')->get();
+        // $dataUser = User::where('id', $data->upload_by_user_id)->first();
 
-        return view('Template UI.customer.landing', compact('data'));
+        return view('Template UI.customer.landing', compact('data' , 'dataOto'));
     }
 
     //DETAIL RETRIEVE UMROH

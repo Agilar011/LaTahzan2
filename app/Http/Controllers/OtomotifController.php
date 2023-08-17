@@ -156,17 +156,39 @@ class OtomotifController extends Controller
          // Get the ID of the currently logged-in user
          $user = Auth::user();
 
+        //  Space untuk foto ktp
+
+        if ($request->hasFile('foto_ktp_buyer')) {
+            $request->file('foto_ktp_buyer')->move('fotoUmroh/', $request->file('foto_ktp_buyer')->getClientOriginalName());
+            $otomotif->foto_ktp_buyer = $request->file('foto_ktp_buyer')->getClientOriginalName();
+
+            $otomotif->save();
+        }
+
         // Mark the product as purchased and associate it with the logged-in user
         $otomotif->purchased_by_user_id = $user->id;
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
+
+        if ($user->nik != null) {
+            $otomotif->no_ktp_buyer = $user->nik;
+            # code...
+        } else {
+            $otomotif->no_ktp_buyer = $request->no_ktp_buyer;
+            $user->nik = $request->no_ktp_buyer;
+            $user->save();
+            # code...
+        }
+        // $otomotif->foto_ktp_buyer = $request->foto_ktp_buyer;
+
         $otomotif->status_pembelian = 'purchased';
+        // dd($request->all());
 
         $otomotif->save();
 
 
         // Redirect to the show view or any other relevant page
-        return back()->with('success', 'Product has been purchased.');
+        return redirect()->route('landing')->with('success', 'Product has been purchased.  ');
     }
 
     // show approve the productpublic function showPurchasedPropertys()
@@ -176,66 +198,76 @@ class OtomotifController extends Controller
     return view('Template UI.admin.admin-category-page.oto.trx-oto', compact('purchasedOtomotifs'));
 }
 // method approve payment
-public function approved_payment(Request $request, $id)
-{
-    $otomotif = Otomotif::findOrFail($id);
+    public function approved_payment(Request $request, $id)
+    {
+        $otomotif = Otomotif::findOrFail($id);
 
-    // Ensure the product is available for purchase (for example, check if it's not already purchased)
-    // Add your business logic here
-     // Get the ID of the currently logged-in user
-     $user = Auth::user();
+        // Ensure the product is available for purchase (for example, check if it's not already purchased)
+        // Add your business logic here
+        // Get the ID of the currently logged-in user
+        $user = Auth::user();
 
-    // Mark the product as purchased and associate it with the logged-in user
-    $otomotif->approved_payment_by_user_id = $user->id;
-    $otomotif->approved_payment_by_user_name = $user->name;
-    $otomotif->save();
+        // Mark the product as purchased and associate it with the logged-in user
+        $otomotif->approved_payment_by_user_id = $user->id;
+        $otomotif->approved_payment_by_user_name = $user->name;
+        $otomotif->save();
 
-    $laporan_transaksi_otomotf = laporan_transaksi_otomotif::create([
-        'upload_by_user_id' => $otomotif->upload_by_user_id,
-        'upload_by_user_name' => $otomotif->upload_by_user_name,
-        'no_hp_uploader' => $otomotif->no_hp_uploader,
-        'nama_kendaraan' => $otomotif->nama_kendaraan,
-        'deskripsi' => $otomotif->deskripsi,
-        'merk' => $otomotif->merk,
-        'kapasitas_mesin' => $otomotif->kapasitas_mesin,
-        'warna' => $otomotif->warna,
-        'transmisi' => $otomotif->transmisi,
-        'kilometer' => $otomotif->kilometer,
-        'tahun' => $otomotif->tahun,
-        'status' => $otomotif->status,
-        'alamat' => $otomotif->alamat,
-        'kecamatan' => $otomotif->kecamatan,
-        'kota' => $otomotif->kota,
-        'harga' => $otomotif->harga,
-        'foto1' => $otomotif->foto1,
-        'foto2' => $otomotif->foto2,
-        'foto3' => $otomotif->foto3,
-        'foto_bpkb' => $otomotif->foto_bpkb,
-        'foto_stnk' => $otomotif->foto_stnk,
-        'foto_ktp' => $otomotif->foto_ktp,
-        'approved_by_user_id' => $otomotif->approved_by_user_id,
-        'approved_by_user_name' => $otomotif->approved_by_user_name, // tambahkan koma di sini
-        'purchased_by_user_id' => $otomotif->purchased_by_user_id, // tambahkan koma di sini
-        'purchased_by_user_name' => $otomotif->purchased_by_user_name, // tambahkan koma di sini
-        'purchased_by_user_phone_number' => $otomotif->purchased_by_user_phone_number, // tambahkan koma di sini
-        'status_etalase' => $otomotif->status_etalase, // tambahkan koma di sini
-        'status_pembelian' => $otomotif->status_pembelian, // tambahkan koma di sini
-        'approved_payment_by_user_id' => $otomotif->approved_payment_by_user_id, // tambahkan koma di sini
-        'approved_payment_by_user_name' => $otomotif->approved_payment_by_user_name
-    ]);
-    $laporan_transaksi_otomotf->save();
+        $laporan_transaksi_otomotf = laporan_transaksi_otomotif::create([
+            'upload_by_user_id' => $otomotif->upload_by_user_id,
+            'upload_by_user_name' => $otomotif->upload_by_user_name,
+            'no_hp_uploader' => $otomotif->no_hp_uploader,
+            'nama_kendaraan' => $otomotif->nama_kendaraan,
+            'deskripsi' => $otomotif->deskripsi,
+            'merk' => $otomotif->merk,
+            'kapasitas_mesin' => $otomotif->kapasitas_mesin,
+            'warna' => $otomotif->warna,
+            'transmisi' => $otomotif->transmisi,
+            'kilometer' => $otomotif->kilometer,
+            'tahun' => $otomotif->tahun,
+            'status' => $otomotif->status,
+            'alamat' => $otomotif->alamat,
+            'kecamatan' => $otomotif->kecamatan,
+            'kota' => $otomotif->kota,
+            'harga' => $otomotif->harga,
+            'foto1' => $otomotif->foto1,
+            'foto2' => $otomotif->foto2,
+            'foto3' => $otomotif->foto3,
+            'foto_bpkb' => $otomotif->foto_bpkb,
+            'foto_stnk' => $otomotif->foto_stnk,
+            'foto_ktp' => $otomotif->foto_ktp,
+            'approved_by_user_id' => $otomotif->approved_by_user_id,
+            'approved_by_user_name' => $otomotif->approved_by_user_name, // tambahkan koma di sini
+            'purchased_by_user_id' => $otomotif->purchased_by_user_id, // tambahkan koma di sini
+            'purchased_by_user_name' => $otomotif->purchased_by_user_name, // tambahkan koma di sini
+            'purchased_by_user_phone_number' => $otomotif->purchased_by_user_phone_number, // tambahkan koma di sini
+            'status_etalase' => $otomotif->status_etalase, // tambahkan koma di sini
+            'status_pembelian' => $otomotif->status_pembelian, // tambahkan koma di sini
+            'approved_payment_by_user_id' => $otomotif->approved_payment_by_user_id, // tambahkan koma di sini
+            'approved_payment_by_user_name' => $otomotif->approved_payment_by_user_name
+        ]);
+        $laporan_transaksi_otomotf->save();
 
-    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-    // Hapus data extended_umrah (baris induk)
-    $otomotif->delete();
+        // Hapus data extended_umrah (baris induk)
+        $otomotif->delete();
 
-    // Mengaktifkan kembali kunci asing
-    DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // Mengaktifkan kembali kunci asing
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-    // Redirect to the show view or any other relevant page
-    return back()->with('success', 'Product has been purchased.');
-}
+        // Redirect to the show view or any other relevant page
+        return back()->with('success', 'Product has been purchased.');
+    }
+    public function tampilkandetailoto($id){
+        $data = Otomotif::find($id);
+        return view('Template UI.customer.oto-detail', compact('data'));
+    }
+
+    public function tampilkankonfirmasioto($id){
+        $data = Otomotif::find($id);
+        $user = Auth::user();
+        return view('Template UI.customer.konfirmasi-oto', compact('data' , 'user'));
+    }
 
 
 }

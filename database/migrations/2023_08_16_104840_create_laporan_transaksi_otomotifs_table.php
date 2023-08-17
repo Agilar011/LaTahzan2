@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('upload_by_user_id')->nullable();
             $table->string('upload_by_user_name')->nullable();
             $table->string('no_hp_uploader')->nullable();
+            // Space untuk foto ktp uploader
+            $table->string('foto_ktp_uploader')->nullable();
             $table->string('nama_kendaraan')->nullable();
             $table->string('deskripsi', 100)->nullable();
             $table->string('merk')->nullable();

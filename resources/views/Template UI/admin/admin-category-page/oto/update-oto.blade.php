@@ -3,7 +3,7 @@
 </x-app-layout>
 
 
-    @extends('Template UI.layouts.admin-sidebar')
+    @extends('Template UI.layouts.main')
 @section('content')
 
     <h1>Edit Produk Otomotif</h1>

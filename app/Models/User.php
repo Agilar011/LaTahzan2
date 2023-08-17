@@ -32,7 +32,8 @@ class User extends Authenticatable
         'address',
         'phone',
         'role',
-        'nik'
+        'nik',
+        'foto_ktp',
     ];
 
     /**
