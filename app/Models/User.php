@@ -33,7 +33,7 @@ class User extends Authenticatable
         'phone',
         'role',
         'nik',
-        'foto_ktp',
+        'fotoktp'
     ];
 
     /**
@@ -74,5 +74,9 @@ class User extends Authenticatable
     public function hasRole($roleName)
     {
         return $this->roles->contains('name', $roleName);
+    }
+
+    public function isAdmin(){
+        return $this->role === 'admin';
     }
 }

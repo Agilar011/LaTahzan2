@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('upload_by_user_id');
             $table->string('upload_by_user_name')->nullable();
             $table->string('no_hp_uploader')->nullable();
+            // Space untuk foto ktp uploader
             $table->string('nama_kendaraan');
             $table->string('deskripsi', 100);
             $table->string('merk');
@@ -40,9 +41,9 @@ return new class extends Migration
             $table->string('approved_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
-            $table->string('foto_ktp_purchaser')->nullable();
-            $table->string('no_ktp_purchaser')->nullable();
             $table->string('purchased_by_user_phone_number')->nullable();
+            $table->string('no_ktp_buyer')->nullable();
+            $table->string('foto_ktp_buyer')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
             $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
