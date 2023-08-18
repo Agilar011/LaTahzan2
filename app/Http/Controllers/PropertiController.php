@@ -194,4 +194,6 @@ class PropertiController extends Controller
         $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
         return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
     }
+
+
 }

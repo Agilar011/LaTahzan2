@@ -487,11 +487,11 @@ class UmrohController extends Controller
         $dataOto = Otomotif::where('status_etalase', 'approved')
         ->where('status_pembelian', 'not yet purchased')
         ->get();
-        $dataproperti = Properti::where('status_etalase', 'approved')
+        $dataprop = Properti::where('status_etalase', 'approved')
         ->where('status_pembelian', 'not yet purchased')
         ->get();
         // dd($dataproperti);
-        return view('Template UI.customer.landing', compact('data','dataOto','dataproperti'));
+        return view('Template UI.customer.landing', compact('data','dataOto','dataprop'));
     }
 
     //DETAIL RETRIEVE UMROH

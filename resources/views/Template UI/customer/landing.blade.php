@@ -253,175 +253,27 @@
             </div>
 
             <div class="layer4-content">
+                @foreach ( $dataprop as $row )
+
+                @endforeach
                 <div class="product">
                     <div class="image">
                         <img src="img/rumah/type26.png" alt="cbr">
                     </div>
                     <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
+                        <h3>{{ $row->nama_properti  }}</h3>
+                        <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
                     </div>
                     <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                        <h5>{{ $row->luas }}</h5>
+                        <h5>{{ $row->alamat }},Kecamatan {{ $row->kecamatan }},Kota {{ $row->kota }}</h5>
                     </div>
                     <div class="buy">
-                        <button>Beli Sekarang</button>
+                        <a href="/tampilkandetailprop/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
                     </div>
                 </div>
 
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
 
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
-                    </div>
-                    <div class="name-price">
-                        <h3>Dijual Rumah tipe 36</h3>
-                        <h1>Rp. 670.000.000,-</h1>
-                    </div>
-                    <div class="year">
-                        <h5>96m2</h5>
-                        <h5>Kec. Sananwetan, Kota Blitar</h5>
-                    </div>
-                    <div class="buy">
-                        <button>Beli Sekarang</button>
-                    </div>
-                </div>
 
             </div>
 
