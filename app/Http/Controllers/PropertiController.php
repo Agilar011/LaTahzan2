@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Properti;
+use App\Models\User;
+use App\Models\laporan_transaksi_properti;
 use Illuminate\Support\Facades\Auth;
 
 class PropertiController extends Controller
@@ -186,6 +188,72 @@ class PropertiController extends Controller
 
        // Redirect to the show view or any other relevant page
         return redirect()->route('landing');
+    }
+
+    // fungsi approve pembayaran
+    public function approved_payment(Request $request, $id)
+    {
+        $property = Properti::findOrFail($id);
+
+        // Get the ID of the currently logged-in user
+        $user = Auth::user();
+
+        // Mark the product as approved_payment and associate it with the logged-in user
+        $property->approved_payment_by_user_id = $user->id;
+        $property->approved_payment_by_user_name = $user->name;
+        $property->save();
+
+        // Create a new entry in laporan_transaksi_properti
+        $laporan_transaksi_properti = LaporanTransaksiProperti::create([
+            'upload_by_user_id' => $property->upload_by_user_id,
+            'upload_by_user_name' => $property->upload_by_user_name,
+            'no_hp_uploader' => $property->no_hp_uploader,
+            'nama_kendaraan' => $property->nama_kendaraan,
+            'deskripsi' => $property->deskripsi,
+            'merk' => $property->merk,
+            'kapasitas_mesin' => $property->kapasitas_mesin,
+            'warna' => $property->warna,
+            'transmisi' => $property->transmisi,
+            'kilometer' => $property->kilometer,
+            'tahun' => $property->tahun,
+            'status' => $property->status,
+            'alamat' => $property->alamat,
+            'kecamatan' => $property->kecamatan,
+            'kota' => $property->kota,
+            'harga' => $property->harga,
+            'foto1' => $property->foto1,
+            'foto2' => $property->foto2,
+            'foto3' => $property->foto3,
+            'foto_bpkb' => $property->foto_bpkb,
+            'foto_stnk' => $property->foto_stnk,
+            'foto_ktp' => $property->foto_ktp,
+            'approved_by_user_id' => $property->approved_by_user_id,
+            'approved_by_user_name' => $property->approved_by_user_name,
+            'purchased_by_user_id' => $property->purchased_by_user_id,
+            'purchased_by_user_name' => $property->purchased_by_user_name,
+            'foto_ktp_purchaser' => $property->foto_ktp_purchaser,
+            'no_ktp_purchaser' => $property->no_ktp_purchaser,
+            'purchased_by_user_phone_number' => $property->purchased_by_user_phone_number,
+            'status_etalase' => $property->status_etalase,
+            'status_pembelian' => $property->status_pembelian,
+            'approved_payment_by_user_id' => $property->approved_payment_by_user_id,
+            'approved_payment_by_user_name' => $property->approved_payment_by_user_name
+        ]);
+
+        // Save the laporan_transaksi_properti entry
+        $laporan_transaksi_properti->save();
+
+        // Temporarily disable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        // Delete the original property entry
+        $property->delete();
+
+        // Reactivate foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        // Redirect to the show view or any other relevant page
+        return back()->with('success', 'Product has been purchased.');
     }
 
     // Menampilkan properti yang sudah dibeli

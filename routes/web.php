@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tampilkandataprop/{id}', [PropertiController::class, 'tampilkandataprop'])->name('tampilkandataprop');
     Route::post('/updatedataprop/{id}', [PropertiController::class, 'updatedataprop'])->name('updatedataprop');
     Route::get('/deletedataprop/{id}', [PropertiController::class, 'deletedataprop'])->name('deletedataprop');
+    Route::post('/properti/{id}/approvepayment', [PropertiController::class, 'approved_payment'])->name('otomotif.approvepayment');
 });
 
 // Routes for Otomotif
