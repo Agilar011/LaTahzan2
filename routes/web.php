@@ -155,9 +155,12 @@ Route::post('/otomotif/{id}/approvepayment', [OtomotifController::class, 'approv
 
 Route::get('/tampilkandetailoto/{id}',[OtomotifController::class,'tampilkandetailoto'])->name('tampilkandetailoto');
 
+Route::get('/tampilkankonfirmasioto/{id}', [OtomotifController::class,'tampilkankonfirmasioto'])->name('tampilkankonfirmasioto');
+
 Route::get('/tampilkandetailprop/{id}',[PropertiController::class,'tampilkandetailprop'])->name('tampilkandetailprop');
 
-Route::get('/tampilkankonfirmasioto/{id}', [OtomotifController::class,'tampilkankonfirmasioto'])->name('tampilkankonfirmasioto');
+Route::get('/tampilkankonfirmasiprop/{id}', [PropertiController::class,'tampilkankonfirmasiprop'])->name('tampilkankonfirmasiprop');
+
 
 Route::get('/customer', function(){
     return view('Template UI.admin.admin-category-page.customer.customer');

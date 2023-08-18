@@ -51,6 +51,9 @@ class PropertiController extends Controller
         if ($request->hasFile('foto3')) {
             $request->file('foto3')->move('fotoProp3/', $request->file('foto3')->getClientOriginalName());
         }
+        if ($request->hasFile('foto4')) {
+            $request->file('foto4')->move('fotoProp4/', $request->file('foto4')->getClientOriginalName());
+        }
         if ($request->hasFile('foto_sertifikat')) {
             $request->file('foto_sertifikat')->move('fotoSertifikat/', $request->file('foto_sertifikat')->getClientOriginalName());
         }
@@ -65,6 +68,7 @@ class PropertiController extends Controller
         $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : null;
         $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : null;
         $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : null;
+        $data->foto4 = $request->hasFile('foto4') ? $request->file('foto4')->getClientOriginalName() : null;
         $data->foto_sertifikat = $request->hasFile('foto_sertifikat') ? $request->file('foto_sertifikat')->getClientOriginalName() : null;
         $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : null;
 
@@ -138,8 +142,9 @@ class PropertiController extends Controller
      public function tampilkankonfirmasiprop(Request $request, $id){
         // $data = Otomotif::find($id);
         $data = Properti::find($id);
+        $user = Auth::user();
 
-        return view('Template UI.customer.konfirmasi-prop', compact('data'));
+        return view('Template UI.customer.konfirmasi-prop', compact('data' , 'user'));
 
      }
 
@@ -156,23 +161,36 @@ class PropertiController extends Controller
         // Mark the product as purchased and associate it with the logged-in user
         $property->purchased_by_user_id = $user->id;
         $property->purchased_by_user_name = $user->name;
-        $property->purchased_by_user_phone = $user->phone;
+        $property->purchased_by_user_phone_number = $user->phone;
         $property->no_ktp_purchaser = $user->nik;
         $property->status_pembelian = 'purchased';
 
-        if ($request->hasFile('foto_ktp_buyer')) {
-            $request->file('foto_ktp_buyer')->move('fotoKtp/', $request->file('foto_ktp_buyer')->getClientOriginalName());
-            $property->foto_ktp_buyer = $request->file('foto_ktp_buyer')->getClientOriginalName();
+        if ($request->hasFile('foto_ktp_purchaser')) {
+            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
+            $property->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
 
             $property->save();
         }
 
-        $property->foto_ktp_buyer = $request->hasFile('foto_ktp_buyer') ? $request->file('foto_ktp_buyer')->getClientOriginalName() : null;
+        $property->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
 
+        if ($user->nik != null) {
+            $property->no_ktp_purchaser = $user->nik;
+            # code...
+        } else {
+            $property->no_ktp_purchaser = $request->no_ktp_purchaser;
+            $user->nik = $request->no_ktp_purchaser;
+            $user->save();
+            # code...
+        }
+
+        // dd($property);
         $property->save();
 
+
+
         // Redirect to the show view or any other relevant page
-        return back()->with('success', 'Product has been purchased.');
+        return redirect()->route('landing');
     }
 
     // show approve the productpublic function showPurchasedPropertys()
@@ -181,8 +199,6 @@ class PropertiController extends Controller
     $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
     return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
 }
-
-
 
 
 

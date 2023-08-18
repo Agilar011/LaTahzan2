@@ -20,6 +20,7 @@ class Properti extends Model
         'foto1',
         'foto2',
         'foto3',
+        'foto4',
         'foto_sertifikat',
         'foto_ktp',
         'deskripsi',

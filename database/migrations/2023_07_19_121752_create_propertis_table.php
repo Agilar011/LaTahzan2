@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('foto1')->nullable();
             $table->string('foto2')->nullable();
             $table->string('foto3')->nullable();
+            $table->string('foto4')->nullable();
             $table->string('foto_sertifikat');
             $table->string('foto_ktp');
             $table->string('deskripsi');

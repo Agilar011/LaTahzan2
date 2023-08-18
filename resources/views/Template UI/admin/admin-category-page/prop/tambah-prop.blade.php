@@ -37,6 +37,8 @@
                 <input type="file" name="foto2">
                 <label for="">Foto</label>
                 <input type="file" name="foto3">
+                <label for="">Foto</label>
+                <input type="file" name="foto4">
                 <label for="">Foto Sertifikat</label>
                 <input type="file" name="foto_sertifikat">
                 <label for="">Foto KTP Pemilik</label>

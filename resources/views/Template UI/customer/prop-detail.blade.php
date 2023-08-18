@@ -37,7 +37,6 @@
                         <p class="attr-tgl">Tahun Pembuatan : <span>&nbsp; {{ $data->tahun }} </span>
                         </p> --}}
                         <p class="attr">Jenis : <span>&nbsp; {{ $data->jenis }}</span></p>
-                        <p class="attr">CP. Admin : <span>&nbsp; {{ $data->kapasitas_mesin }}&nbsp;cc</span></p>
                         {{-- <select name="" id="">
                         <option value="">Pilih Warna</option>
                         <option value="">Merah</option>
@@ -45,7 +44,7 @@
                         <option value="">Hitam</option>
                     </select> --}}
                         <input type="number" value="1">
-                        <form action="{{ route('tampilkankonfirmasioto', $data->id) }}" method="GET">
+                        <form action="{{ route('tampilkankonfirmasiprop', $data->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn-beli">Pesan Sekarang</button>
                             {{-- <a href="" class="btn-beli">Pesan Sekarang</a> --}}
@@ -89,39 +88,17 @@
                 </div>
 
                 <div class="row2-col2">
-                    <h3>Fasilitas Didapat : <i class="fa fa-indent"></i></h3>
+                    @if ($data->foto_sertifikat != null)
+                            <div style="max-width: 400px; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                <h3>Kelengkapan Surat : <i class="fa fa-indent"></i></h3>
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <p style="font-size: 24px; color: #28a745; margin-right: 10px;">&#10004;</p>
+                                    <p style="font-size: 16px;">Sertifikat </p>
+                                </div>
 
-                    <p>
-                    <ul>
-                        <li>
-                            <p>Maskapai : {{ $data->Maskapai }}</p>
-                        </li>
-                        <li>
-                            <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                        </li>
-                        <li>
-                            <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                kaki ke Masjidil Haram)</p>
-                        </li>
-                        <li>
-                            <p>City Tour Madinah & Makkah</p>
-                        </li>
-                        <li>
-                            <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                Manasik)</p>
-                        </li>
-                        <li>
-                            <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                        </li>
-                        <li>
-                            <p>Manasik Umroh Offline di Hotel</p>
-                        </li>
-                        <li>
-                            <p>Kereta Cepat Madinah-Makkah</p>
-                        </li>
-                    </ul>
-                    </p>
+                            @else
+
+                            @endif
                 </div>
 
             </div>

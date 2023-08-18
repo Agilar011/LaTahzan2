@@ -66,6 +66,9 @@
             <td>{{ $row->kota }}</td>
             <td rowspan="1">{{ $row->updated_at }}</td>
         </tr>
+        <tr>
+            <td><img src="{{ asset('fotoProp4/'.$row->foto4) }}" height="50px"></td>
+        </tr>
 
         @endforeach
     </tbody>

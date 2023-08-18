@@ -41,7 +41,7 @@ use App\Models\Properti;
                 <th scope="row" rowspan="3">{{ $row->id }}</th>
                 <td rowspan="3">{{ $row->nama_properti }}</td>
                 <td rowspan="3">{{ $row->jenis }}</td>
-                <td><img src="{{ asset('fotoProp1/'.$row->foto1) }}" height="50px"></td>
+                <td><img src="{{ asset('fotoKtp/'.$row->foto_ktp_purchaser) }}" height="50px"></td>
                 <td rowspan="2"><img src="{{ asset('fotoSertifikat/'.$row->foto_sertifikat) }}" height="50px"></td>
                 <td rowspan="3">{{ $row->deskripsi }}</td>
                 <td>{{ $row->alamat }}</td>

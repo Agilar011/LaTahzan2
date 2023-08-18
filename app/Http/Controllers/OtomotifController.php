@@ -171,6 +171,16 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_phone_number = $user->phone;
         // $otomotif->no_ktp_purchaser = $user->nik;
         // $otomotif->foto_ktp_purchaser = $user->fotoktp;
+
+        if ($request->hasFile('foto_ktp_buyer')) {
+            $request->file('foto_ktp_buyer')->move('fotoKtp/', $request->file('foto_ktp_buyer')->getClientOriginalName());
+            $otomotif->foto_ktp_purchaser = $request->file('foto_ktp_buyer')->getClientOriginalName();
+
+            $otomotif->save();
+        }
+
+        $otomotif->foto_ktp_purchaser = $request->hasFile('foto_ktp_buyer') ? $request->file('foto_ktp_buyer')->getClientOriginalName() : null;
+
         if ($user->nik != null) {
             $otomotif->no_ktp_purchaser = $user->nik;
             # code...
