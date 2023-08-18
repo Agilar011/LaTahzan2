@@ -12,7 +12,7 @@
                  <th>Transmisi</th>
                  <th rowspan="2">Tahun</th>
                  <th>Alamat</th>
-                 <th>Buyer ID</th>
+                 <th>Ktp Purchaser</th>
                  <th>Diupload Oleh</th>
                  <th>Tanggal Input</th>
                  <th rowspan="3">Opsi</th>
@@ -60,7 +60,9 @@
                      <td>{{ $row->kapasitas_mesin }}cc</td>
                      <td rowspan="2">{{ $row->tahun }}</td>
                      <td rowspan="1">{{ $row->alamat }}</td>
-                     <td>{{ $row->purchased_by_user_id }}</td>
+                     <td>
+                        <img src="{{ asset('fotoKtp/' . $row->foto_ktp_purchaser) }}" height="50px">
+                        </td>
                      <td>{{ $row->upload_by_user_name }}</td>
                      <td rowspan="1">{{ $row->created_at }}</td>
                      <td rowspan="3">

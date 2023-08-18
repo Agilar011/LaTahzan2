@@ -177,6 +177,23 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_id = $user->id;
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
+
+        // dd($otomotif);
+
+        if ($request->hasFile('foto_ktp_purchaser')) {
+            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
+            $otomotif->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
+
+            $otomotif->save();
+        }
+
+        // dd($request);
+
+        // dd($otomotif);
+
+        $otomotif->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
+
+
         // $otomotif->no_ktp_purchaser = $user->nik;
         // $otomotif->foto_ktp_purchaser = $user->fotoktp;
         if ($user->nik != null) {
@@ -192,6 +209,8 @@ class OtomotifController extends Controller
 
         $otomotif->status_pembelian = 'purchased';
         $otomotif->save();
+
+
 
 
         // Redirect to the show view or any other relevant page
