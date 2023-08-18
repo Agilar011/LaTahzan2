@@ -68,8 +68,7 @@
 
 
             <label for="">Foto Ktp :</label>
-            <input type="file" name="foto_ktp_purchaser" value="{{ $data->foto_ktp_purchaser }}">
-            {{-- <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p> --}}
+            <input type="file" name="foto_ktp_purchaser">
 
             <label for="">Harga :</label>
             <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}"disabled>

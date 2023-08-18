@@ -1,3 +1,6 @@
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+</x-app-layout>
 @extends('Template UI.layouts.main')
 
 @section('title')
@@ -18,7 +21,6 @@
 
             <button type="button">Lihat Layanan Kami!</button>
         </div>
-
         <div class="layer1-right">
             <img src="img/logo-1.png">
         </div>
@@ -56,7 +58,6 @@
         </div>
     </div> --}}
 
-
     {{-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
 
     <div class="layer-3-container">
@@ -69,8 +70,8 @@
                 <h4>&nbsp</h4>
             </div>
 
-            <div class="layer3-content">
-                @foreach ($data as $row)
+            @foreach ($data as $row)
+                <div class="layer3-content">
                     <div class="product">
                         <div class="image">
                             <img src="img/umroh/umroh.jpeg" alt="cbr">
@@ -106,53 +107,96 @@
                                 <li>
                                     <p>Hotel: {{ $row->Hotel }}</p>
                                 </li>
-                                <li>
-                                    <p>{{ $row->fasilitas1 }}</p>
-                                </li>
-                                <li>
-                                    <p>
-                                        @if ($row->fasilitas2 != null)
-                                            {{ $row->fasilitas2 }}
-                                        @else
-                                            -
-                                        @endif
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                        Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                        Manasik)</p>
-                                </li>
-                                <li>
-                                    <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                                </li>
-                                <li>
-                                    <p>Manasik Umroh Offline di Hotel</p>
-                                </li>
-                                <li>
-                                    <p>Kereta Cepat Madinah-Makkah</p>
-                                </li>
+                                @if ($row->fasilitas1 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas1 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas2 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas2 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas3 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas3 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas4 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas4 }}</p>
+                                    </li>
+                                @else
+                                @endif
+
+                                @if ($row->fasilitas5 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas5 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas6 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas6 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas7 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas7 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas8 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas8 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas9 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas9 }}</p>
+                                    </li>
+                                @else
+                                @endif
+                                @if ($row->fasilitas10 != null)
+                                    <li>
+                                        <p>{{ $row->fasilitas10 }}</p>
+                                    </li>
+                                @else
+                                @endif
 
                             </ul>
                         </div>
                         <div class="buy">
                             <a href="/tampilkandetailumroh/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
-                            {{-- <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
-                                    @csrf
-                                </form> --}}
                         </div>
+                        {{-- <div class="buy">
+                            <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn-ekspor">Purchase</button>
+                            </form>
+                        </div> --}}
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
-            </div>
+
 
             {{-- <div class="layer4-btn">
-                <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
+                <button type="button" onclick="umroh()">Lihat Selengkapnya Paket Umroh / Haji</button>
             </div> --}}
 
         </div>
 
     </div>
+
+
+    {{-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
+
 
 
     <div class="layer-4-container">
@@ -164,15 +208,16 @@
             <div class="line">
                 <h4>&nbsp</h4>
             </div>
+            {{-- @foreach ($dataOto as $row)
+
+            @endforeach --}}
 
             <div class="layer4-content">
 
                 @foreach ($dataOto as $row)
                     <div class="product">
-                        <div class="img-size">
-                            <div class="image">
-                                <img src="{{ asset('fotoOto/' . $row->foto1) }}">
-                            </div>
+                        <div class="image">
+                            <img src="{{ asset('fotoOto/' . $row->foto1) }}">
                         </div>
                         <div class="name-price">
                             <h3>{{ $row->nama_kendaraan }}</h3>
@@ -190,7 +235,7 @@
             </div>
 
             {{-- <div class="layer4-btn">
-                <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
+                <button type="button" onclick="oto()">Lihat Selengkapnya Otomotif</button>
             </div> --}}
 
         </div>
@@ -208,29 +253,180 @@
             </div>
 
             <div class="layer4-content">
-                @foreach ( $dataproperti as $row )
                 <div class="product">
                     <div class="image">
                         <img src="img/rumah/type26.png" alt="cbr">
                     </div>
                     <div class="name-price">
-                        <h3>{{ $row->nama_properti }}</h3>
-                        <h1>Rp.&nbsp;670.000.000,-</h1>
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
                     </div>
                     <div class="year">
                         <h5>96m2</h5>
                         <h5>Kec. Sananwetan, Kota Blitar</h5>
                     </div>
                     <div class="buy">
-                        <a href="/tampilkandetailprop/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
+                        <button>Beli Sekarang</button>
                     </div>
                 </div>
 
-                @endforeach
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="image">
+                        <img src="img/rumah/type26.png" alt="cbr">
+                    </div>
+                    <div class="name-price">
+                        <h3>Dijual Rumah tipe 36</h3>
+                        <h1>Rp. 670.000.000,-</h1>
+                    </div>
+                    <div class="year">
+                        <h5>96m2</h5>
+                        <h5>Kec. Sananwetan, Kota Blitar</h5>
+                    </div>
+                    <div class="buy">
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+
             </div>
 
             {{-- <div class="layer4-btn">
-                <button type="button" onclick="prop()">Beli Sekarang Selengkapnya Properti</button>
+                <button type="button" onclick="prop()">Lihat Selengkapnya Properti</button>
             </div> --}}
 
         </div>

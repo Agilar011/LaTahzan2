@@ -6,31 +6,29 @@ use Illuminate\Http\Request;
 use App\Models\Properti;
 use Illuminate\Support\Facades\Auth;
 
-
 class PropertiController extends Controller
 {
-
-    //RETRIEVE DATA PROP
-
-    public function index(){
+    // Menampilkan data properti yang belum di-approve pada halaman admin
+    public function index()
+    {
         $data = Properti::where('status_etalase', 'not yet approved')->get();
         return view('Template UI.admin.admin-category-page.prop.input-prop', compact('data'));
     }
 
-    //RETRIEVE DATA PROP ETALASE
-
-    public function etalaseProp(){
+    // Menampilkan data properti yang belum di-approve pada halaman etalase admin
+    public function etalaseProp()
+    {
         $data = Properti::where('status_etalase', 'not yet approved')->get();
-
         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('data'));
     }
 
-    //CREATE DATA PROP
-
-    public function tambahProp(){
+    // Menampilkan halaman tambah properti
+    public function tambahProp()
+    {
         return view('Template UI.admin.admin-category-page.prop.tambah-prop');
     }
 
+    // Menyimpan data properti yang diinputkan
     public function insertdataprop(Request $request)
     {
         // Mengambil id pengguna yang saat ini login
@@ -77,37 +75,36 @@ class PropertiController extends Controller
         return redirect()->route('property');
     }
 
-
-    //UPDATE DATA PROP
-
-    public function tampilkandataprop($id){
-        // $data = Otomotif::find($id);
+    // Menampilkan data properti untuk diubah pada halaman admin
+    public function tampilkandataprop($id)
+    {
         $data = Properti::find($id);
-
         return view('Template UI.admin.admin-category-page.prop.update-prop', compact('data'));
     }
 
-    public function updatedataprop(Request $request, $id){
+    // Mengupdate data properti yang diubah
+    public function updatedataprop(Request $request, $id)
+    {
         $data = Properti::find($id);
         $data->update($request->all());
 
         return redirect()->route('property');
     }
 
-    //DELETE DATA OTO
-
-    public function deletedataprop($id){
+    // Menghapus data properti
+    public function deletedataprop($id)
+    {
         $data = Properti::find($id);
         $data->delete();
 
         return redirect()->route('property');
     }
 
-    //UPDATE STATUS
-
-
+    // Menyetujui properti yang akan di-approve
     public function approve(Request $request, $id)
     {
+        $property = Properti::findOrFail($id);
+
         // Gunakan $id untuk mencari otomotif yang akan di-approve
         $property = Properti::findOrFail($id);
 
@@ -123,83 +120,78 @@ class PropertiController extends Controller
         // Redirect back to the previous page or any other page you prefer
         return back()->with('success', 'Product has been approved.');
     }
-     // method show approved and not purchased otomotif
-     public function showApprovedAndNotPurchasedPropertys()
-     {
-         $approvedNotPurchasedPropertys = Properti::where('status_etalase', 'approved')
-             ->where('status_pembelian', 'not yet purchased')
-             ->get();
 
-         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
-     }
+    // Menampilkan properti yang sudah di-approve tetapi belum dibeli
+    public function showApprovedAndNotPurchasedPropertys()
+    {
+        $approvedNotPurchasedPropertys = Properti::where('status_etalase', 'approved')
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
 
-     public function tampilkandetailprop($id){
+        return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
+    }
+
+    // Menampilkan detail properti pada halaman customer
+    public function tampilkandetailprop($id)
+    {
         $data = Properti::find($id);
         return view('Template UI.customer.prop-detail', compact('data'));
     }
 
-
-     public function tampilkankonfirmasiprop(Request $request, $id){
-        // $data = Otomotif::find($id);
+    // Menampilkan halaman konfirmasi pembelian properti pada halaman customer
+    public function tampilkankonfirmasiprop(Request $request, $id)
+    {
         $data = Properti::find($id);
         $user = Auth::user();
+        return view('Template UI.customer.konfirmasi-prop', compact('data', 'user'));
+    }
 
-        return view('Template UI.customer.konfirmasi-prop', compact('data' , 'user'));
-
-     }
-
-    //  Purchased Method
+    // Melakukan pembelian properti
     public function purchase(Request $request, $id)
     {
         $property = Properti::findOrFail($id);
 
-        // Ensure the product is available for purchase (for example, check if it's not already purchased)
-        // Add your business logic here
-         // Get the ID of the currently logged-in user
-         $user = Auth::user();
+        $property = Properti::findOrFail($id);
 
-        // Mark the product as purchased and associate it with the logged-in user
-        $property->purchased_by_user_id = $user->id;
-        $property->purchased_by_user_name = $user->name;
-        $property->purchased_by_user_phone_number = $user->phone;
-        $property->no_ktp_purchaser = $user->nik;
-        $property->status_pembelian = 'purchased';
+        // Get the ID of the currently logged-in user
+        $user = Auth::user();
 
-        if ($request->hasFile('foto_ktp_purchaser')) {
-            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
-            $property->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
+       // Mark the product as purchased and associate it with the logged-in user
+       $property->purchased_by_user_id = $user->id;
+       $property->purchased_by_user_name = $user->name;
+       $property->purchased_by_user_phone_number = $user->phone;
+       $property->no_ktp_purchaser = $user->nik;
+       $property->status_pembelian = 'purchased';
 
-            $property->save();
-        }
+       if ($request->hasFile('foto_ktp_purchaser')) {
+           $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
+           $property->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
 
-        $property->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
+           $property->save();
+       }
 
-        if ($user->nik != null) {
-            $property->no_ktp_purchaser = $user->nik;
-            # code...
-        } else {
-            $property->no_ktp_purchaser = $request->no_ktp_purchaser;
-            $user->nik = $request->no_ktp_purchaser;
-            $user->save();
-            # code...
-        }
+       $property->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
 
-        // dd($property);
-        $property->save();
+       if ($user->nik != null) {
+           $property->no_ktp_purchaser = $user->nik;
 
+       } else {
+           $property->no_ktp_purchaser = $request->no_ktp_purchaser;
+           $user->nik = $request->no_ktp_purchaser;
+           $user->save();
+       }
 
+       // dd($property);
+       $property->save();
 
-        // Redirect to the show view or any other relevant page
+       // Redirect to the show view or any other relevant page
         return redirect()->route('landing');
     }
 
-    // show approve the productpublic function showPurchasedPropertys()
+    // Menampilkan properti yang sudah dibeli
     public function showPurchasedPropertys()
-{
-    $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
-    return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
-}
-
-
-
+    {
+        $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
+        return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
+    }
 }
