@@ -18,6 +18,14 @@ class OtomotifController extends Controller
         return view('Template UI.admin.admin-category-page.oto.input-oto', compact('data'));
     }
 
+    public function dashboardOto(){
+        $user = Auth::user();
+        $data = Otomotif::where('status_etalase', 'not yet approved')
+        ->where('upload_by_user_id', $user->id )
+        ->get();
+        return view('Template UI.customer.input-oto-customer', compact('data'));
+    }
+
     //READ DATA OTO ETALASE ADMIN
 
     public function etalaseOto(){

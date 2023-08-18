@@ -17,6 +17,13 @@ body {
     padding: 20px;
 }
 
+.container-content .title h1{
+    color: #111827;
+    margin: 50px 50px 50px 50px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
 .layer-1 {
     display: flex;
     align-items: center;

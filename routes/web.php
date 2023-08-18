@@ -169,3 +169,6 @@ Route::get('/customer', [UserController::class, 'customerRead'])->name('customer
 
 Route::post('/update-role/{userId}', [UserController::class, 'updateRole'])->name('updateRole');
 
+Route::get('/hapususer/{id}', [UserController::class, 'hapusUser'])->name('hapusUser');
+
+Route::get('/dashboard-oto-customer', [OtomotifController::class, 'dashboardOto'])->name('dashboardOto');

@@ -6,15 +6,19 @@
     <table class="content-table">
         <thead>
             <tr>
-                <th>id</th>
-                <th>Nama</th>
-                <th>E-mail</th>
+                <th rowspan="2">id</th>
+                <th rowspan="2">Nama</th>
+                <th rowspan="2">E-mail</th>
+                <th rowspan="2">No. Telp</th>
                 <th>Alamat</th>
-                <th>No. Telp</th>
+                <th rowspan="2">Tanggal Lahir</th>
                 <th>NIK</th>
+                <th rowspan="2">Role</th>
+                <th rowspan="2">Opsi</th>
+            </tr>
+            <tr>
+                <th>Kota</th>
                 <th>Foto Ktp</th>
-                <th>Role</th>
-                <th>Opsi</th>
             </tr>
 
         </thead>
@@ -24,24 +28,45 @@
             @endphp
 
             @foreach ($data as $row)
-            <tr>
-                <td>{{ $row->id }}</td>
-                <td>{{ $row->name }}</td>
-                <td>{{ $row->email }}</td>
-                <td>{{ $row->address }}</td>
-                <td>{{ $row->phone }}</td>
-                <td>{{ $row->nik }}</td>
-                <td>{{ $row->fotoktp }}</td>
-                <td>{{ $row->role }}</td>
-                <td>
-                    <form action="{{ route('updateRole', ['userId' => $row->id]) }}" method="POST">
+                <tr>
+                    <th rowspan="2">{{ $row->id }}</th>
+                    <td rowspan="2">{{ $row->name }}</td>
+                    <td rowspan="2">{{ $row->email }}</td>
+                    <td rowspan="2">{{ $row->phone }}</td>
+                    <td>{{ $row->address }}</td>
+                    <td rowspan="2">{{ $row->birthdate }}</td>
+                    <td>{{ $row->nik }}</td>
+                    <td rowspan="2"> {{ $row->role }}</td>
+                    <td rowspan="2">
+                        <div class="btn">
+                            <div class="btn-ekspor">
+                                <form action="{{ route('updateRole', ['userId' => $row->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit">
+                                        {{ $row->role === 'user' ? 'Ubah Role' : 'Ubah Role' }}
+                                    </button>
+                                </form>
+                            </div>
+
+                            <a href="/hapususer/{{ $row->id }}" class="btn-hapus">Hapus</a>
+
+                        </div>
+                    </td>
+
+                    {{-- <div class="btn">
+                    <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
+                    <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                    <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
                         @csrf
-                        <button type="submit">
-                            {{ $row->role === 'user' ? 'Make Admin' : 'Make User' }}
-                        </button>
+                        <button type="submit" class="btn-ekspor">+Etalase</button>
                     </form>
-                </td>
-            </tr>
+                </div> --}}
+
+                </tr>
+                <tr>
+                    <td>{{ $row->birthplace }}</td>
+                    <td>{{ $row->fotoktp }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

@@ -10,7 +10,7 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{ __('Nama') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
@@ -20,12 +20,31 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="address" value="{{ __('Alamat Lengkap') }}" />
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="address" />
+            </div>
+            <div class="mt-4">
+                <x-label for="birthplace" value="{{ __('Kota') }}" />
+                <x-input id="birthplace" class="block mt-1 w-full" type="text" name="birthplace" :value="old('birthplace')" required autocomplete="birthplace" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="birthdate" value="{{ __('Tanggal Lahir') }}" />
+                <x-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" :value="old('birthdate')" required autocomplete="birthdate" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="phone" value="{{ __('Nomor Telepon Aktif') }}" />
+                <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autocomplete="phone" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" value="{{ __('Konfirmasi Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 

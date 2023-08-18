@@ -105,6 +105,10 @@
                                {{ __('Manage Account') }}
                            </div>
 
+                           <x-dropdown-link href="{{ route('dashboardOto') }}">
+                            {{ __('Produk Anda') }}
+                           </x-dropdown-link>
+
                            <x-dropdown-link href="{{ route('profile.show') }}">
                                {{ __('Profile') }}
                            </x-dropdown-link>
