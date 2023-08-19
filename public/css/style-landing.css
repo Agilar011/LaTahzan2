@@ -253,7 +253,6 @@ body {
 .layer4-content {
     width: 100%;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 50px;
@@ -263,7 +262,7 @@ body {
     position: relative;
     background-color: white;
     width: 220px;
-    height: 350px;
+    height: 380px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -306,14 +305,14 @@ body {
     font-size: 15px;
 }
 
+.layer4-content .year p{
+    font-weight: 700; /* Perbaiki value font-weight */
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+}
+
 .layer4-content .buy {
-    position: absolute;
-    top: 290px; /* Mengubah bottom ke 0 */
-    left: 70%; /* Menambahkan left 50% */
-    transform: translateX(-50%); /* Mentranslasi sebanyak setengah lebar elemen */
-    text-align: center; /* Menyelaraskan teks ke tengah */
-    width: 100%; /* Menetapkan lebar ke 100% */
-    margin-top: 10px; /* Menambahkan jarak atas */
+    margin-top: 10px;
 }
 
 .layer4-content .buy a {
@@ -322,11 +321,11 @@ body {
     background-color: rgb(226, 171, 43);
     color: black;
     font-size: 11px;
-    cursor: pointer;
+    cursor:pointer;
     transition: 0.5s;
 }
 
-.buy a:hover {
+.layer4-content .buy a:hover {
     transform: scale(1.1);
 }
 

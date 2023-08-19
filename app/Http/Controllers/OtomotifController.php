@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Otomotif;
 use App\Models\laporan_transaksi_otomotif;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -62,11 +64,10 @@ class OtomotifController extends Controller
         $request->merge(['no_hp_uploader' => $user->phone]);
 
 
-
-        // Cek apakah ada file foto yang diunggah
         if ($request->hasFile('foto1')) {
             $request->file('foto1')->move('fotoOto/', $request->file('foto1')->getClientOriginalName());
         }
+
         if ($request->hasFile('foto2')) {
             $request->file('foto2')->move('fotoOto2/', $request->file('foto2')->getClientOriginalName());
         }

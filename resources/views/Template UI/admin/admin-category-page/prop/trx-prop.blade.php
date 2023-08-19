@@ -1,81 +1,46 @@
-@php
-use App\Models\Properti;
-@endphp
+<x-app-layout>
+    {{-- penempatan di layout.app dan navigation-menu --}}
+    </x-app-layout>
+@extends('Template UI.layouts.admin-sidebar')
+@section('content')
 
-    @extends('Template UI.layouts.admin-sidebar')
-    @section('content')
-    <div class="title">
-        <h1>Transaksi Properti</h1>
+    <h1>Edit Produk Properti</h1>
+
+    <div class="cont-form">
+        <form action="/updatedataprop/{{ $data->id }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-input">
+                <label for="">Judul</label>
+                <input type="text" name="nama_properti" value="{{ $data->nama_properti }}">
+                <label for="">Jenis Properti</label>
+                <select class="status" name="jenis">
+                    <option selected>{{ $data->jenis }}</option>
+                    <option value="rumah">Rumah</option>
+                    <option value="tanah">Tanah</option>
+                </select>
+                <label for="">Deskripsi</label>
+                <input type="text" name="deskripsi" value="{{ $data->deskripsi }}">
+                <label for="">Alamat</label>
+                <input type="text" name="alamat" value="{{ $data->alamat }}">
+                <label for="">Kecamatan</label>
+                <input type="text" name="kecamatan" value="{{ $data->kecamatan }}">
+                <label for="">Kota</label>
+                <input type="text" name="kota" value="{{ $data->kota }}">
+                <label for="">Luas</label>
+                <input type="number" name="luas" value="{{ $data->luas }}">
+                <label for="">Harga</label>
+                <input type="number" name="harga" value="{{ $data->harga }}">
+                <label for="">Foto</label>
+                <input type="file" name="foto1" value="{{ $data->foto1 }}">
+                <label for="">Foto</label>
+                <input type="file" name="foto2" value="{{ $data->foto2 }}">
+                <label for="">Foto</label>
+                <input type="file" name="foto3" value="{{ $data->foto3 }}">
+                <label for="">Foto Serifikat</label>
+                <input type="file" name="foto_sertifikat" value="{{ $data->foto_sertifikat }}">
+
+                <button type="submit">Tambahkan Produk</button>
+            </div>
+        </form>
     </div>
-
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th rowspan="3">id</th>
-                <th rowspan="3">Nama Properti</th>
-                <th rowspan="3">Jenis Properti</th>
-                <th rowspan="3">Foto Rumah</th>
-                <th rowspan="2">Foto Sertifikat</th>
-                <th rowspan="3">Deskripsi (maks. 70 karakter)</th>
-                <th>Alamat</th>
-                <th rowspan="3">Luas</th>
-                <th rowspan="3">Harga</th>
-                <th rowspan="2">Tanggal Input</th>
-                <th rowspan="3">Opsi</th>
-            </tr>
-            <tr>
-                <th>Kecamatan</th>
-            </tr>
-            <tr>
-                <th rowspan="1">Foto Ktp</th>
-                <th>Kota</th>
-                <th rowspan="1">Tanggal Update</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-            $no = 1;
-            @endphp
-            @foreach ($purchasedPropertys as $row)
-            <tr>
-                <th scope="row" rowspan="3">{{ $row->id }}</th>
-                <td rowspan="3">{{ $row->nama_properti }}</td>
-                <td rowspan="3">{{ $row->jenis }}</td>
-                <td><img src="{{ asset('fotoProp1/'.$row->foto1) }}" height="50px"></td>
-                <td rowspan="2"><img src="{{ asset('fotoSertifikat/'.$row->foto_sertifikat) }}" height="50px"></td>
-                <td rowspan="3">{{ $row->deskripsi }}</td>
-                <td>{{ $row->alamat }}</td>
-                <td rowspan="3">{{ $row->luas }}m2</td>
-                <td rowspan="3">Rp. {{ $row->harga }},-</td>
-                <td rowspan="2">{{ $row->created_at }}</td>
-
-                <td rowspan="3">
-                    <div class="btn">
-                        <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
-                        <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-
-                        {{-- @if ($row->purchase_by_user_id === null)
-                    <form action="{{ route('propertys.purchase', $row->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn-approved">Purchase</button>
-                    </form>
-                @else
-                    <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                @endif --}}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><img src="{{ asset('fotoProp2/'.$row->foto2) }}" height="50px"></td>
-                <td>{{ $row->kecamatan }}</td>
-            </tr>
-            <tr>
-                <td><img src="{{ asset('fotoProp3/'.$row->foto3) }}" height="50px"></td>
-                <td rowspan="1"><img src="{{ asset('fotoKtp/'.$row->foto_ktp) }}" height="50px"></td>
-                <td>{{ $row->kota }}</td>
-                <td rowspan="1">{{ $row->updated_at }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    @endsection
+@endsection

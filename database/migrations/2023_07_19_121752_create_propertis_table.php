@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('propertis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('upload_by_user_id');
+            $table->string('upload_by_user_name');
+            $table->string('no_hp_uploader');
             $table->string('nama_properti');
             $table->string('jenis')->nullable();
             $table->string('foto1')->nullable();
             $table->string('foto2')->nullable();
             $table->string('foto3')->nullable();
+            $table->string('foto4')->nullable();
             $table->string('foto_sertifikat');
             $table->string('foto_ktp');
             $table->string('deskripsi');
@@ -32,11 +35,16 @@ return new class extends Migration
             $table->string('approved_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
             $table->string('purchased_by_user_name')->nullable();
+            $table->string('foto_ktp_purchaser')->nullable();
+            $table->string('no_ktp_purchaser')->nullable();
+            $table->string('purchased_by_user_phone_number')->nullable();
             $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
             $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
+            $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
+            $table->string('approved_payment_by_user_name')->nullable();
 
             // Add foreign key constraint for user_id
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('upload_by_user_id')->references('id')->on('users');
 
             // Add foreign key constraint for approved_by_user_id
             $table->foreign('approved_by_user_id')->references('id')->on('users');
@@ -44,6 +52,7 @@ return new class extends Migration
             // Add foreign key constraint for purchased_by_user_id
             $table->foreign('purchased_by_user_id')->references('id')->on('users');
         });
+
     }
 
     /**

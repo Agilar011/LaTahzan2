@@ -21,9 +21,7 @@ use App\Http\Controllers\UserController;
 
 // Route::get('/',[UmrohController::class,'landingRead'])->name('landing');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::middleware([
@@ -34,13 +32,28 @@ Route::middleware([
     Route::get('/dashboard', function () {
         if (auth()->user()->hasRole('admin')) {
             return view('Template UI.admin.dasboard-admin');
-        } else {
+        } else if(auth()->user()->hasRole('user')) {
             return redirect()->route('landing'); // Mengubah nilai return menjadi redirect ke rute 'landing'
+        } else {
+            return redirect()->route('first');
         }
     })->name('dashboard');
 });
 
-Route::get('/', [UmrohController::class, 'landingRead'])->name('landing'); // Menambahkan rute 'landing'
+Route::middleware('guest')->group(function () {
+    Route::get('/', [UmrohController::class, 'landingGuest'])->name('first');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+});
+
+Route::get('/landing', [UmrohController::class, 'landingRead'])->name('landing'); // Menambahkan rute 'landing'
 
 // setting property
 // Input data property

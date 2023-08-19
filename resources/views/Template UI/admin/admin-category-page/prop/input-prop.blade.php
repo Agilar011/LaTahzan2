@@ -49,14 +49,10 @@
                 <div class="btn">
                     <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
                     <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                    @if ($row->approved_by_user_id === null)
                     <form action="{{ route('propertys.approve', $row->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn-approved">Approve</button>
+                        <button type="submit" class="btn-ekspor">Approve</button>
                     </form>
-                @else
-                    <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                @endif
                 </div>
             </td>
         </tr>
@@ -69,6 +65,9 @@
             <td rowspan="1"><img src="{{ asset('fotoKtp/'.$row->foto_ktp) }}" height="50px"></td>
             <td>{{ $row->kota }}</td>
             <td rowspan="1">{{ $row->updated_at }}</td>
+        </tr>
+        <tr>
+            <td><img src="{{ asset('fotoProp4/'.$row->foto4) }}" height="50px"></td>
         </tr>
 
         @endforeach

@@ -1,6 +1,3 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-    </x-app-layout>
 @extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Tambah Produk Properti</h1>
@@ -37,6 +34,8 @@
                 <input type="file" name="foto2">
                 <label for="">Foto</label>
                 <input type="file" name="foto3">
+                <label for="">Foto</label>
+                <input type="file" name="foto4">
                 <label for="">Foto Sertifikat</label>
                 <input type="file" name="foto_sertifikat">
                 <label for="">Foto KTP Pemilik</label>
