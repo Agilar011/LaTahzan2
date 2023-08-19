@@ -6,6 +6,7 @@
 
 
 @section('content')
+
     <div class="layer-1">
         <div class="layer1-left">
             <h5>Jaminan 100% Aman!</h5>
