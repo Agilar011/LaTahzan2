@@ -25,12 +25,13 @@
                 <th rowspan="2">Tahun</th>
                 <th rowspan="1">Alamat</th>
                 <th rowspan="3">Harga</th>
-                <th rowspan="2">Tanggal Input</th>
+                <th rowspan="1">Tanggal Input</th>
                 <th rowspan="3">Opsi</th>
             </tr>
             <tr>
                 <th>Foto STNK</th>
                 <th>Kecamatan</th>
+                <th>Tanggal Update</th>
             </tr>
             <tr>
                 <th rowspan="1">Merk</th>
@@ -38,7 +39,7 @@
                 <th>Kapasitas Mesin</th>
                 <th>Status</th>
                 <th>Kota</th>
-                <th>Tanggal Update</th>
+                <th>Status Periklanan</th>
             </tr>
         </thead>
         <tbody>
@@ -85,7 +86,7 @@
                             <img src="{{ asset('fotoStnk/' . $row->foto_stnk) }}" height="50px">
                         </td>
                         <td rowspan="1">{{ $row->kecamatan }}</td>
-                        <td rowspan="2">{{ $row->updated_at }}-</td>
+                        <td>{{ $row->updated_at }}-</td>
 
                     </tr>
 
@@ -99,6 +100,7 @@
                         <td rowspan="1">{{ $row->transmisi }}</td>
                         <td rowspan="1">{{ $row->status }}</td>
                         <td rowspan="1">{{ $row->kota }}</td>
+                        <td rowspan="1">{{ $row->status_etalase }}</td>
                     </tr>
                 @endif
             @endforeach

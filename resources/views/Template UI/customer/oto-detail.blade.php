@@ -1,5 +1,3 @@
-
-
 @extends('Template UI.layouts.main')
 
 @section('title')

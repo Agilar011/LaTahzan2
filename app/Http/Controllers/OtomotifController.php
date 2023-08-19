@@ -49,7 +49,13 @@ class OtomotifController extends Controller
     //CREATE DATA OTO
 
     public function tambahOto(){
-        return view('Template UI.admin.admin-category-page.oto.tambah-oto');
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.oto-customer.input-oto-customer');
+        } else {
+            return view('Template UI.admin.admin-category-page.oto.tambah-oto');
+        }
+
     }
 //    Method dummy
 
@@ -97,7 +103,14 @@ class OtomotifController extends Controller
 
         $data->save();
 
-        return redirect()->route('otomotif');
+        // Redirect ke halaman daftar otomotif
+        if ($user->role == 'user') {
+            return redirect()->route('dashboardOto');
+        } else {
+            return redirect()->route('otomotif');
+        }
+
+
     }
 
 
@@ -107,17 +120,31 @@ class OtomotifController extends Controller
     public function tampildataoto($id){
         // $data = Otomotif::find($id);
         $data = Otomotif::find($id);
-
-        return view('Template UI.admin.admin-category-page.oto.update-oto', compact('data'));
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.oto-customer.update-oto', compact('data'));
+        } else {
+            return view('Template UI.admin.admin-category-page.oto.update-oto', compact('data'));
+        }
     }
 
     public function updatedataoto(Request $request, $id){
         $data = Otomotif::find($id);
         $data->update($request->all());
-        if ($data->status_etalase == 'approved') {
-            return redirect()->route('etalase-oto');
+
+        $user = Auth::user();
+
+        if ($user->role == 'user') {
+
+            return redirect()->route('dashboardOto');
+
         } else {
-            return redirect()->route('otomotif');
+
+            if ($data->status_etalase == 'approved') {
+                return redirect()->route('etalase-oto');
+            } else {
+                return redirect()->route('otomotif');
+            }
         }
 
 
@@ -128,10 +155,19 @@ class OtomotifController extends Controller
     public function deletedataoto($id){
         $data = Otomotif::find($id);
         $data->delete();
-        if ($data->status_etalase == 'approved') {
-            return redirect()->route('etalase-oto');
+
+        $user = Auth::user();
+
+        if ($user->role == 'user') {
+
+            return back()->with('success', 'Product has been deleted.');
         } else {
-            return redirect()->route('otomotif');
+
+            if ($data->status_etalase == 'approved') {
+                return redirect()->route('etalase-oto');
+            } else {
+                return redirect()->route('otomotif');
+            }
         }
 
     }

@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'birthdate' => '2002-11-10',
             'address' => 'Jl Klayatan 3C 39',
             'phone' => '081232090819',
-            'role' => 'user',
+            'role' => 'admin',
         ])->roles()->attach($adminRole);
 
         $adminRole = Role::where('name', 'user')->first();
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             'birthdate' => '2002-11-10',
             'address' => 'Jl Klayatan 3C 39',
             'phone' => '081232090819',
-            'role' => 'admin',
+            'role' => 'user',
         ])->roles()->attach($adminRole);
 
 

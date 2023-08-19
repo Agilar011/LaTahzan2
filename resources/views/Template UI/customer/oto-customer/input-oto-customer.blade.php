@@ -1,6 +1,8 @@
- @extends('Template UI.layouts.admin-sidebar')
+@extends('Template UI.layouts.main')
 @section('content')
+<div class="title" style="text-align: center;">
     <h1>Tambah Produk Otomotif</h1>
+</div>
 
     <div class="cont-form">
         <form action="/insertdataoto" method="POST" enctype="multipart/form-data">
@@ -49,8 +51,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="">Upload Foto 1 (Tampilan Etalase)</label>
-                            <input type="file" name="foto1" id="imageInput" class="thumbnail">
+                            <label for="">Upload Foto 1</label>
+                            <input type="file" name="foto1" class="thumbnail">
                         </td>
                         <td>
                             <label for="">Upload Foto 2</label>

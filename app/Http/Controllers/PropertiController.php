@@ -15,6 +15,14 @@ class PropertiController extends Controller
         return view('Template UI.admin.admin-category-page.prop.input-prop', compact('data'));
     }
 
+    public function dashboardProp(){
+        $user = Auth::user();
+        $data = Properti::where('status_etalase', 'not yet approved')
+        ->where('upload_by_user_id', $user->id )
+        ->get();
+        return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
+    }
+
     // Menampilkan data properti yang belum di-approve pada halaman etalase admin
     public function etalaseProp()
     {
@@ -25,7 +33,13 @@ class PropertiController extends Controller
     // Menampilkan halaman tambah properti
     public function tambahProp()
     {
-        return view('Template UI.admin.admin-category-page.prop.tambah-prop');
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.prop-customer.input-prop-customer');
+        } else {
+            return view('Template UI.admin.admin-category-page.prop.tambah-prop');
+        }
+
     }
 
     // Menyimpan data properti yang diinputkan
@@ -72,6 +86,16 @@ class PropertiController extends Controller
 
         $data->save();
 
+        if ($user->role === 'user') {
+            $data = Properti::where('status_etalase', 'not yet approved')
+        ->where('upload_by_user_id', $user->id )
+        ->get();
+        return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
+        } else {
+            return redirect()->route('property');
+        }
+
+
         return redirect()->route('property');
     }
 
@@ -79,7 +103,13 @@ class PropertiController extends Controller
     public function tampilkandataprop($id)
     {
         $data = Properti::find($id);
-        return view('Template UI.admin.admin-category-page.prop.update-prop', compact('data'));
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.prop-customer.update-prop', compact('data'));
+        } else {
+            return view('Template UI.admin.admin-category-page.prop.update-prop', compact('data'));
+        }
+
     }
 
     // Mengupdate data properti yang diubah
@@ -88,7 +118,13 @@ class PropertiController extends Controller
         $data = Properti::find($id);
         $data->update($request->all());
 
-        return redirect()->route('property');
+        $user = Auth::user();
+
+        if ($user->role === 'user') {
+            return redirect()->route('dashboardProp');
+        } else {
+            return redirect()->route('property');
+        }
     }
 
     // Menghapus data properti
@@ -97,7 +133,13 @@ class PropertiController extends Controller
         $data = Properti::find($id);
         $data->delete();
 
-        return redirect()->route('property');
+        $user = Auth::user();
+
+        if ($user->role === 'user') {
+            return redirect()->route('dashboardProp');
+        } else {
+            return redirect()->route('property');
+        }
     }
 
     // Menyetujui properti yang akan di-approve
