@@ -1,7 +1,21 @@
 @extends('Template UI.layouts.main')
 @section('content')
+
+<div class="category-menu">
+    <div class="dropdown">
+        <div class="select">
+            <span class="selected">Produk Properti</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="menu">
+            <li><a href="/dashboard-oto-customer">Produk Otomotif</a></li>
+            <li><a href="/dashboard-prop-customer">Produk Properti</a></li>
+        </ul>
+    </div>
+</div>
+
 <div class="title" style="text-align: center;">
-    <h1>Tambah Produk Property</h1>
+    <h1>Dashboard Produk Properti</h1>
 </div>
 
 <a href="/tambahProp" class="btn-tambahdata"> + Tambah Produk</a>

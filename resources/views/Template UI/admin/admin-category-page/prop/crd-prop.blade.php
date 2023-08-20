@@ -48,21 +48,13 @@ use App\Models\Properti;
                 <td rowspan="3">{{ $row->deskripsi }}</td>
                 <td>{{ $row->alamat }}</td>
                 <td rowspan="3">{{ $row->luas }}m2</td>
-                <td rowspan="3">Rp. {{ $row->harga }},-</td>
+                <td rowspan="3">Rp.&nbsp;{{ number_format($row->harga, 0, ',', '.') }},-</td>
                 <td rowspan="2">{{ $row->created_at }}</td>
 
                 <td rowspan="3">
                     <div class="btn">
                         <a href="/tampilkandataprop/{{ $row->id }}" class="btn-update">Update</a>
-                        <a href="/deletedataprop/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                        @if ($row->purchase_by_user_id === null)
-                        <form action="{{ route('propertys.purchased', $row->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn-approved">Purchase</button>
-                        </form>
-                    @else
-                        <button class="btn-approved">Approved by User {{ $row->approved_by_user_name }}</button>
-                    @endif
+                        <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
                     </div>
                 </td>
             </tr>
@@ -79,4 +71,26 @@ use App\Models\Properti;
             @endforeach
         </tbody>
     </table>
+    <script>
+        $('.delete').click(function(){
+    var inputId = $(this).attr('data-id');
+    swal({
+        title: "Anda Yakin?",
+        text: "Data yang di hapus tidak akan bisa dikembalikan",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            window.location.href = "/deletedataumroh/" + inputId;
+            swal("Data Berhasil Di Hapus", {
+                icon: "success",
+            });
+        } else {
+            swal("Berhasil Membatalkan");
+        }
+    });
+    });
+    </script>
     @endsection

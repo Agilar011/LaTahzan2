@@ -60,7 +60,7 @@
                         <td rowspan="3">
                             <div class="btn">
                                 <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
-                                <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                                <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
                                 <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn-ekspor">+Etalase</button>
@@ -97,4 +97,26 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+        $('.delete').click(function(){
+    var inputId = $(this).attr('data-id');
+    swal({
+        title: "Anda Yakin?",
+        text: "Data yang di hapus tidak akan bisa dikembalikan",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            window.location.href = "/deletedataumroh/" + inputId;
+            swal("Data Berhasil Di Hapus", {
+                icon: "success",
+            });
+        } else {
+            swal("Berhasil Membatalkan");
+        }
+    });
+    });
+    </script>
 @endsection

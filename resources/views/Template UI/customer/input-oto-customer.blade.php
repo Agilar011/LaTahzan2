@@ -6,9 +6,24 @@
 
 @section('content')
 
-    <div class="title">
+<div class="category-menu">
+    <div class="dropdown">
+        <div class="select">
+            <span class="selected">Produk Otomotif</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="menu">
+            <li><a href="/dashboard-oto-customer">Produk Otomotif</a></li>
+            <li><a href="/dashboard-prop-customer">Produk Properti</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div class="title" style="text-align: center;">
         <h1>Dashboard Otomotif Anda</h1>
     </div>
+
+
 
     <a href="/tambahOto" class="btn-tambahdata"> + Tambah Produk</a>
 
@@ -105,6 +120,8 @@
                 @endif
             @endforeach
         </tbody>
+
     </table>
+
 
 @endsection

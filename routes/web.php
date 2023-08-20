@@ -107,6 +107,7 @@ Route::middleware('auth')->post('/Otomotif/{otomotif}/approve', [OtomotifControl
 
 Route::middleware('auth')->post('/Otomotif/{otomotif}/purchased', [OtomotifController::class, 'purchase'])->name('otomotifs.purchased');
 
+
 // route show purchased otomotif
 
 Route::get('/trx-oto',[OtomotifController::class,'showPurchasedOtomotifs'])->name('transaksi-oto');
@@ -148,6 +149,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/tampilkandataumroh/{id}', [UmrohController::class, 'tampilkandataumroh'])->name('tampilkandataumroh');
     Route::post('/updatedataumroh/{id}', [UmrohController::class, 'updatedataumroh'])->name('updatedataumroh');
+    Route::get('/deletedataumroh/{id}', [UmrohController::class, 'deletedataumroh'])->name('deletedataumroh');
 
     Route::post('/updatedatabeliumroh/{id}', [UmrohController::class, 'updatedatabeliumroh'])->name('updatedatabeliumroh');
 
