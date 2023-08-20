@@ -10,11 +10,10 @@ use App\Http\Controllers\UserController;
 // Rute Umroh
 Route::middleware('guest')->group(function () {
     Route::get('/', [UmrohController::class, 'landingGuest'])->name('first');
-    Route::get('/landing', [UmrohController::class, 'landingRead'])->name('landing');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/dasboard', function () {
         if (auth()->user()->hasRole('admin')) {
             return view('Template UI.admin.dasboard-admin');
         } else if (auth()->user()->hasRole('user')) {
@@ -24,6 +23,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         }
     })->name('dashboard');
 
+    Route::get('/landing', [UmrohController::class, 'landingRead'])->name('landing');
+
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh')->middleware('hakAkses');
@@ -32,7 +33,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/deletedataumroh/{id}', [UmrohController::class, 'deletedataumroh'])->name('deletedataumroh')->middleware('hakAkses');
     Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh')->middleware('hakAkses');
     Route::post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve')->middleware('hakAkses');
-    Route::get('/tampilkandetailumroh/{id}', [UmrohController::class, 'tampilkandetailumroh'])->name('tampilkandetailumroh')->middleware('hakAkses');
     Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation')->middleware('hakAkses');
     Route::post('/umrohs/purchase/{umroh}', [UmrohController::class, 'purchase'])->name('umroh.purchase')->middleware('hakAkses');
     Route::get('/umrohs/approved-not-purchased', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('umroh.showApprovedNotPurchasedUmrohs')->middleware('hakAkses');
@@ -85,12 +85,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-prop-customer', [PropertiController::class, 'dashboardProp'])->name('dashboardProp')->middleware('hakAkses');
     Route::get('/customer', [UserController::class, 'customerRead'])->name('customer')->middleware('hakAkses');
     Route::post('/otomotif/{id}/approvepayment', [OtomotifController::class, 'approved_payment'])->name('otomotif.approvepayment')->middleware('hakAkses');
-    Route::get('/tampilkandetailoto/{id}', [OtomotifController::class, 'tampilkandetailoto'])->name('tampilkandetailoto')->middleware('hakAkses');
     Route::get('/tampilkankonfirmasioto/{id}', [OtomotifController::class, 'tampilkankonfirmasioto'])->name('tampilkankonfirmasioto')->middleware('hakAkses');
 });
+
+Route::get('/tampilkandetailoto/{id}', [OtomotifController::class, 'tampilkandetailoto'])->name('tampilkandetailoto');
+Route::get('/tampilkandetailprop/{id}', [PropertiController::class, 'tampilkandetailprop'])->name('tampilkandetailprop');
+Route::get('/tampilkandetailumroh/{id}', [UmrohController::class, 'tampilkandetailumroh'])->name('tampilkandetailumroh');
 
 // Rute Customer
 Route::get('/customer', [UserController::class, 'customerRead'])->name('customer');
 Route::post('/update-role/{userId}', [UserController::class, 'updateRole'])->name('updateRole');
 Route::get('/hapususer/{id}', [UserController::class, 'hapusUser'])->name('hapusUser');
-
