@@ -352,13 +352,13 @@ class UmrohController extends Controller
         $etalase->save();
         if (Auth::user()->role == 'admin') {
             return redirect()
-            ->route('umroh')
-            ->with('success', 'Data jemaah berhasil disimpan.');
+                ->route('umroh')
+                ->with('success', 'Data jemaah berhasil disimpan.');
 
         } else {
             return redirect()
-            ->route('landing')
-            ->with('success', 'Data jemaah berhasil disimpan.');
+                ->route('landing')
+                ->with('success', 'Data jemaah berhasil disimpan.');
             # code...
         }
     }
@@ -485,26 +485,26 @@ class UmrohController extends Controller
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
         $dataOto = Otomotif::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         $dataprop = Properti::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         // dd($dataproperti);
-        return view('Template UI.customer.landing', compact('data','dataOto','dataprop'));
+        return view('Template UI.customer.landing', compact('data', 'dataOto', 'dataprop'));
     }
 
     public function landingGuest()
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
         $dataOto = Otomotif::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         $dataprop = Properti::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         // dd($dataproperti);
-        return view('welcome', compact('data','dataOto','dataprop'));
+        return view('welcome', compact('data', 'dataOto', 'dataprop'));
     }
 
     //DETAIL RETRIEVE UMROH
