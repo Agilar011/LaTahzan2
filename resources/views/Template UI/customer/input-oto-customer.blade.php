@@ -72,7 +72,13 @@
                         <td>
                             <img src="{{ asset('fotoBpkb/' . $row->foto_bpkb) }}" height="50px">
                         </td>
-                        <td rowspan="3">{{ $row->deskripsi }}</td>
+                        <td rowspan="3">
+                            @if (strlen($row->deskripsi) > 100)
+                                {{ substr($row->deskripsi, 0, 100) }}...
+                            @else
+                                {{ $row->deskripsi }}
+                            @endif
+                        </td>
                         {{-- <td>{{ $row->merk }}</td> --}}
                         <td rowspan="2">{{ $row->kapasitas_mesin }}cc</td>
                         <td rowspan="2">{{ $row->tahun }}</td>

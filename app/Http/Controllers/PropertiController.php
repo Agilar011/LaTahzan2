@@ -213,7 +213,7 @@ class PropertiController extends Controller
        $property->purchased_by_user_name = $user->name;
        $property->purchased_by_user_phone_number = $user->phone;
        $property->no_ktp_purchaser = $user->nik;
-       $property->status_pembelian = 'not yet purchased';
+       $property->status_pembelian = 'purchased';
 
        if ($request->hasFile('foto_ktp_purchaser')) {
            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
@@ -259,7 +259,6 @@ class PropertiController extends Controller
     // Tandai properti sebagai sudah dibeli dan hubungkan dengan pengguna yang masuk
     $properti->approved_payment_by_user_id = $user->id;
     $properti->approved_payment_by_user_name = $user->name;
-    $properti->status_pembelian = 'not yet purchased';
     $properti->save();
 
     $laporan_transaksi_properti = laporan_transaksi_properti::create([
