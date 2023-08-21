@@ -116,6 +116,35 @@ class UmrohController extends Controller
         }
 
     }
+
+    public function deletetransaksiumroh($id)
+    {
+        // Begin transaction
+        DB::beginTransaction();
+
+        try {
+            // Hapus semua baris terkait di tabel jemaah yang merujuk pada extended_umrah ini
+            Jemaah::where('id_extended_umroh', $id)->delete();
+
+            // Hapus data dari tabel extended_umrah
+            $data = ExtendedUmrah::findOrFail($id);
+            $data->delete();
+
+            // Commit transaction
+            DB::commit();
+
+            return redirect()->route('tampilkandatatransaksi')->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Rollback transaction in case of failure
+            DB::rollback();
+
+            return redirect()->route('tampilkandatatransaksi')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
+    }
+
+
+
+
     // Method untuk menampilkan data umroh yang sudah di approve dan belum di beli
     public function approve(Request $request, $id)
     {

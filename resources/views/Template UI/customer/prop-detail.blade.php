@@ -14,16 +14,20 @@
                     </div>
                     <div class="small-img-row">
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoProp2/' . $data->foto2) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoProp1/' . $data->foto1) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoProp3/' . $data->foto3) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoProp2/' . $data->foto2) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto3) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoProp3/' . $data->foto3) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="{{ asset('fotoProp4/' . $data->foto4) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                     </div>
                 </div>
@@ -31,10 +35,11 @@
                     <div class="information">
                         <p class="path">Home/Umroh/{{ $data->nama_properti }}</p>
                         <h1>{{ $data->nama_properti }}</h1>
-                        {{-- <h4 class="harga">Rp. {{ number_format($data->harga, 0, ',', '.') }},-</h4>
-                        <p class="attr-tgl">Tahun Pembuatan : <span>&nbsp; {{ $data->tahun }} </span>
-                        </p> --}}
-                        <p class="attr">Jenis : <span>&nbsp; {{ $data->jenis }}</span></p>
+                        <h4 class="harga">Rp. {{ number_format($data->harga, 0, ',', '.') }},-</h4>
+                        <p class="attr-tgl">Tipe Properti : <span>&nbsp; {{ $data->jenis }} </span>
+                        </p>
+                        <p class="attr">Luas : <span>&nbsp; {{ $data->luas }}m2</span></p>
+                        <p class="attr">Alamat : <span>&nbsp; {{ $data->alamat }}</span></p>
                         {{-- <select name="" id="">
                         <option value="">Pilih Warna</option>
                         <option value="">Merah</option>
@@ -45,7 +50,6 @@
                         <form action="{{ route('tampilkankonfirmasiprop', $data->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn-beli">Pesan Sekarang</button>
-                            {{-- <a href="" class="btn-beli">Pesan Sekarang</a> --}}
                         </form>
                         {{-- <h3>Deskripsi : <i class="fa fa-indent"></i></h3>
 
@@ -86,17 +90,18 @@
                 </div>
 
                 <div class="row2-col2">
-                    @if ($data->foto_sertifikat != null)
-                            <div style="max-width: 400px; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                                <h3>Kelengkapan Surat : <i class="fa fa-indent"></i></h3>
+                    <h3>Kelengkapan : <i class="fa fa-indent"></i></h3>
+
+                    <div class="row2-col2">
+                        @if ($data->foto_sertifikat != null)
+                            <div
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
                                     <p style="font-size: 24px; color: #28a745; margin-right: 10px;">&#10004;</p>
-                                    <p style="font-size: 16px;">Sertifikat </p>
+                                    <p style="font-size: 16px;">Sertifikat Rumah</p>
                                 </div>
-
                             @else
-
-                            @endif
+                        @endif
+                    </div>
                 </div>
 
             </div>
@@ -153,7 +158,5 @@
             // Menambahkan kelas 'clicked' pada elemen gambar yang diklik
             clickedImage.parentElement.classList.add('clicked');
         }
-
-
     </script>
 @endsection

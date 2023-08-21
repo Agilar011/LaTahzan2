@@ -83,7 +83,7 @@ use App\Models\Properti;
     })
     .then((willDelete) => {
         if (willDelete) {
-            window.location.href = "/deletedataumroh/" + inputId;
+            window.location.href = "/deletedataprop/" + inputId;
             swal("Data Berhasil Di Hapus", {
                 icon: "success",
             });

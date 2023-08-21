@@ -227,7 +227,7 @@
                         <p style="font-size: 10px;">{{ $row->alamat }}, Kota. {{ $row->kota }}</p>
                     </div>
                     <div class="buy">
-                        <a class="btn-produk">Beli Sekarang</a>
+                        <a href="tampilkandetailprop/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
                     </div>
                 </div>
                 @endforeach

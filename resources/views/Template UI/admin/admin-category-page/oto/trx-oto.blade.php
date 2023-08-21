@@ -1,6 +1,9 @@
  @extends('Template UI.layouts.admin-sidebar')
  @section('content')
      <h1>Riwayat Transaksi Otomotif</h1>
+
+     <a href="/exportdataexcel" class="btn-tambahdata"> Ekspor Excel</a>
+
      <table class="content-table">
          <thead>
              <tr>
@@ -34,7 +37,7 @@
                  <th>Harga</th>
                  <th>Kota</th>
                  <th>Buyer Phone Number</th>
-                 <th>Approve Payment Oleh</th>
+                 <th>No Telp Admin</th>
                  <th>Tanggap DIbeli</th>
 
 
@@ -123,7 +126,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href = "/deletedataumroh/" + inputId;
+                        window.location.href = "/deletedataoto/" + inputId;
                         swal("Data Berhasil Di Hapus", {
                             icon: "success",
                         });

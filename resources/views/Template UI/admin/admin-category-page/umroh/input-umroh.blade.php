@@ -5,7 +5,7 @@
         <h1>Input Umroh</h1>
     </div>
 
-    <a href="/tambahUmroh" class="btn-tambahdata"> + Tambah Data</a>
+    <a href="/tambahUmroh" class="btn-tambahdata"> + Tambah Produk</a>
 
     <table class="content-table">
         <thead>
@@ -120,14 +120,10 @@
                                 <a href="/tampilkandataumroh/{{ $row->id }}" class="btn-update">Update</a>
                                 <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
                                 {{-- <a href="/deletedataumroh/{{ $row->id }}" class="btn-hapus">Hapus</a> --}}
-                                @if ($row->approved_by_user_id === null)
-                                    <form action="{{ route('umrohs.approve', $row->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn-ekspor">+Etalase</button>
-                                    </form>
-                                @else
-                                    <button class="btn-ekspor">Approved by User {{ $row->approved_by_user_name }}</button>
-                                @endif
+                                <form id="data-form" action="{{ route('umrohs.approve', $row->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn-ekspor">+Etalase</button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -164,5 +160,27 @@
                     }
                 });
         });
+
+        $(document).ready(function() {
+        $('#data-form').submit(function(event) {
+            event.preventDefault();
+            var inputId = $(this).find('.btn-ekspor').attr('data-id');
+            swal({
+                title: "Anda Yakin?",
+                text: "Ketika sudah di etalase, barang tidak dapat kembali",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willAdd) => {
+                if (willAdd) {
+                    // Lanjutkan dengan mengirimkan formulir setelah konfirmasi
+                    $(this).off("submit").submit();
+                } else {
+                    swal("Tambah Etalase Dibatalkan");
+                }
+            });
+        });
+    });
+
     </script>
 @endsection

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Properti;
 use Illuminate\Support\Facades\Auth;
+use App\Models\laporan_transaksi_properti;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 class PropertiController extends Controller
 {
@@ -17,16 +20,14 @@ class PropertiController extends Controller
 
     public function dashboardProp(){
         $user = Auth::user();
-        $data = Properti::where('status_etalase', 'not yet approved')
-        ->where('upload_by_user_id', $user->id )
-        ->get();
+        $data = Properti::where('upload_by_user_id', $user->id )->get();
         return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
     }
 
     // Menampilkan data properti yang belum di-approve pada halaman etalase admin
     public function etalaseProp()
     {
-        $data = Properti::where('status_etalase', 'not yet approved')->get();
+        $data = Properti::where('status_step', 'etalase')->get();
         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('data'));
     }
 
@@ -130,16 +131,25 @@ class PropertiController extends Controller
     // Menghapus data properti
     public function deletedataprop($id)
     {
+
         $data = Properti::find($id);
-        $data->delete();
+
+        if ($data->status_pembelian === 'purchased') {
+            $data->purchased_by_user_name = null;
+            $data->purchased_by_user_phone_number = null;
+            $data->purchased_by_user_id = null;
+            $data->no_ktp_purchaser = null;
+            $data->foto_ktp_purchaser = null;
+
+
+            $data->save();
+        } else {
+            $data->delete();
+        }
 
         $user = Auth::user();
+        return back()->with('success', 'Produk berhasil di hapus');
 
-        if ($user->role === 'user') {
-            return redirect()->route('dashboardProp');
-        } else {
-            return redirect()->route('property');
-        }
     }
 
     // Menyetujui properti yang akan di-approve
@@ -203,7 +213,7 @@ class PropertiController extends Controller
        $property->purchased_by_user_name = $user->name;
        $property->purchased_by_user_phone_number = $user->phone;
        $property->no_ktp_purchaser = $user->nik;
-       $property->status_pembelian = 'purchased';
+       $property->status_pembelian = 'not yet purchased';
 
        if ($request->hasFile('foto_ktp_purchaser')) {
            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
@@ -236,4 +246,67 @@ class PropertiController extends Controller
         $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
         return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
     }
+
+    public function approved_payment(Request $request, $id)
+{
+    $properti = Properti::findOrFail($id);
+
+    // Pastikan properti tersedia untuk pembelian (misalnya, periksa apakah belum dibeli)
+    // Tambahkan logika bisnis Anda di sini
+    // Dapatkan ID pengguna yang saat ini masuk
+    $user = Auth::user();
+
+    // Tandai properti sebagai sudah dibeli dan hubungkan dengan pengguna yang masuk
+    $properti->approved_payment_by_user_id = $user->id;
+    $properti->approved_payment_by_user_name = $user->name;
+    $properti->status_pembelian = 'not yet purchased';
+    $properti->save();
+
+    $laporan_transaksi_properti = laporan_transaksi_properti::create([
+        'upload_by_user_id' => $properti->upload_by_user_id,
+        'upload_by_user_name' => $properti->upload_by_user_name,
+        'no_hp_uploader' => $properti->no_hp_uploader,
+        'nama_properti' => $properti->nama_properti,
+        'jenis' => $properti->jenis,
+        'foto1' => $properti->foto1,
+        'foto2' => $properti->foto2,
+        'foto3' => $properti->foto3,
+        'foto4' => $properti->foto4,
+        'foto_sertifikat' => $properti->foto_sertifikat,
+        'foto_ktp' => $properti->foto_ktp,
+        'deskripsi' => $properti->deskripsi,
+        'alamat' => $properti->alamat,
+        'kecamatan' => $properti->kecamatan,
+        'kota' => $properti->kota,
+        'luas' => $properti->luas,
+        'harga' => $properti->harga,
+        'approved_by_user_id' => $properti->approved_by_user_id,
+        'approved_by_user_name' => $properti->approved_by_user_name,
+        'purchased_by_user_id' => $properti->purchased_by_user_id,
+        'purchased_by_user_name' => $properti->purchased_by_user_name,
+        'foto_ktp_purchaser' => $properti->foto_ktp_purchaser,
+        'no_ktp_purchaser' => $properti->no_ktp_purchaser,
+        'purchased_by_user_phone_number' => $properti->purchased_by_user_phone_number,
+        'status_etalase' => $properti->status_etalase,
+        'status_pembelian' => $properti->status_pembelian,
+        'approved_payment_by_user_id' => $properti->approved_payment_by_user_id,
+        'approved_payment_by_user_name' => $properti->approved_payment_by_user_name,
+    ]);
+    $laporan_transaksi_properti->save();
+
+    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+    // Hapus data properti (baris induk)
+    $properti->delete();
+
+    // Mengaktifkan kembali kunci asing
+    DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+    // Redirect ke tampilan show atau halaman relevan lainnya
+    return back()->with('success', 'Produk telah dibeli.');
+}
+
+
+
+
 }

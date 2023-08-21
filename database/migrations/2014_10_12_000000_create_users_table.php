@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('role')->default('user');
             $table->string('nik')->nullable();
             $table->string('foto_ktp')->nullable();
+            $table->string('profile_photo_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

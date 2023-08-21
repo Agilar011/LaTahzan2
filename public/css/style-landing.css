@@ -375,11 +375,12 @@ body {
 .layer4-content .product .img-size{
     display: flex;
     align-items: center;
-    height: 175px;
+    height: 200px;
     justify-content: center;
 }
 
 .layer4-content .product .img-size img {
+    height: 150px;
 }
 
 .layer4-content .name-price h3 {

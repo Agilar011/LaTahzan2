@@ -5,19 +5,18 @@
 @endsection
 
 @section('content')
-
-<div class="category-menu">
-    <div class="dropdown">
-        <div class="select">
-            <span class="selected">Produk Otomotif</span>
-            <div class="caret"></div>
+    <div class="category-menu">
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected">Produk Otomotif</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="/dashboard-oto-customer">Produk Otomotif</a></li>
+                <li><a href="/dashboard-prop-customer">Produk Properti</a></li>
+            </ul>
         </div>
-        <ul class="menu">
-            <li><a href="/dashboard-oto-customer">Produk Otomotif</a></li>
-            <li><a href="/dashboard-prop-customer">Produk Properti</a></li>
-        </ul>
     </div>
-</div>
 
     <div class="title" style="text-align: center;">
         <h1>Dashboard Otomotif Anda</h1>
@@ -62,7 +61,7 @@
                 $no = 1;
             @endphp
             @foreach ($data as $row)
-                @if ($data->status_step = "etalase")
+                @if ($data->status_step = 'etalase')
                     <tr>
                         <th scope="row" rowspan="3">{{ $no++ }}</th>
                         <td>{{ $row->nama_kendaraan }} </td>
@@ -83,7 +82,7 @@
                         <td rowspan="3">
                             <div class="btn">
                                 <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
-                                <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                                <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
                                 {{-- <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn-ekspor">+Etalase</button>
@@ -115,13 +114,58 @@
                         <td rowspan="1">{{ $row->transmisi }}</td>
                         <td rowspan="1">{{ $row->status }}</td>
                         <td rowspan="1">{{ $row->kota }}</td>
-                        <td rowspan="1">{{ $row->status_etalase }}</td>
+                        @if ($row->status_etalase == 'not yet approved')
+                            <td style="color:red;">Pending</td>
+                        @else
+                            <td style="color:rgb(19, 188, 22);">Telah Disetujui</td>
+                        @endif
                     </tr>
                 @endif
             @endforeach
         </tbody>
 
     </table>
+    <script>
+        $('.delete').click(function() {
+            var inputId = $(this).attr('data-id');
+            swal({
+                    title: "Anda Yakin?",
+                    text: "Data yang di hapus tidak akan bisa dikembalikan",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "/deletedataoto/" + inputId;
+                        swal("Data Berhasil Di Hapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Berhasil Membatalkan");
+                    }
+                });
+        });
 
-
+        $(document).ready(function() {
+            $('#data-form').submit(function(event) {
+                event.preventDefault();
+                var inputId = $(this).find('.btn-ekspor').attr('data-id');
+                swal({
+                    title: "Anda Yakin?",
+                    text: "Ketika sudah di etalase, barang tidak dapat kembali",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willAdd) => {
+                    if (willAdd) {
+                        // Lanjutkan dengan mengirimkan formulir setelah konfirmasi
+                        $(this).off("submit").submit();
+                    } else {
+                        swal("Tambah Etalase Dibatalkan");
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

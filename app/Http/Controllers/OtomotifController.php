@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DataTransaksiOto;
 
 
 class OtomotifController extends Controller
@@ -22,9 +24,7 @@ class OtomotifController extends Controller
 
     public function dashboardOto(){
         $user = Auth::user();
-        $data = Otomotif::where('status_etalase', 'not yet approved')
-        ->where('upload_by_user_id', $user->id )
-        ->get();
+        $data = Otomotif::where('upload_by_user_id', $user->id )->get();
         return view('Template UI.customer.input-oto-customer', compact('data'));
     }
 
@@ -333,6 +333,10 @@ public function approved_payment(Request $request, $id)
         $data = Otomotif::find($id);
         $user = Auth::user();
         return view('Template UI.customer.konfirmasi-oto', compact('data', 'user'));
+    }
+
+    public function exportdataexcel(){
+        return Excel::download(new DataTransaksiOto, 'dataPenjualanOto.xlsx');
     }
 
 
