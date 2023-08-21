@@ -134,13 +134,13 @@ class PropertiController extends Controller
 
         $data = Properti::find($id);
 
-        if ($data->status_pembelian === 'purchased') {
+        if ($data->status_pembelian === 'pending') {
+            $data->status_pembelian = 'not yet purchased';
             $data->purchased_by_user_name = null;
             $data->purchased_by_user_phone_number = null;
             $data->purchased_by_user_id = null;
             $data->no_ktp_purchaser = null;
             $data->foto_ktp_purchaser = null;
-
 
             $data->save();
         } else {
@@ -203,8 +203,6 @@ class PropertiController extends Controller
     {
         $property = Properti::findOrFail($id);
 
-        $property = Properti::findOrFail($id);
-
         // Get the ID of the currently logged-in user
         $user = Auth::user();
 
@@ -213,7 +211,8 @@ class PropertiController extends Controller
        $property->purchased_by_user_name = $user->name;
        $property->purchased_by_user_phone_number = $user->phone;
        $property->no_ktp_purchaser = $user->nik;
-       $property->status_pembelian = 'purchased';
+       $property->status_etalase = 'approved';
+       $property->status_pembelian = 'pending';
 
        if ($request->hasFile('foto_ktp_purchaser')) {
            $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
@@ -243,7 +242,7 @@ class PropertiController extends Controller
     // Menampilkan properti yang sudah dibeli
     public function showPurchasedPropertys()
     {
-        $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
+        $purchasedPropertys = Properti::where('status_pembelian', 'pending')->get();
         return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
     }
 
@@ -260,6 +259,7 @@ class PropertiController extends Controller
     $properti->approved_payment_by_user_id = $user->id;
     $properti->approved_payment_by_user_name = $user->name;
     $properti->save();
+    // dd($properti);
 
     $laporan_transaksi_properti = laporan_transaksi_properti::create([
         'upload_by_user_id' => $properti->upload_by_user_id,
@@ -290,6 +290,8 @@ class PropertiController extends Controller
         'status_pembelian' => $properti->status_pembelian,
         'approved_payment_by_user_id' => $properti->approved_payment_by_user_id,
         'approved_payment_by_user_name' => $properti->approved_payment_by_user_name,
+        'updated_at' => $properti->updated_at,
+        'created_at' => $properti->created_at,
     ]);
     $laporan_transaksi_properti->save();
 

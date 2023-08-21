@@ -38,6 +38,8 @@ class laporan_transaksi_properti extends Model
         'status_pembelian',
         'approved_payment_by_user_id',
         'approved_payment_by_user_name',
+        'updated_at',
+        'created_at',
 
     ];}
 

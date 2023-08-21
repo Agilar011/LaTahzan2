@@ -1,19 +1,19 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateLaporanTransaksiPropertisTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
         Schema::create('laporan_transaksi_propertis', function (Blueprint $table) {
             $table->id();
-            // Tambahkan kolom sesuai dengan kebutuhan
             $table->unsignedBigInteger('upload_by_user_id');
             $table->string('upload_by_user_name');
             $table->string('no_hp_uploader');
@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('kota');
             $table->integer('luas');
             $table->bigInteger('harga');
+            $table->timestamps();
             $table->unsignedBigInteger('approved_by_user_id')->nullable();
             $table->string('approved_by_user_name')->nullable();
             $table->unsignedBigInteger('purchased_by_user_id')->nullable();
@@ -38,19 +39,20 @@ return new class extends Migration
             $table->string('foto_ktp_purchaser')->nullable();
             $table->string('no_ktp_purchaser')->nullable();
             $table->string('purchased_by_user_phone_number')->nullable();
-            $table->enum('status_etalase',['not yet approved','approved'])->default('not yet approved');
-            $table->enum('status_pembelian',['not yet purchased','purchased'])->default('not yet purchased');
+            $table->enum('status_etalase', ['not yet approved', 'approved'])->default('not yet approved');
+            $table->enum('status_pembelian', ['not yet purchased', 'pending', 'purchased'])->default('not yet purchased');
             $table->unsignedBigInteger('approved_payment_by_user_id')->nullable();
             $table->string('approved_payment_by_user_name')->nullable();
         });
     }
 
-
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('laporan_transaksi_propertis');
     }
-};
+}
