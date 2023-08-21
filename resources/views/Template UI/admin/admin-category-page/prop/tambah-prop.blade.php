@@ -21,11 +21,11 @@
                 <label for="">Alamat</label>
                 <input type="text" name="alamat">
                 <label for="">Kecamatan</label>
-                <input type="text" name="kecamatan">
+                <input type="text" inputmode="" name="kecamatan">
                 <label for="">Kota</label>
                 <input type="text" name="kota">
                 <label for="">Luas</label>
-                <input type="number" name="luas">
+                <input type="number" inputmode="numeric" name="luas">
                 <label for="">Harga</label>
                 <input type="number" name="harga">
                 <label for="">Foto</label>

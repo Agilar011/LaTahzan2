@@ -91,13 +91,13 @@ class PropertiController extends Controller
             $data = Properti::where('status_etalase', 'not yet approved')
         ->where('upload_by_user_id', $user->id )
         ->get();
-        return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
+        return redirect()->route('dashboardProp');
         } else {
             return redirect()->route('property');
         }
 
 
-        return redirect()->route('property');
+        // return redirect()->route('property');
     }
 
     // Menampilkan data properti untuk diubah pada halaman admin
