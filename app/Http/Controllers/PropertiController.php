@@ -258,6 +258,7 @@ class PropertiController extends Controller
     // Tandai properti sebagai sudah dibeli dan hubungkan dengan pengguna yang masuk
     $properti->approved_payment_by_user_id = $user->id;
     $properti->approved_payment_by_user_name = $user->name;
+    $properti->status_pembelian = 'purchased';
     $properti->save();
     // dd($properti);
 
