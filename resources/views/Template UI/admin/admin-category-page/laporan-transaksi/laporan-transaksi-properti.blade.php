@@ -1,6 +1,32 @@
 @extends('Template UI.layouts.admin-sidebar')
+
+@section('title')
+    La Tahzan | Jual Barangmu!
+@endsection
+
 @section('content')
-    <h1>Riwayat Transaksi Properti</h1>
+    <div class="category-menu">
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected">Produk Properti</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="/laporan-transaksi-oto">Produk Otomotif</a></li>
+                <li><a href="/laporan-transaksi-prop">Produk Properti</a></li>
+                <li><a href="/laporan-transaksi-umroh">Produk Umroh</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="title" style="text-align: center;">
+        <h1>Dashboard Otomotif Anda</h1>
+    </div>
+
+
+
+    <a href="/tambahOto" class="btn-tambahdata"> + Tambah Produk</a>
+
     <table class="content-table">
         <thead>
             <tr>
@@ -50,7 +76,7 @@
             @php
                 $no = 1;
             @endphp
-            @foreach ($purchasedPropertys as $row)
+            @foreach ($laporan_transaksi_properti as $row)
                 <tr>
                     <tr>
                         <th rowspan="4">{{ $row->id }}</th>

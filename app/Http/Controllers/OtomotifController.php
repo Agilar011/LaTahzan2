@@ -12,24 +12,33 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DataTransaksiOto;
 
+
 class OtomotifController extends Controller
 {
-    public function index()
-    {
+    //READ DATA OTO
+
+    public function index(){
         $data = Otomotif::where('status_etalase', 'not yet approved')->get();
         return view('Template UI.admin.admin-category-page.oto.input-oto', compact('data'));
     }
 
-    public function etalaseOto()
-    {
+    public function dashboardOto(){
+        $user = Auth::user();
+        $data = Otomotif::where('upload_by_user_id', $user->id )->get();
+        return view('Template UI.customer.input-oto-customer', compact('data'));
+    }
+
+    //READ DATA OTO ETALASE ADMIN
+
+    public function etalaseOto(){
         $data = Otomotif::where('status_step', 'etalase')->get();
+
         return view('Template UI.admin.admin-category-page.oto.crd-oto')->with('data', $data);
     }
 
     //READ DATA OTO ETALASE CUSTOMER
 
-    public function etalaseOtoCustomer()
-    {
+    public function etalaseOtoCustomer(){
         $dataOto = Otomotif::where('status_step', 'etalase')->get();
         return view('Template UI.customer.landing')->with('dataOto', $dataOto);
     }
@@ -48,6 +57,7 @@ class OtomotifController extends Controller
         }
 
     }
+//    Method dummy
 
     public function insertdataoto(Request $request)
     {
@@ -58,6 +68,7 @@ class OtomotifController extends Controller
         $request->merge(['upload_by_user_id' => $user->id]);
         $request->merge(['upload_by_user_name' => $user->name]);
         $request->merge(['no_hp_uploader' => $user->phone]);
+
 
         if ($request->hasFile('foto1')) {
             $request->file('foto1')->move('fotoOto/', $request->file('foto1')->getClientOriginalName());
@@ -102,8 +113,12 @@ class OtomotifController extends Controller
 
     }
 
-    public function tampildataoto($id)
-    {
+
+
+    //UPDATE DATA OTO
+
+    public function tampildataoto($id){
+        // $data = Otomotif::find($id);
         $data = Otomotif::find($id);
         $user = Auth::user();
         if ($user->role === 'user') {
@@ -113,8 +128,7 @@ class OtomotifController extends Controller
         }
     }
 
-    public function updatedataoto(Request $request, $id)
-    {
+    public function updatedataoto(Request $request, $id){
         $data = Otomotif::find($id);
         $data->update($request->all());
 
@@ -132,10 +146,13 @@ class OtomotifController extends Controller
                 return redirect()->route('otomotif');
             }
         }
+
+
     }
 
-    public function deletedataoto($id)
-    {
+    //DELETE DATA OTO
+
+    public function deletedataoto($id){
         $data = Otomotif::find($id);
         $data->delete();
 
@@ -152,7 +169,9 @@ class OtomotifController extends Controller
                 return redirect()->route('otomotif');
             }
         }
+
     }
+    // approve method
 
     public function approve(Request $request, $id)
     {
@@ -171,20 +190,23 @@ class OtomotifController extends Controller
         // Redirect back to the previous page or any other page you prefer
         return back()->with('success', 'Product has been approved.');
     }
+     // method show approved and not purchased otomotif
+     public function showApprovedNotPurchasedOtomotifs()
+     {
+         $approvedNotPurchasedOtomotifs = Otomotif::where('status_etalase', 'approved')
+             ->where('status_pembelian', 'not yet purchased')
+             ->get();
 
-    public function showApprovedNotPurchasedOtomotifs()
-    {
-        $approvedNotPurchasedOtomotifs = Otomotif::where('status_etalase', 'approved')
-            ->where('status_pembelian', 'not yet purchased')
-            ->get();
+         return view('Template UI.admin.admin-category-page.oto.crd-oto', compact('approvedNotPurchasedOtomotifs'));
+     }
 
-        return view('Template UI.admin.admin-category-page.oto.crd-oto', compact('approvedNotPurchasedOtomotifs'));
-    }
-
+    //  Purchased Method
     public function purchase(Request $request, $id)
     {
         $otomotif = Otomotif::findOrFail($id);
 
+        // Ensure the product is available for purchase (for example, check if it's not already purchased)
+        // Add your business logic here
          // Get the ID of the currently logged-in user
          $user = Auth::user();
 
@@ -213,13 +235,14 @@ class OtomotifController extends Controller
         // $otomotif->foto_ktp_purchaser = $user->fotoktp;
         if ($user->nik != null) {
             $otomotif->no_ktp_purchaser = $user->nik;
-
+            # code...
         } else {
             $otomotif->no_ktp_purchaser = $request->no_ktp_purchaser;
             $user->nik = $request->no_ktp_purchaser;
             $user->save();
-
+            # code...
         }
+
 
         $otomotif->status_pembelian = 'purchased';
         $otomotif->save();
@@ -231,16 +254,19 @@ class OtomotifController extends Controller
         return redirect()->route('landing');
     }
 
+    // show approve the productpublic function showPurchasedPropertys()
     public function showPurchasedOtomotifs()
-    {
-        $purchasedOtomotifs = Otomotif::where('status_pembelian', 'purchased')->get();
-        return view('Template UI.admin.admin-category-page.oto.trx-oto', compact('purchasedOtomotifs'));
-    }
+{
+    $purchasedOtomotifs = Otomotif::where('status_pembelian', 'purchased')->get();
+    return view('Template UI.admin.admin-category-page.oto.trx-oto', compact('purchasedOtomotifs'));
+}
+// method approve payment
+public function approved_payment(Request $request, $id)
+{
+    $otomotif = Otomotif::findOrFail($id);
 
-    public function approved_payment(Request $request, $id)
-    {
-        $otomotif = Otomotif::findOrFail($id);
-
+    // Ensure the product is available for purchase (for example, check if it's not already purchased)
+    // Add your business logic here
      // Get the ID of the currently logged-in user
      $user = Auth::user();
 
@@ -298,14 +324,12 @@ class OtomotifController extends Controller
     return back()->with('success', 'Product has been purchased.');
     }
 
-    public function tampilkandetailoto($id)
-    {
+    public function tampilkandetailoto($id){
         $data = Otomotif::find($id);
         return view('Template UI.customer.oto-detail', compact('data'));
     }
 
-    public function tampilkankonfirmasioto($id)
-    {
+    public function tampilkankonfirmasioto($id){
         $data = Otomotif::find($id);
         $user = Auth::user();
         return view('Template UI.customer.konfirmasi-oto', compact('data', 'user'));
@@ -313,6 +337,11 @@ class OtomotifController extends Controller
 
     public function exportdataexcel(){
         return Excel::download(new DataTransaksiOto, 'dataPenjualanOto.xlsx');
+    }
+
+    public function showlaporantransaksioto(){
+        $laporan_transaksi_otomotif = laporan_transaksi_otomotif::all();
+        return view('Template UI.admin.admin-category-page.laporan-transaksi.laporan-transaksi-otomotif', compact('laporan_transaksi_otomotif'));
     }
 
 

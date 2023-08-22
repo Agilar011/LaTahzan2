@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="list-items">
-                        <a href="/report">
+                        <a href="/laporan-transaksi-otomotif">
                             <img src="/img/admin/report.png" alt="" class="icon">
                             <span class="desc">Laporan Transaksi</span>
                         </a>

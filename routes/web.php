@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         } else {
             return redirect()->route('first');
         }
-    })->name('dashboard')->middleware('hakAkses');//---------------------------------------------------------------------->ini masalahnya login
+    })->name('dashboard')->middleware('hakAkses'); //---------------------------------------------------------------------->ini masalahnya login
 
     Route::get('/landing', [UmrohController::class, 'landingRead'])->name('landing');
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
@@ -31,8 +31,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/deletedataumroh/{id}', [UmrohController::class, 'deletedataumroh'])->name('deletedataumroh')->middleware('hakAkses');
     Route::post('/insertdataumroh', [UmrohController::class, 'insertdataumroh'])->name('insertdataumroh')->middleware('hakAkses');
     Route::post('/umrohs/{id}/approve', [UmrohController::class, 'approve'])->name('umrohs.approve')->middleware('hakAkses');
-    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation');//------------------------------------------------------------------------------------> Pembelian Umroh
-    Route::post('/umrohs/purchase/{umroh}', [UmrohController::class, 'purchase'])->name('umroh.purchase');//------------------------------------------------------------------------------------> Pembelian Umroh
+    Route::post('/umrohs/{umroh}/purchase', [UmrohController::class, 'showPurchaseConfirmation'])->name('umroh.confirmation'); //------------------------------------------------------------------------------------> Pembelian Umroh
+    Route::post('/umrohs/purchase/{umroh}', [UmrohController::class, 'purchase'])->name('umroh.purchase'); //------------------------------------------------------------------------------------> Pembelian Umroh
     Route::get('/umrohs/approved-not-purchased', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('umroh.showApprovedNotPurchasedUmrohs')->middleware('hakAkses');
     Route::get('/tampilkandatabeliumroh/{id}', [UmrohController::class, 'tampilkandatabeliumroh'])->name('konfirmasi-umroh'); //------------------------------------------------------------------------------------> Pembelian Umroh
     Route::get('/tampilkandataumroh/{id}', [UmrohController::class, 'tampilkandataumroh'])->name('tampilkandataumroh')->middleware('hakAkses');
@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/deletetransaksiumroh/{id}', [UmrohController::class, 'deletetransaksiumroh'])->name('deletetransaksiumroh')->middleware('hakAkses');
     Route::post('/updatedatabeliumroh/{id}', [UmrohController::class, 'updatedatabeliumroh'])->name('updatedatabeliumroh'); //------------------------------------------------------------------------------------> Pembelian Umroh
     Route::get('/insertjemaah/{id}', [UmrohController::class, 'createjemaah'])->name('identitasjemaah'); //------------------------------------------------------------------------------------> Pembelian Umroh
-    Route::post('/insertjemaah/{id}', [UmrohController::class, 'storejemaah'])->name('storejemaah');//------------------------------------------------------------------------------------> Pembelian Umroh
+    Route::post('/insertjemaah/{id}', [UmrohController::class, 'storejemaah'])->name('storejemaah'); //------------------------------------------------------------------------------------> Pembelian Umroh
     Route::get('/trx-umroh', [UmrohController::class, 'tampilkandatatransaksi'])->name('tampilkandatatransaksi')->middleware('hakAkses');
     Route::post('/umrohs/{id}/approvepayment', [UmrohController::class, 'approvepayment'])->name('umrohs.approvepayment')->middleware('hakAkses');
 });
@@ -50,14 +50,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 // Rute Properti
 Route::middleware('auth')->group(function () {
     Route::get('/input-properti', [PropertiController::class, 'index'])->name('property')->middleware('hakAkses');
-    Route::get('/tambahProp', [PropertiController::class, 'tambahProp'])->name('tambahProp');  //----------------------------------------------------------------------------------->Ini masalah input prop customer
+    Route::get('/tambahProp', [PropertiController::class, 'tambahProp'])->name('tambahProp'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::get('/crd-umroh', [UmrohController::class, 'showApprovedNotPurchasedUmrohs'])->name('etalase-umroh')->middleware('hakAkses');
     Route::post('/insertdataprop', [PropertiController::class, 'insertdataprop'])->name('insertdataprop'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::get('/crd-properti', [PropertiController::class, 'showApprovedAndNotPurchasedPropertys'])->name('etalase-prop')->middleware('hakAkses');
     Route::middleware('auth')->post('/Propertys/{property}/approve', [PropertiController::class, 'approve'])->name('propertys.approve')->middleware('hakAkses');
     Route::middleware('auth')->post('/Propertys/{property}/purchased', [PropertiController::class, 'purchase'])->name('propertys.purchased'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::get('/trx-properti', [PropertiController::class, 'showPurchasedPropertys'])->name('transaksi-prop')->middleware('hakAkses');
-    Route::get('/tampilkandataprop/{id}', [PropertiController::class, 'tampilkandataprop'])->name('tampilkandataprop');//----------------------------------------------------------------------------------->Ini masalah input prop customer
+    Route::get('/tampilkandataprop/{id}', [PropertiController::class, 'tampilkandataprop'])->name('tampilkandataprop'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::post('/updatedataprop/{id}', [PropertiController::class, 'updatedataprop'])->name('updatedataprop'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::get('/deletedataprop/{id}', [PropertiController::class, 'deletedataprop'])->name('deletedataprop'); //----------------------------------------------------------------------------------->Ini masalah input prop customer
     Route::get('/tampilkankonfirmasiprop/{id}', [PropertiController::class, 'tampilkankonfirmasiprop'])->name('tampilkankonfirmasiprop'); //-----------------------------------------------------------------> pembelian barang customer
@@ -98,3 +98,10 @@ Route::get('/tampilkandetailumroh/{id}', [UmrohController::class, 'tampilkandeta
 Route::get('/customer', [UserController::class, 'customerRead'])->name('customer');
 Route::post('/update-role/{userId}', [UserController::class, 'updateRole'])->name('updateRole');
 Route::get('/hapususer/{id}', [UserController::class, 'hapusUser'])->name('hapusUser');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/laporan-transaksi-otomotif', [OtomotifController::class, 'showlaporantransaksioto'])->name('showlaporantransaksioto'); //-------------------------------------------------------------------> dashboard barang customer
+    Route::get('/laporan-transaksi-properti', [PropertiController::class, 'showlaporantransaksiprop'])->name('showlaporantransaksiprop'); //-------------------------------------------------------------------> dashboard barang customer
+    Route::get('/laporan-transaksi-umroh', [UmrohController::class, 'showlaporantransaksiumroh'])->name('showlaporantransaksiumroh'); //-------------------------------------------------------------------> dashboard barang customer
+
+});

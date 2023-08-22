@@ -546,5 +546,10 @@ class UmrohController extends Controller
         return view('Template UI.customer.umroh-detail', compact('data'));
     }
 
+    public function showlaporantransaksiumroh(){
+        $laporan_transaksi_umroh = laporan_transaksi_umroh::all();
+        return view('Template UI.admin.admin-category-page.laporan-transaksi.laporan-transaksi-umroh', compact('laporan_transaksi_umroh'));
+    }
+
 
 }

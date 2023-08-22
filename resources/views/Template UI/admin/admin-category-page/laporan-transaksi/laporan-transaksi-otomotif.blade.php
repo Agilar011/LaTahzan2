@@ -1,6 +1,31 @@
 @extends('Template UI.layouts.admin-sidebar')
+
+@section('title')
+    La Tahzan | Jual Barangmu!
+@endsection
+
 @section('content')
-    <h1>Riwayat Transaksi Properti</h1>
+    <div class="category-menu">
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected">Produk Otomotif</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="/laporan-transaksi-oto">Produk Otomotif</a></li>
+                <li><a href="/laporan-transaksi-prop">Produk Properti</a></li>
+                <li><a href="/laporan-transaksi-umroh">Produk Umroh</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="title" style="text-align: center;">
+        <h1>Laporan Transaksi Otomotif</h1>
+    </div>
+
+
+
     <table class="content-table">
         <thead>
             <tr>
@@ -97,7 +122,9 @@
                         </td>
                         <td rowspan="2">{{ $row->kota }}</td>
                         <td rowspan="2">{{ $row->purchased_by_user_phone_number }}</td>
-                        <td rowspan="2">{{ $row->status_pembelian }}</td>
+                        <td rowspan="2">
+
+                        </td>
                     </tr>
 
                     <tr>
