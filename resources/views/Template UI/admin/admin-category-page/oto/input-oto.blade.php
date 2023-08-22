@@ -1,9 +1,4 @@
-<x-app-layout>
-    {{-- penempatan di layout.app dan navigation-menu --}}
-</x-app-layout>
-
-
-    @extends('Template UI.layouts.admin-sidebar')
+@extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Input Otomotif</h1>
 
@@ -43,7 +38,7 @@
                 $no = 1;
             @endphp
             @foreach ($data as $row)
-                @if ($data->status_step = "etalase")
+                @if ($data->status_step = 'etalase')
                     <tr>
                         <th scope="row" rowspan="3">{{ $no++ }}</th>
                         <td>{{ $row->nama_kendaraan }} </td>
@@ -54,7 +49,13 @@
                         <td>
                             <img src="{{ asset('fotoBpkb/' . $row->foto_bpkb) }}" height="50px">
                         </td>
-                        <td rowspan="3">{{ $row->deskripsi }}</td>
+                        <td rowspan="3">
+                            @if (strlen($row->deskripsi) > 100)
+                                {{ substr($row->deskripsi, 0, 100) }}...
+                            @else
+                                {{ $row->deskripsi }}
+                            @endif
+                        </td>
                         {{-- <td>{{ $row->merk }}</td> --}}
                         <td rowspan="2">{{ $row->kapasitas_mesin }}cc</td>
                         <td rowspan="2">{{ $row->tahun }}</td>
@@ -64,8 +65,8 @@
                         <td rowspan="3">
                             <div class="btn">
                                 <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
-                                <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
-                                <form action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
+                                <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
+                                <form id="data-form" action="{{ route('otomotifs.approve', $row->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn-ekspor">+Etalase</button>
                                 </form>
@@ -101,4 +102,47 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+        $('.delete').click(function() {
+            var inputId = $(this).attr('data-id');
+            swal({
+                    title: "Anda Yakin?",
+                    text: "Data yang di hapus tidak akan bisa dikembalikan",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "/deletedataoto/" + inputId;
+                        swal("Data Berhasil Di Hapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Berhasil Membatalkan");
+                    }
+                });
+        });
+
+        $(document).ready(function() {
+            $('#data-form').submit(function(event) {
+                event.preventDefault();
+                var inputId = $(this).find('.btn-ekspor').attr('data-id');
+                swal({
+                    title: "Anda Yakin?",
+                    text: "Ketika sudah di etalase, barang tidak dapat kembali",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willAdd) => {
+                    if (willAdd) {
+                        // Lanjutkan dengan mengirimkan formulir setelah konfirmasi
+                        $(this).off("submit").submit();
+                    } else {
+                        swal("Tambah Etalase Dibatalkan");
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

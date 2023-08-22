@@ -1,6 +1,9 @@
  @extends('Template UI.layouts.admin-sidebar')
  @section('content')
      <h1>Riwayat Transaksi Otomotif</h1>
+
+     <a href="/exportdataexcel" class="btn-tambahdata"> Ekspor Excel</a>
+
      <table class="content-table">
          <thead>
              <tr>
@@ -12,7 +15,7 @@
                  <th>Transmisi</th>
                  <th rowspan="2">Tahun</th>
                  <th>Alamat</th>
-                 <th>Buyer ID</th>
+                 <th>Ktp Purchaser</th>
                  <th>Diupload Oleh</th>
                  <th>Tanggal Input</th>
                  <th rowspan="3">Opsi</th>
@@ -34,7 +37,7 @@
                  <th>Harga</th>
                  <th>Kota</th>
                  <th>Buyer Phone Number</th>
-                 <th>Approve Payment Oleh</th>
+                 <th>No Telp Admin</th>
                  <th>Tanggap DIbeli</th>
 
 
@@ -60,13 +63,15 @@
                      <td>{{ $row->kapasitas_mesin }}cc</td>
                      <td rowspan="2">{{ $row->tahun }}</td>
                      <td rowspan="1">{{ $row->alamat }}</td>
-                     <td>{{ $row->purchased_by_user_id }}</td>
+                     <td>
+                        <img src="{{ asset('fotoKtp/' . $row->foto_ktp_purchaser) }}" height="50px">
+                        </td>
                      <td>{{ $row->upload_by_user_name }}</td>
                      <td rowspan="1">{{ $row->created_at }}</td>
                      <td rowspan="3">
                          <div class="btn">
                              <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
-                             <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                             <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
                              <form action="{{ route('otomotif.approvepayment', $row->id) }}" method="POST">
                                  @csrf
                                  <button type="submit" class="btn-ekspor">Approve Payment</button>
@@ -101,7 +106,7 @@
                          <img src="{{ asset('fotoKtp/' . $row->foto_ktp) }}" height="50px">
                      </td>
                      <td>{{ $row->status }}</td>
-                     <td>Rp.{{ $row->harga }}</td>
+                     <td>Rp.&nbsp;{{ number_format($row->harga, 0, ',', '.') }},-</td>
                      <td rowspan="1">{{ $row->kota }}</td>
                      <td>{{ $row->purchased_by_user_phone_number }}</td>
                      <td> {{ $row->no_ktp_purchaser }}</td>
@@ -109,4 +114,26 @@
              @endforeach
          </tbody>
      </table>
+     <script>
+        $('.delete').click(function() {
+            var inputId = $(this).attr('data-id');
+            swal({
+                    title: "Anda Yakin?",
+                    text: "Data yang di hapus tidak akan bisa dikembalikan",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "/deletedataoto/" + inputId;
+                        swal("Data Berhasil Di Hapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Berhasil Membatalkan");
+                    }
+                });
+        });
+    </script>
  @endsection

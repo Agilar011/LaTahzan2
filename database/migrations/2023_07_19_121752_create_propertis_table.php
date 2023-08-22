@@ -52,6 +52,7 @@ return new class extends Migration
             // Add foreign key constraint for purchased_by_user_id
             $table->foreign('purchased_by_user_id')->references('id')->on('users');
         });
+
     }
 
     /**

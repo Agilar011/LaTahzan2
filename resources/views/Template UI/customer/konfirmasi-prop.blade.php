@@ -5,23 +5,41 @@
     </div>
 
 
-    <form action="{{ route('propertys.purchased', $data->id) }}" method="POST">
+    <form action="{{ route('propertys.purchased', $data->id) }}" method="POST" enctype="multipart/form-data" >
         @csrf
 
         <div class="form-input">
-            <label for="">Nama Property :</label>
+            <label for="">Nama Kendaraan :</label>
             <input type="text" class="inp-disable" name="nama_properti" value="{{ $data->nama_properti }}"disabled>
             <p for="">{{ $data->nama_properti }}</p>
 
-            <label for="">Jenis :</label>
+            <label for="">Jenis Properti :</label>
             <input type="text" class="inp-disable" name="jenis" value="{{ $data->jenis }}" disabled>
             <p for="">{{ $data->jenis }}</p>
 
+            <label for="">Luas :</label>
+            <input type="text" class="inp-disable" name="luas" value="{{ $data->luas }}"disabled>
+            <p for="">{{ $data->luas }}m2</p>
+
+            <label for="">Nama Pemilik Rumah :</label>
+            <input type="text" class="inp-disable" name="durasi" value="{{ $data->durasi}}" disabled>
+            <p for="">{{ $data->upload_by_user_name }}</p>
+
+            <label for="">Alamat Rumah :</label>
+            <input type="text" class="inp-disable" name="alamat" value="{{ $data->alamat}}">
+            <p for="">{{ $data->alamat }}, {{ $data->kecamatan }}, {{ $data->kota }}</p>
+
+            <label for="">Admin Properti :</label>
+            <input type="text" class="inp-disable" name="approved_by_user_name" value="{{ $data->approved_by_username}}" disabled>
+            <p for="">{{ $data->approved_by_user_name }}</p>
+
+            <label for="">Harga :</label>
+            <input type="number" class="inp-disable" name="harga" value="{{ $data->harga_awal }}"disabled>
+            <p>Rp. {{ number_format($data->harga, 0, ',', '.') }},-</p>
 
 
-            {{-- <label for="">Nama Pembeli</label>
-            <input type="text" name="purchased_by_user_name" value="{{ $data->purchased_by_user_name }}"> --}}
-
+            <label for="">Nama Pembeli</label>
+            <input type="text" name="purchased_by_user_name" value="{{ $user->name }}">
 
 
             <label for="">No Ktp :</label>
@@ -29,16 +47,7 @@
 
 
             <label for="">Foto Ktp :</label>
-            <input type="file" name="foto_ktp_purchaser" value="{{ $data->foto_ktp_purchaser }}">
-            {{-- <p>Rp. {{ number_format($data->harga_awal, 0, ',', '.') }},-</p> --}}
-
-            <label for="">Harga :</label>
-            <input type="number" class="inp-disable" name="harga" value="{{ $data->harga }}"disabled>
-            <p>Rp. {{ number_format($data->harga, 0, ',', '.') }},-</p>
-
-{{--
-            <label for="">Jumlah Jemaah :</label>
-            <input type="number" name="jumlah_jemaah" value="{{ $data->jumlah_jemaah }}" required> --}}
+            <input type="file" name="foto_ktp_purchaser">
 
             <button type="submit" class="btn-ekspor">Purchase</button>
         </div>

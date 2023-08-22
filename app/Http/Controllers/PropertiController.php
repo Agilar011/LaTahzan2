@@ -4,264 +4,92 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Properti;
-use App\Models\User;
 use App\Models\laporan_transaksi_properti;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PropertiController extends Controller
 {
-    // Menampilkan data properti yang belum di-approve pada halaman admin
     public function index()
     {
         $data = Properti::where('status_etalase', 'not yet approved')->get();
         return view('Template UI.admin.admin-category-page.prop.input-prop', compact('data'));
     }
 
-    // Menampilkan data properti yang belum di-approve pada halaman etalase admin
+    public function dashboardProp()
+    {
+        $user = Auth::user();
+        $data = Properti::where('upload_by_user_id', $user->id)->get();
+        return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
+    }
+
     public function etalaseProp()
     {
-        $data = Properti::where('status_etalase', 'not yet approved')->get();
+        $data = Properti::where('status_step', 'etalase')->get();
         return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('data'));
     }
 
-    // Menampilkan halaman tambah properti
     public function tambahProp()
     {
-        return view('Template UI.admin.admin-category-page.prop.tambah-prop');
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.prop-customer.input-prop-customer');
+        } else {
+            // Handle other cases or provide an error response
+        }
     }
 
-    // Menyimpan data properti yang diinputkan
     public function insertdataprop(Request $request)
     {
-        // Mengambil id pengguna yang saat ini login
         $user = Auth::user();
 
-        // Memasukkan id pengguna ke dalam data request
-        $request->merge(['upload_by_user_id' => $user->id]);
-        $request->merge(['upload_by_user_name' => $user->name]);
-        $request->merge(['no_hp_uploader' => $user->phone]);
+        $requestData = $request->all();
+        $requestData['upload_by_user_id'] = $user->id;
+        $requestData['upload_by_user_name'] = $user->name;
+        $requestData['no_hp_uploader'] = $user->phone;
 
-        // Cek apakah ada file foto yang diunggah
-        if ($request->hasFile('foto1')) {
-            $request->file('foto1')->move('fotoProp1/', $request->file('foto1')->getClientOriginalName());
+        // Handle file uploads
+
+        $data = Properti::create($requestData);
+
+        // Handle photo file names and other logic
+
+        if ($user->role === 'user') {
+            $data = Properti::where('status_etalase', 'not yet approved')
+                ->where('upload_by_user_id', $user->id)
+                ->get();
+            return view('Template UI.customer.prop-customer.dasboard-prop-customer', compact('data'));
+        } else {
+            return redirect()->route('property');
         }
-        if ($request->hasFile('foto2')) {
-            $request->file('foto2')->move('fotoProp2/', $request->file('foto2')->getClientOriginalName());
-        }
-        if ($request->hasFile('foto3')) {
-            $request->file('foto3')->move('fotoProp3/', $request->file('foto3')->getClientOriginalName());
-        }
-        if ($request->hasFile('foto4')) {
-            $request->file('foto4')->move('fotoProp4/', $request->file('foto4')->getClientOriginalName());
-        }
-        if ($request->hasFile('foto_sertifikat')) {
-            $request->file('foto_sertifikat')->move('fotoSertifikat/', $request->file('foto_sertifikat')->getClientOriginalName());
-        }
-        if ($request->hasFile('foto_ktp')) {
-            $request->file('foto_ktp')->move('fotoKtp/', $request->file('foto_ktp')->getClientOriginalName());
-        }
-
-        // Simpan data ke dalam database
-        $data = Properti::create($request->all());
-
-        // Jika ada foto yang diunggah, simpan nama file foto di kolom yang sesuai
-        $data->foto1 = $request->hasFile('foto1') ? $request->file('foto1')->getClientOriginalName() : null;
-        $data->foto2 = $request->hasFile('foto2') ? $request->file('foto2')->getClientOriginalName() : null;
-        $data->foto3 = $request->hasFile('foto3') ? $request->file('foto3')->getClientOriginalName() : null;
-        $data->foto4 = $request->hasFile('foto4') ? $request->file('foto4')->getClientOriginalName() : null;
-        $data->foto_sertifikat = $request->hasFile('foto_sertifikat') ? $request->file('foto_sertifikat')->getClientOriginalName() : null;
-        $data->foto_ktp = $request->hasFile('foto_ktp') ? $request->file('foto_ktp')->getClientOriginalName() : null;
-
-        $data->save();
-
-        return redirect()->route('property');
     }
 
-    // Menampilkan data properti untuk diubah pada halaman admin
-    public function tampilkandataprop($id)
-    {
-        $data = Properti::find($id);
-        return view('Template UI.admin.admin-category-page.prop.update-prop', compact('data'));
-    }
+    // Other methods...
 
-    // Mengupdate data properti yang diubah
-    public function updatedataprop(Request $request, $id)
-    {
-        $data = Properti::find($id);
-        $data->update($request->all());
-
-        return redirect()->route('property');
-    }
-
-    // Menghapus data properti
-    public function deletedataprop($id)
-    {
-        $data = Properti::find($id);
-        $data->delete();
-
-        return redirect()->route('property');
-    }
-
-    // Menyetujui properti yang akan di-approve
-    public function approve(Request $request, $id)
-    {
-        $property = Properti::findOrFail($id);
-
-        // Gunakan $id untuk mencari otomotif yang akan di-approve
-        $property = Properti::findOrFail($id);
-
-        // Get the ID of the currently logged-in user
-        $user = Auth::user();
-        // Update the approved_by_user_id column with the ID of the currently logged-in user
-        $property->approved_by_user_id = $user->id;
-        $property->approved_by_user_name = $user->name;
-        $property->status_etalase = 'approved';
-
-        $property->save();
-
-        // Redirect back to the previous page or any other page you prefer
-        return back()->with('success', 'Product has been approved.');
-    }
-
-    // Menampilkan properti yang sudah di-approve tetapi belum dibeli
-    public function showApprovedAndNotPurchasedPropertys()
-    {
-        $approvedNotPurchasedPropertys = Properti::where('status_etalase', 'approved')
-            ->where('status_pembelian', 'not yet purchased')
-            ->get();
-
-        return view('Template UI.admin.admin-category-page.prop.crd-prop', compact('approvedNotPurchasedPropertys'));
-    }
-
-    // Menampilkan detail properti pada halaman customer
-    public function tampilkandetailprop($id)
-    {
-        $data = Properti::find($id);
-        return view('Template UI.customer.prop-detail', compact('data'));
-    }
-
-    // Menampilkan halaman konfirmasi pembelian properti pada halaman customer
-    public function tampilkankonfirmasiprop(Request $request, $id)
-    {
-        $data = Properti::find($id);
-        $user = Auth::user();
-        return view('Template UI.customer.konfirmasi-prop', compact('data', 'user'));
-    }
-
-    // Melakukan pembelian properti
-    public function purchase(Request $request, $id)
-    {
-        $property = Properti::findOrFail($id);
-
-        $property = Properti::findOrFail($id);
-
-        // Get the ID of the currently logged-in user
-        $user = Auth::user();
-
-       // Mark the product as purchased and associate it with the logged-in user
-       $property->purchased_by_user_id = $user->id;
-       $property->purchased_by_user_name = $user->name;
-       $property->purchased_by_user_phone_number = $user->phone;
-       $property->no_ktp_purchaser = $user->nik;
-       $property->status_pembelian = 'purchased';
-
-       if ($request->hasFile('foto_ktp_purchaser')) {
-           $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
-           $property->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
-
-           $property->save();
-       }
-
-       $property->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
-
-       if ($user->nik != null) {
-           $property->no_ktp_purchaser = $user->nik;
-
-       } else {
-           $property->no_ktp_purchaser = $request->no_ktp_purchaser;
-           $user->nik = $request->no_ktp_purchaser;
-           $user->save();
-       }
-
-       // dd($property);
-       $property->save();
-
-       // Redirect to the show view or any other relevant page
-        return redirect()->route('landing');
-    }
-
-    // fungsi approve pembayaran
     public function approved_payment(Request $request, $id)
     {
-        $property = Properti::findOrFail($id);
+        $properti = Properti::findOrFail($id);
 
-        // Get the ID of the currently logged-in user
         $user = Auth::user();
 
-        // Mark the product as approved_payment and associate it with the logged-in user
-        $property->approved_payment_by_user_id = $user->id;
-        $property->approved_payment_by_user_name = $user->name;
-        $property->save();
+        // Update and save the property
 
-        // Create a new entry in laporan_transaksi_properti
-        $laporan_transaksi_properti = LaporanTransaksiProperti::create([
-            'upload_by_user_id' => $property->upload_by_user_id,
-            'upload_by_user_name' => $property->upload_by_user_name,
-            'no_hp_uploader' => $property->no_hp_uploader,
-            'nama_kendaraan' => $property->nama_kendaraan,
-            'deskripsi' => $property->deskripsi,
-            'merk' => $property->merk,
-            'kapasitas_mesin' => $property->kapasitas_mesin,
-            'warna' => $property->warna,
-            'transmisi' => $property->transmisi,
-            'kilometer' => $property->kilometer,
-            'tahun' => $property->tahun,
-            'status' => $property->status,
-            'alamat' => $property->alamat,
-            'kecamatan' => $property->kecamatan,
-            'kota' => $property->kota,
-            'harga' => $property->harga,
-            'foto1' => $property->foto1,
-            'foto2' => $property->foto2,
-            'foto3' => $property->foto3,
-            'foto_bpkb' => $property->foto_bpkb,
-            'foto_stnk' => $property->foto_stnk,
-            'foto_ktp' => $property->foto_ktp,
-            'approved_by_user_id' => $property->approved_by_user_id,
-            'approved_by_user_name' => $property->approved_by_user_name,
-            'purchased_by_user_id' => $property->purchased_by_user_id,
-            'purchased_by_user_name' => $property->purchased_by_user_name,
-            'foto_ktp_purchaser' => $property->foto_ktp_purchaser,
-            'no_ktp_purchaser' => $property->no_ktp_purchaser,
-            'purchased_by_user_phone_number' => $property->purchased_by_user_phone_number,
-            'status_etalase' => $property->status_etalase,
-            'status_pembelian' => $property->status_pembelian,
-            'approved_payment_by_user_id' => $property->approved_payment_by_user_id,
-            'approved_payment_by_user_name' => $property->approved_payment_by_user_name
-        ]);
+        $laporan_transaksi_properti = new laporan_transaksi_properti();
+        // Fill the data for laporan_transaksi_properti
 
-        // Save the laporan_transaksi_properti entry
-        $laporan_transaksi_properti->save();
+        DB::beginTransaction();
 
-        // Temporarily disable foreign key checks
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        try {
+            $laporan_transaksi_properti->save();
+            $properti->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'Failed to process payment.');
+        }
 
-        // Delete the original property entry
-        $property->delete();
-
-        // Reactivate foreign key checks
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Redirect to the show view or any other relevant page
         return back()->with('success', 'Product has been purchased.');
     }
 
-    // Menampilkan properti yang sudah dibeli
-    public function showPurchasedPropertys()
-    {
-        $purchasedPropertys = Properti::where('status_pembelian', 'purchased')->get();
-        return view('Template UI.admin.admin-category-page.prop.trx-prop', compact('purchasedPropertys'));
-    }
-
-
+    // Other methods...
 }

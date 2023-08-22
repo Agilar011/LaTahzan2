@@ -1,4 +1,3 @@
-
  @extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Tambah Produk Otomotif</h1>
@@ -50,8 +49,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="">Upload Foto 1</label>
-                            <input type="file" name="foto1" class="thumbnail">
+                            <label for="">Upload Foto 1 (Tampilan Etalase)</label>
+                            <input type="file" name="foto1" id="imageInput" class="thumbnail">
                         </td>
                         <td>
                             <label for="">Upload Foto 2</label>

@@ -9,11 +9,12 @@
 
 
 @section('content')
+
     <div class="layer-1">
         <div class="layer1-left">
             <h5>Jaminan 100% Aman!</h5>
             <h1>Daftar Umroh Kini Lebih Gampang, Cepat dan Aman Pake La Tahzan!</h1>
-            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+            <h5 style="font-size: 13px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
                 voluptates dolore autem optio corporis, veniam error vero obcaecati
                 ratione voluptate laboriosam iste vitae magni, rerum maxime exercitationem
                 iure doloribus, illum iusto architecto
@@ -93,7 +94,7 @@
                             ?>
                             <h4>Tanggal Berangkat :</h4>
                             <ul>
-                                <li>{{ $formatted_date }}</li>
+                                <li style="font-size: 12px; margin-top:10px;">{{ $formatted_date }}</li>
                             </ul>
 
                         </div>
@@ -224,7 +225,7 @@
                             <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
                         </div>
                         <div class="year">
-                            <h5>{{ $row->tahun }}</h5>
+                            <h5 style="font-size: 12px;">{{ $row->tahun }}</h5>
                         </div>
                         <div class="buy">
                             <a href="/tampilkandetailoto/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
@@ -252,30 +253,32 @@
                 <h4>&nbsp</h4>
             </div>
 
-            <div class="layer4-content">
-                @foreach ( $dataprop as $row )
 
-                @endforeach
+            <div class="layer4-content">
+                @foreach ($dataprop as $row)
                 <div class="product">
-                    <div class="image">
-                        <img src="img/rumah/type26.png" alt="cbr">
+                    <div class="img-size">
+                        <div class="image">
+                            <img src="{{ asset('fotoProp1/'.$row->foto1) }}" height="50px">
+                        </div>
                     </div>
                     <div class="name-price">
-                        <h3>{{ $row->nama_properti  }}</h3>
+                        <h3>{{ $row->nama_properti }}</h3>
                         <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
                     </div>
                     <div class="year">
-                        <h5>{{ $row->luas }}</h5>
-                        <h5>{{ $row->alamat }},Kecamatan {{ $row->kecamatan }},Kota {{ $row->kota }}</h5>
+                        <p>{{ $row->luas }}m2</p>
+                        <p>&nbsp;</p>
+                        <p style="font-size: 10px;">{{ $row->alamat }}, Kota. {{ $row->kota }}</p>
                     </div>
                     <div class="buy">
-                        <a href="/tampilkandetailprop/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
+                        <a href="tampilkandetailprop/{{ $row->id }}" class="btn-produk">Beli Sekarang</a>
                     </div>
                 </div>
-
-
+                @endforeach
 
             </div>
+
 
             {{-- <div class="layer4-btn">
                 <button type="button" onclick="prop()">Lihat Selengkapnya Properti</button>

@@ -9,9 +9,15 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-    <!-- Styles -->
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style-landing.css">
+    <link rel="stylesheet" href="/css/style-pesan-cust.css">
+    <link rel="stylesheet" href="/css/style-konfirmasi.css">
+    <link rel="stylesheet" href="/css/style-dashboard-admin.css">
+    <link rel="stylesheet" href="/css/style-table.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" <!-- Styles
+        -->
     <style>
         /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
         *,
@@ -198,7 +204,7 @@
         menu,
         ol,
         ul {
-
+            list-style: none;
             margin: 0;
             padding: 0
         }
@@ -829,54 +835,31 @@
         }
     </style>
 </head>
-{{-- Navigasi Bar --}}
 
-<body>
-<x-app-layout>
-</x-app-layout>
+<body class="antialiased">
+    <div class="container-all">
+        <div class="container-content">
+        </div>
 
-    <div style="position: fixed; top: 0; left: 30%; transform: translateX(-20%); background-color: #transparance; padding: 10px;">
-        <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">
+        <div class="">
+            @if (Route::has('login'))
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                    @auth
+                        <a href="{{ url('/landing') }}"
+                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                            in</a>
 
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">LaTahzan</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">
-            <div class="searchbar">
-            <form>
-                <input type="text" placeholder="Temukan Motor, Rumah atau Paket Umroh Disini..">
-                <button type="submit">Cari</button>
-            </form>
-        </div></a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Layanan</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Testimoni</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Kontak Kami</a>
-        <a href="#" style="margin-right: 10px; text-decoration: none; color: #333;">Tentang</a>
-        @auth
-        <a href="{{ url('/dashboard') }}"
-            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-            style="margin-right: 10px; text-decoration: none; color: #333;">Dashboard</a>
-    @else
-        <a href="{{ route('login') }}"
-            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-            in</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}"
-                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-        @endif
-    @endauth
-
-
-      </div>
-    </div>
-
-
-    <div>
-
-        {{-- Konten Utama --}}
-
-        @extends('Template UI.layouts.main')
-
-        @section('content')
             <div class="layer-1">
                 <div class="layer1-left">
                     <h5>Jaminan 100% Aman!</h5>
@@ -887,41 +870,46 @@
                         iure doloribus, illum iusto architecto
                     </h5>
 
-
-                    <button type="button">Beli Sekarang Layanan Kami!</button>
+                    <button type="button">Lihat Layanan Kami!</button>
                 </div>
+
                 <div class="layer1-right">
                     <img src="img/logo-1.png">
                 </div>
             </div>
 
-            <div class="layer-2">
-                <div class="layer2-top">
-                    <h1>Layanan Kami</h1>
-                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, nisi?</h5>
-                </div>
+            {{-- <div class="layer-2-container">
+                    <div class="layer-2">
+                        <div class="layer2-top">
+                            <h1>Layanan Kami</h1>
+                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, nisi?</h5>
+                        </div>
 
-                <div class="layer2-bottom">
-                    <div class="btn-umroh">
-                        <button type="button" onclick="umroh()"><img src="img/umroh.png"></button>
-                        <h3>Umroh</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                            Suscipit atque labore quo unde, sit recusandae.</p>
+
+                        <div class="layer2-bottom">
+                            <div class="btn-feature">
+                                <button type="button" onclick="umroh()"><img src="img/umroh.png"></button>
+                                <h3>Umroh</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Suscipit atque labore quo unde, sit recusandae.</p>
+                            </div>
+                            <div class="btn-feature">
+                                <button type="button" onclick="prop()"><img src="img/properti.png"></button>
+                                <h3>Properti</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Suscipit atque labore quo unde, sit recusandae.</p>
+                            </div>
+                            <div class="btn-feature">
+                                <button type="button" onclick="oto()"><img src="img/motor.png"></button>
+                                <h3>Otomotif</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Suscipit atque labore quo unde, sit recusandae.</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="btn-properti">
-                        <button type="button" onclick="prop()"><img src="img/properti.png"></button>
-                        <h3>Properti</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                            Suscipit atque labore quo unde, sit recusandae.</p>
-                    </div>
-                    <div class="btn-motor">
-                        <button type="button" onclick="oto()"><img src="img/motor.png"></button>
-                        <h3>Otomotif</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                            Suscipit atque labore quo unde, sit recusandae.</p>
-                    </div>
-                </div>
-            </div>
+                </div> --}}
+
 
             {{-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
 
@@ -936,185 +924,91 @@
                     </div>
 
                     <div class="layer3-content">
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/umroh/umroh.jpeg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Paket Umroh Regular</h3>
-                                <h1>Rp. 29.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                            </div>
+                        @foreach ($data as $row)
+                            <div class="product">
+                                <div class="image">
+                                    <img src="img/umroh/umroh.jpeg" alt="cbr">
+                                </div>
+                                <div class="name-price">
+                                    <h3>{{ $row->nama_paket }}</h3>
+                                    <h1>Rp. {{ number_format($row->harga_awal, 0, ',', '.') }},-</h1>
+                                </div>
+                                <div class="year">
+                                    <?php
+                                    $days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
-                            <div class="fasilitas">
-                                <h4>Fasilitas :</h4>
-                                <ul>
-                                    <li>
-                                        <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid
-                                            Nabawi)</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn
-                                            jalan kaki ke Masjidil Haram)</p>
-                                    </li>
-                                    <li>
-                                        <p>City Tour Madinah & Makkah</p>
-                                    </li>
-                                    <li>
-                                        <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                                    </li>
-                                    <li>
-                                        <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                            Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                            Manasik)</p>
-                                    </li>
-                                    <li>
-                                        <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                                    </li>
-                                    <li>
-                                        <p>Manasik Umroh Offline di Hotel</p>
-                                    </li>
-                                    <li>
-                                        <p>Kereta Cepat Madinah-Makkah</p>
-                                    </li>
+                                    $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-                                </ul>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
+                                    $tanggal_berangkat = date('Y-m-d', strtotime($row->tanggal_berangkat));
+                                    $tanggal_parts = explode('-', $tanggal_berangkat);
+                                    $day = date('w', strtotime($tanggal_berangkat));
+                                    $formatted_date = $days[$day] . ', ' . $tanggal_parts[2] . ' ' . $months[(int) $tanggal_parts[1] - 1] . ' ' . $tanggal_parts[0];
+                                    ?>
+                                    <h4>Tanggal Berangkat :</h4>
+                                    <ul>
+                                        <li>{{ $formatted_date }}</li>
+                                    </ul>
 
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/umroh/umroh.jpeg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Paket Umroh Regular</h3>
-                                <h1>Rp. 29.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                            </div>
+                                </div>
 
-                            <div class="fasilitas">
-                                <h4>Fasilitas :</h4>
-                                <ul>
-                                    <li>
-                                        <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid
-                                            Nabawi)</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn
-                                            jalan kaki ke Masjidil Haram)</p>
-                                    </li>
-                                    <li>
-                                        <p>City Tour Madinah & Makkah</p>
-                                    </li>
-                                    <li>
-                                        <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                                    </li>
-                                    <li>
-                                        <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                            Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                            Manasik)</p>
-                                    </li>
-                                    <li>
-                                        <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                                    </li>
-                                    <li>
-                                        <p>Manasik Umroh Offline di Hotel</p>
-                                    </li>
-                                    <li>
-                                        <p>Kereta Cepat Madinah-Makkah</p>
-                                    </li>
+                                <div class="fasilitas">
+                                    <h4 style="font-weight: bold;">Fasilitas :</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Maskapai: {{ $row->Maskapai }}</p>
+                                        </li>
+                                        <li>
+                                            <p>Hotel: {{ $row->Hotel }}</p>
+                                        </li>
+                                        <li>
+                                            <p>{{ $row->fasilitas1 }}</p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                @if ($row->fasilitas2 != null)
+                                                    {{ $row->fasilitas2 }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
+                                                Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam,
+                                                Buku
+                                                Manasik)</p>
+                                        </li>
+                                        <li>
+                                            <p>Bagasi 23 kg x2 + 7 kg kabin</p>
+                                        </li>
+                                        <li>
+                                            <p>Manasik Umroh Offline di Hotel</p>
+                                        </li>
+                                        <li>
+                                            <p>Kereta Cepat Madinah-Makkah</p>
+                                        </li>
 
-                                </ul>
+                                    </ul>
+                                </div>
+                                <div class="buy">
+                                    <a href="/tampilkandetailumroh/{{ $row->id }}" class="btn-produk">Beli
+                                        Sekarang</a>
+                                    {{-- <form action="{{ route('konfirmasi-umroh', $row->id) }}" method="GET">
+                                                @csrf
+                                            </form> --}}
+                                </div>
                             </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/umroh/umroh.jpeg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Paket Umroh Regular</h3>
-                                <h1>Rp. 29.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <p>Kloter: <span>20 Juli - 1 Agustus</span></p>
-                            </div>
-
-                            <div class="fasilitas">
-                                <h4>Fasilitas :</h4>
-                                <ul>
-                                    <li>
-                                        <p>Pesawat Saudi Airlines (PP) kelas ekonomi Direct Jakarta - Jeddah</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid
-                                            Nabawi)</p>
-                                    </li>
-                                    <li>
-                                        <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn
-                                            jalan kaki ke Masjidil Haram)</p>
-                                    </li>
-                                    <li>
-                                        <p>City Tour Madinah & Makkah</p>
-                                    </li>
-                                    <li>
-                                        <p>Air Zam Zam 5 Liter (*jika diizinkan)</p>
-                                    </li>
-                                    <li>
-                                        <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                            Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                            Manasik)</p>
-                                    </li>
-                                    <li>
-                                        <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                                    </li>
-                                    <li>
-                                        <p>Manasik Umroh Offline di Hotel</p>
-                                    </li>
-                                    <li>
-                                        <p>Kereta Cepat Madinah-Makkah</p>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-
+                        @endforeach
 
                     </div>
 
-
-
-                    <div class="layer4-btn">
-                        <button type="button" onclick="umroh()">Beli Sekarang Selengkapnya Paket Umroh / Haji</button>
-                    </div>
+                    {{-- <div class="layer4-btn">
+                            <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
+                        </div> --}}
 
                 </div>
 
             </div>
-
-
-            {{-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
-
 
 
             <div class="layer-4-container">
@@ -1128,171 +1022,33 @@
                     </div>
 
                     <div class="layer4-content">
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
 
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/satria.png" alt="cbr">
+                        @foreach ($dataOto as $row)
+                            <div class="product">
+                                <div class="img-size">
+                                    <div class="image">
+                                        <img src="{{ asset('fotoOto/' . $row->foto1) }}">
+                                    </div>
+                                </div>
+                                <div class="name-price">
+                                    <h3>{{ $row->nama_kendaraan }}</h3>
+                                    <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
+                                </div>
+                                <div class="year">
+                                    <h5>{{ $row->tahun }}</h5>
+                                </div>
+                                <div class="buy">
+                                    <a href="/tampilkandetailoto/{{ $row->id }}" class="btn-produk">Beli
+                                        Sekarang</a>
+                                </div>
                             </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/fazio.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/vario.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/ninja.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/motor/cbr.jpg" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>All New CBR150R</h3>
-                                <h1>Rp. 37.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>2021</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
 
-                    <div class="layer4-btn">
-                        <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
-                    </div>
+                    {{-- <div class="layer4-btn">
+                            <button type="button" onclick="oto()">Beli Sekarang Selengkapnya Otomotif</button>
+                        </div> --}}
 
                 </div>
 
@@ -1308,188 +1064,90 @@
                         <h4>&nbsp</h4>
                     </div>
 
+
                     <div class="layer4-content">
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
+                        @foreach ($dataprop as $row)
+                            <div class="product">
+                                <div class="img-size">
+                                    <div class="image">
+                                        <img src="{{ asset('fotoProp1/' . $row->foto1) }}" height="50px">
+                                    </div>
+                                </div>
+                                <div class="name-price">
+                                    <h3>{{ $row->nama_properti }}</h3>
+                                    <h1>Rp. {{ number_format($row->harga, 0, ',', '.') }},-</h1>
+                                </div>
+                                <div class="year">
+                                    <p>{{ $row->luas }}m2</p>
+                                    <p>&nbsp;</p>
+                                    <p>{{ $row->alamat }}, Kota. {{ $row->kota }}</p>
+                                </div>
+                                <div class="buy">
+                                    <a class="btn-produk">Beli Sekarang</a>
+                                </div>
                             </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="image">
-                                <img src="img/rumah/type26.png" alt="cbr">
-                            </div>
-                            <div class="name-price">
-                                <h3>Dijual Rumah tipe 36</h3>
-                                <h1>Rp. 670.000.000,-</h1>
-                            </div>
-                            <div class="year">
-                                <h5>96m2</h5>
-                                <h5>Kec. Sananwetan, Kota Blitar</h5>
-                            </div>
-                            <div class="buy">
-                                <button>Beli Sekarang</button>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
 
-                    <div class="layer4-btn">
-                        <button type="button" onclick="prop()">Beli Sekarang Selengkapnya Properti</button>
-                    </div>
+
+                    {{-- <div class="layer4-btn">
+                            <button type="button" onclick="prop()">Beli Sekarang Selengkapnya Properti</button>
+                        </div> --}}
 
                 </div>
             </div>
-        @endsection
-
+        </div>
     </div>
+
+    <footer class="footer-container">
+        <div class="footer-left">
+            <h3>La <span>Tahzan</span></h3>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                |
+                <a href="#">About</a>
+                |
+                <a href="#">Contact</a>
+                |
+                <a href="#">Blog</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2021 <strong>La Tahzan</strong>
+            All right reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Blitar,</span> Jawa Timur</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+62 877-7719-8429</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="#">la.tahzan@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About The Company</span>
+                <strong>La Tahzan</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Perspiciatis delectus mollitia qui? Corporis suscipit
+                magni nemo facilis porro, non dolore!
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

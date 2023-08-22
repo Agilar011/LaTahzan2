@@ -17,6 +17,109 @@ body {
     padding: 20px;
 }
 
+.container-content .title h1{
+    color: #111827;
+    margin: 50px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.category-menu{
+    display: flex;
+    margin-left: auto;
+    width: 100%;
+}
+
+.dropdown{
+    min-width: 20em;
+    position: relative;
+}
+
+.dropdown *{
+    box-sizing: border-box;
+}
+
+.select{
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #089d46 solid;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 50px;
+}
+
+.select-clicked{
+    border: 2px gray solid;
+    box-shadow: 0 0 0.8em gray;
+}
+
+.select:hover{
+    background: #e0e1e4;
+}
+
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #000000;
+    transition: 0.3s;
+}
+
+.caret-rotate{
+    transform: rotate(180deg);
+}
+
+.menu{
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #323741;
+    border: 1px #363a43;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #9fa5b5;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.menu li{
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+}
+
+.menu li:hover{
+    background-color: #2a2d35;
+}
+
+.active{
+    background-color: #23242a;
+}
+
+.menu-open{
+    display: block;
+    opacity: 1;
+}
+
+
 .layer-1 {
     display: flex;
     align-items: center;
@@ -105,7 +208,6 @@ body {
 
 .layer3-content {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 30px;
@@ -246,7 +348,6 @@ body {
 .layer4-content {
     width: 100%;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 50px;
@@ -256,7 +357,7 @@ body {
     position: relative;
     background-color: white;
     width: 220px;
-    height: 350px;
+    height: 380px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -274,11 +375,12 @@ body {
 .layer4-content .product .img-size{
     display: flex;
     align-items: center;
-    height: 175px;
+    height: 200px;
     justify-content: center;
 }
 
 .layer4-content .product .img-size img {
+    height: 150px;
 }
 
 .layer4-content .name-price h3 {
@@ -299,14 +401,14 @@ body {
     font-size: 15px;
 }
 
+.layer4-content .year p{
+    font-weight: 700; /* Perbaiki value font-weight */
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+}
+
 .layer4-content .buy {
-    position: absolute;
-    top: 290px; /* Mengubah bottom ke 0 */
-    left: 70%; /* Menambahkan left 50% */
-    transform: translateX(-50%); /* Mentranslasi sebanyak setengah lebar elemen */
-    text-align: center; /* Menyelaraskan teks ke tengah */
-    width: 100%; /* Menetapkan lebar ke 100% */
-    margin-top: 10px; /* Menambahkan jarak atas */
+    margin-top: 10px;
 }
 
 .layer4-content .buy a {
@@ -315,11 +417,11 @@ body {
     background-color: rgb(226, 171, 43);
     color: black;
     font-size: 11px;
-    cursor: pointer;
+    cursor:pointer;
     transition: 0.5s;
 }
 
-.buy a:hover {
+.layer4-content .buy a:hover {
     transform: scale(1.1);
 }
 

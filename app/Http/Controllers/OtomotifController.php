@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Otomotif;
 use App\Models\laporan_transaksi_otomotif;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DataTransaksiOto;
 
 class OtomotifController extends Controller
 {
@@ -30,9 +34,19 @@ class OtomotifController extends Controller
         return view('Template UI.customer.landing')->with('dataOto', $dataOto);
     }
 
-    public function tambahOto()
-    {
-        return view('Template UI.admin.admin-category-page.oto.tambah-oto');
+
+
+
+    //CREATE DATA OTO
+
+    public function tambahOto(){
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.oto-customer.input-oto-customer');
+        } else {
+            return view('Template UI.admin.admin-category-page.oto.tambah-oto');
+        }
+
     }
 
     public function insertdataoto(Request $request)
@@ -45,10 +59,10 @@ class OtomotifController extends Controller
         $request->merge(['upload_by_user_name' => $user->name]);
         $request->merge(['no_hp_uploader' => $user->phone]);
 
-        // Cek apakah ada file foto yang diunggah
         if ($request->hasFile('foto1')) {
             $request->file('foto1')->move('fotoOto/', $request->file('foto1')->getClientOriginalName());
         }
+
         if ($request->hasFile('foto2')) {
             $request->file('foto2')->move('fotoOto2/', $request->file('foto2')->getClientOriginalName());
         }
@@ -78,23 +92,45 @@ class OtomotifController extends Controller
 
         $data->save();
 
-        return redirect()->route('otomotif');
+        // Redirect ke halaman daftar otomotif
+        if ($user->role == 'user') {
+            return redirect()->route('dashboardOto');
+        } else {
+            return redirect()->route('otomotif');
+        }
+
+
     }
 
     public function tampildataoto($id)
     {
         $data = Otomotif::find($id);
-        return view('Template UI.admin.admin-category-page.oto.update-oto', compact('data'));
+        $user = Auth::user();
+        if ($user->role === 'user') {
+            return view('Template UI.customer.oto-customer.update-oto', compact('data'));
+        } else {
+            return view('Template UI.admin.admin-category-page.oto.update-oto', compact('data'));
+        }
     }
 
     public function updatedataoto(Request $request, $id)
     {
         $data = Otomotif::find($id);
         $data->update($request->all());
-        if ($data->status_etalase == 'approved') {
-            return redirect()->route('etalase-oto');
+
+        $user = Auth::user();
+
+        if ($user->role == 'user') {
+
+            return redirect()->route('dashboardOto');
+
         } else {
-            return redirect()->route('otomotif');
+
+            if ($data->status_etalase == 'approved') {
+                return redirect()->route('etalase-oto');
+            } else {
+                return redirect()->route('otomotif');
+            }
         }
     }
 
@@ -102,10 +138,19 @@ class OtomotifController extends Controller
     {
         $data = Otomotif::find($id);
         $data->delete();
-        if ($data->status_etalase == 'approved') {
-            return redirect()->route('etalase-oto');
+
+        $user = Auth::user();
+
+        if ($user->role == 'user') {
+
+            return back()->with('success', 'Product has been deleted.');
         } else {
-            return redirect()->route('otomotif');
+
+            if ($data->status_etalase == 'approved') {
+                return redirect()->route('etalase-oto');
+            } else {
+                return redirect()->route('otomotif');
+            }
         }
     }
 
@@ -148,6 +193,8 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
 
+        // dd($otomotif);
+
         if ($request->hasFile('foto_ktp_purchaser')) {
             $request->file('foto_ktp_purchaser')->move('fotoKtp/', $request->file('foto_ktp_purchaser')->getClientOriginalName());
             $otomotif->foto_ktp_purchaser = $request->file('foto_ktp_purchaser')->getClientOriginalName();
@@ -155,8 +202,15 @@ class OtomotifController extends Controller
             $otomotif->save();
         }
 
+        // dd($request);
+
+        // dd($otomotif);
+
         $otomotif->foto_ktp_purchaser = $request->hasFile('foto_ktp_purchaser') ? $request->file('foto_ktp_purchaser')->getClientOriginalName() : null;
 
+
+        // $otomotif->no_ktp_purchaser = $user->nik;
+        // $otomotif->foto_ktp_purchaser = $user->fotoktp;
         if ($user->nik != null) {
             $otomotif->no_ktp_purchaser = $user->nik;
 
@@ -169,6 +223,9 @@ class OtomotifController extends Controller
 
         $otomotif->status_pembelian = 'purchased';
         $otomotif->save();
+
+
+
 
         // Redirect to the show view or any other relevant page
         return redirect()->route('landing');
@@ -253,4 +310,10 @@ class OtomotifController extends Controller
         $user = Auth::user();
         return view('Template UI.customer.konfirmasi-oto', compact('data', 'user'));
     }
+
+    public function exportdataexcel(){
+        return Excel::download(new DataTransaksiOto, 'dataPenjualanOto.xlsx');
+    }
+
+
 }

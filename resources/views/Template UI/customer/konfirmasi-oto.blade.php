@@ -5,7 +5,7 @@
     </div>
 
 
-    <form action="{{ route('otomotifs.purchased', $data->id) }}" method="POST">
+    <form action="{{ route('otomotifs.purchased', $data->id) }}" method="POST" enctype="multipart/form-data" >
         @csrf
 
         <div class="form-input">

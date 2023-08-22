@@ -116,6 +116,35 @@ class UmrohController extends Controller
         }
 
     }
+
+    public function deletetransaksiumroh($id)
+    {
+        // Begin transaction
+        DB::beginTransaction();
+
+        try {
+            // Hapus semua baris terkait di tabel jemaah yang merujuk pada extended_umrah ini
+            Jemaah::where('id_extended_umroh', $id)->delete();
+
+            // Hapus data dari tabel extended_umrah
+            $data = ExtendedUmrah::findOrFail($id);
+            $data->delete();
+
+            // Commit transaction
+            DB::commit();
+
+            return redirect()->route('tampilkandatatransaksi')->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Rollback transaction in case of failure
+            DB::rollback();
+
+            return redirect()->route('tampilkandatatransaksi')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
+    }
+
+
+
+
     // Method untuk menampilkan data umroh yang sudah di approve dan belum di beli
     public function approve(Request $request, $id)
     {
@@ -352,13 +381,13 @@ class UmrohController extends Controller
         $etalase->save();
         if (Auth::user()->role == 'admin') {
             return redirect()
-            ->route('umroh')
-            ->with('success', 'Data jemaah berhasil disimpan.');
+                ->route('umroh')
+                ->with('success', 'Data jemaah berhasil disimpan.');
 
         } else {
             return redirect()
-            ->route('landing')
-            ->with('success', 'Data jemaah berhasil disimpan.');
+                ->route('landing')
+                ->with('success', 'Data jemaah berhasil disimpan.');
             # code...
         }
     }
@@ -485,13 +514,26 @@ class UmrohController extends Controller
     {
         $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
         $dataOto = Otomotif::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         $dataprop = Properti::where('status_etalase', 'approved')
-        ->where('status_pembelian', 'not yet purchased')
-        ->get();
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
         // dd($dataproperti);
-        return view('Template UI.customer.landing', compact('data','dataOto','dataprop'));
+        return view('Template UI.customer.landing', compact('data', 'dataOto', 'dataprop'));
+    }
+
+    public function landingGuest()
+    {
+        $data = EtalaseUmrah::where('status_etalase', 'approved')->get();
+        $dataOto = Otomotif::where('status_etalase', 'approved')
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
+        $dataprop = Properti::where('status_etalase', 'approved')
+            ->where('status_pembelian', 'not yet purchased')
+            ->get();
+        // dd($dataproperti);
+        return view('welcome', compact('data', 'dataOto', 'dataprop'));
     }
 
     //DETAIL RETRIEVE UMROH

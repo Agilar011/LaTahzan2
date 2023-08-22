@@ -33,7 +33,8 @@ class User extends Authenticatable
         'phone',
         'role',
         'nik',
-        'fotoktp'
+        'fotoktp',
+        'profile_photo_path',
     ];
 
     /**

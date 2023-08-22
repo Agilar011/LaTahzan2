@@ -3,7 +3,7 @@
 </x-app-layout>
 
 
-    @extends('Template UI.layouts.admin-sidebar')
+@extends('Template UI.layouts.admin-sidebar')
 @section('content')
     <h1>Etalase Otomotif</h1>
 
@@ -53,7 +53,13 @@
                     <td>
                         <img src="{{ asset('fotoBpkb/' . $row->foto_bpkb) }}" height="50px">
                     </td>
-                    <td rowspan="3">{{ $row->deskripsi }}</td>
+                    <td rowspan="3">
+                        @if (strlen($row->deskripsi) > 100)
+                            {{ substr($row->deskripsi, 0, 100) }}...
+                        @else
+                            {{ $row->deskripsi }}
+                        @endif
+                    </td>
                     {{-- <td>{{ $row->merk }}</td> --}}
                     <td rowspan="2">{{ $row->kapasitas_mesin }}cc</td>
                     <td rowspan="2">{{ $row->tahun }}</td>
@@ -63,7 +69,8 @@
                     <td rowspan="3">
                         <div class="btn">
                             <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
-                            <a href="/deletedataoto/{{ $row->id }}" class="btn-hapus">Hapus</a>
+                            <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
+                            {{-- <a href="#" class="btn-hapus delete" data-id="{{ $row->id}}">Hapus</a> --}}
                             {{-- <form action="{{ route('otomotifs.purchased', $row->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn-ekspor">Purchase</button>
@@ -99,4 +106,26 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+        $('.delete').click(function() {
+            var inputId = $(this).attr('data-id');
+            swal({
+                    title: "Anda Yakin?",
+                    text: "Data yang di hapus tidak akan bisa dikembalikan ",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "/deletedataoto/" + inputId;
+                        swal("Data Berhasil Di Hapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Berhasil Membatalkan");
+                    }
+                });
+        });
+    </script>
 @endsection

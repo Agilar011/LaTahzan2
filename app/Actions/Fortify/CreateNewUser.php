@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\RoleUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -26,10 +27,21 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        // Buat pengguna baru
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'address' => $input['address'],
+            'phone' => $input['phone'],
+            'birthdate' => $input['birthdate'],
+            'birthplace' => $input['birthplace'],
         ]);
+
+        // Tambahkan pengguna ke tabel role_user dengan role_id = 2
+        $user->roles()->attach(2);
+
+        return $user;
     }
 }
+

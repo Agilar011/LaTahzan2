@@ -81,6 +81,12 @@
                 @endif
             @endif
         </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="nik" value="{{ __('Nomor Induk Kependudukan') }}" />
+            <x-input id="nik" type="number" inputmode="numeric" class="mt-1 block w-full" wire:model.defer="state.nik" />
+            <x-input-error for="nik" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

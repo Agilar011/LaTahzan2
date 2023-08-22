@@ -1,5 +1,3 @@
-
-
 @extends('Template UI.layouts.main')
 
 @section('title')
@@ -16,16 +14,16 @@
                     </div>
                     <div class="small-img-row">
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto1) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoOto/' . $data->foto1) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto2) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoOto/' . $data->foto2) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto3) }}" alt="" width="100%" class="small-img"
-                                onclick="changeProductImage(this)">
+                            <img src="{{ asset('fotoOto/' . $data->foto3) }}" alt="" width="100%"
+                                class="small-img" onclick="changeProductImage(this)">
                         </div>
                     </div>
                 </div>
@@ -48,8 +46,8 @@
                         <form action="{{ route('tampilkankonfirmasioto', $data->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn-beli">Pesan Sekarang</button>
-                            {{-- <a href="" class="btn-beli">Pesan Sekarang</a> --}}
                         </form>
+
                         {{-- <h3>Deskripsi : <i class="fa fa-indent"></i></h3>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi neque velit doloremque cupiditate magnam impedit sequi debitis amet id culpa quaerat veritatis, facere totam fuga veniam sit odio ratione odit cum. Vero corrupti officia tenetur sed autem consectetur deserunt!</p>
@@ -89,41 +87,27 @@
                 </div>
 
                 <div class="row2-col2">
-                    <h3>Fasilitas Didapat : <i class="fa fa-indent"></i></h3>
+                    <h3 style="font-weight: bold;"><i class="fa fa-indent"></i>&nbsp;Fasilitas Didapat :</h3>
 
-                    <p>
-                    <ul>
-                        <li>
-                            <p>Maskapai : {{ $data->Maskapai }}</p>
-                        </li>
-                        <li>
-                            <p>Hotel Madinah: Manazel Falah/*3 Setaraf (jarak 200 m-an/5 menitan ke Masjid Nabawi)</p>
-                        </li>
-                        <li>
-                            <p>Hotel Makkah: Lemeridien Towers/ *3 setaraf (2 menit via Shuttle Bus + 5 menitn jalan
-                                kaki ke Masjidil Haram)</p>
-                        </li>
-                        <li>
-                            <p>City Tour Madinah & Makkah</p>
-                        </li>
-                        <li>
-                            <p>Perlengkapan Umroh (Koper, Tas Kabin, Tas Paspor, Kain Ihram (laki-laki),
-                                Sabuk Ihram (laki-kai), Mukena, Khimar, Tas Serut, Bahan Batik Seragam, Buku
-                                Manasik)</p>
-                        </li>
-                        <li>
-                            <p>Bagasi 23 kg x2 + 7 kg kabin</p>
-                        </li>
-                        <li>
-                            <p>Manasik Umroh Offline di Hotel</p>
-                        </li>
-                        <li>
-                            <p>Kereta Cepat Madinah-Makkah</p>
-                        </li>
-                    </ul>
-                    </p>
+                    <div class="row2-col2">
+                        @if ($data->foto_bpkb != null)
+                            <div <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <p style="font-size: 24px; color: #28a745; margin-right: 10px;">&#10004;</p>
+                                <p style="font-size: 16px;">BPKB Tersedia</p>
+                            </div>
+                        @else
+                        @endif
+                        @if ($data->foto_stnk != null)
+                            <div <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <p style="font-size: 24px; color: #28a745; margin-right: 10px;">&#10004;</p>
+                                <p style="font-size: 16px;">STNK Tersedia</p>
+                            </div>
+                        @else
+                        @endif
+
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
@@ -178,9 +162,5 @@
             // Menambahkan kelas 'clicked' pada elemen gambar yang diklik
             clickedImage.parentElement.classList.add('clicked');
         }
-
-
     </script>
 @endsection
-
-

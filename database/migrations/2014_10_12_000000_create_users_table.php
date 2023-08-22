@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('birthplace')->nullable();
@@ -24,7 +23,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('role')->default('user');
             $table->string('nik')->nullable();
-            $table->string('fotoktp')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->string('profile_photo_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
