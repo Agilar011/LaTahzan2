@@ -24,7 +24,7 @@
 
 
 
-    <a href="/tambahOto" class="btn-tambahdata"> + Tambah Produk</a>
+    <a href="/check-kota" class="btn-tambahdata"> + Tambah Produk</a>
 
     <table class="content-table">
         <thead>

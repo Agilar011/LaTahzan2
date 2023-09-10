@@ -362,7 +362,7 @@ class UmrohController extends Controller
             // Add other jemaah-related data
 
             if ($request->status_vaksin[$i] == 'Belum') {
-                $jemaah->biaya_jasa_vaksin = 300000;
+                $jemaah->biaya_jasa_vaksin = 200000;
             }
             if ($request->status_paspor[$i] == 'Belum') {
                 $jemaah->biaya_jasa_paspor = 500000;

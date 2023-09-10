@@ -58,7 +58,13 @@
                      <td>
                          <img src="{{ asset('fotoBpkb/' . $row->foto_bpkb) }}" height="50px">
                      </td>
-                     <td rowspan="3">{{ $row->deskripsi }}</td>
+                     <td rowspan="3">
+                        @if (strlen($row->deskripsi) > 100)
+                            {{ substr($row->deskripsi, 0, 100) }}...
+                        @else
+                            {{ $row->deskripsi }}
+                        @endif
+                    </td>
                      {{-- <td>{{ $row->merk }}</td> --}}
                      <td>{{ $row->kapasitas_mesin }}cc</td>
                      <td rowspan="2">{{ $row->tahun }}</td>
@@ -72,7 +78,7 @@
                          <div class="btn">
                              <a href="/tampilkandataoto/{{ $row->id }}" class="btn-update">Update</a>
                              <a href="#" class="btn-hapus delete" data-id="{{ $row->id }}">Hapus</a>
-                             <form action="{{ route('otomotif.approvepayment', $row->id) }}" method="POST">
+                             <form id="data-form" action="{{ route('otomotif.approvepayment', $row->id) }}" method="POST">
                                  @csrf
                                  <button type="submit" class="btn-ekspor">Approve Payment</button>
                              </form>
@@ -119,7 +125,7 @@
             var inputId = $(this).attr('data-id');
             swal({
                     title: "Anda Yakin?",
-                    text: "Data yang di hapus tidak akan bisa dikembalikan",
+                    text: "Data akan dikembalikan ke Etalase",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -135,5 +141,28 @@
                     }
                 });
         });
+
+        $(document).ready(function() {
+            $('#data-form').submit(function(event) {
+                event.preventDefault();
+                var inputId = $(this).find('.btn-ekspor').attr('data-id');
+                swal({
+                    title: "Anda Yakin?",
+                    text: "Pastikan anda telah menerima pembayaran dari Customer. Dengan anda mengklik tombol ini maka status transaksi telah Berhasil dan Disetujui!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willAdd) => {
+                    if (willAdd) {
+                        // Lanjutkan dengan mengirimkan formulir setelah konfirmasi
+                        $(this).off("submit").submit();
+                    } else {
+                        swal("Tambah Etalase Dibatalkan");
+                    }
+                });
+            });
+        });
+
+
     </script>
  @endsection

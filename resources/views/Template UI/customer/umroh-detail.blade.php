@@ -14,16 +14,20 @@
                     </div>
                     <div class="small-img-row">
                         <div class="small-img-col">
-                            <img src="/fotoUmroh/kabah2.jpg" alt="" width="100%" class="small-img"
+                            <img src="/img/Foto_hotel.jpg" alt="" width="100%" class="small-img"
                                 onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="/fotoOto/Harga-Yamaha-R25-bekas.jpg" alt="" width="100%" class="small-img"
+                            <img src="/img/bus.jpeg" alt="" width="100%" class="small-img"
                                 onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="/fotoStnk/planet9_Wallpaper_5000x2813.jpg" alt="" width="100%"
+                            <img src="/img/qatar.jpg" alt="" width="100%"
                                 class="small-img" onclick="changeProductImage(this)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="/fotoUmroh/kabah.jpeg" alt="" width="100%" class="small-img"
+                                onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
                             <img src="/fotoUmroh/kabah.jpeg" alt="" width="100%" class="small-img"

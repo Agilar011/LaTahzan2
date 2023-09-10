@@ -30,14 +30,14 @@
                 <input type="number" name="luas" value="{{ $data->luas }}">
                 <label for="">Harga</label>
                 <input type="number" name="harga" value="{{ $data->harga }}">
-                <label for="">Foto</label>
+                {{-- <label for="">Foto</label>
                 <input type="file" name="foto1" value="{{ $data->foto1 }}">
                 <label for="">Foto</label>
                 <input type="file" name="foto2" value="{{ $data->foto2 }}">
                 <label for="">Foto</label>
                 <input type="file" name="foto3" value="{{ $data->foto3 }}">
                 <label for="">Foto Serifikat</label>
-                <input type="file" name="foto_sertifikat" value="{{ $data->foto_sertifikat }}">
+                <input type="file" name="foto_sertifikat" value="{{ $data->foto_sertifikat }}"> --}}
 
                 <button type="submit">Tambahkan Produk</button>
             </div>

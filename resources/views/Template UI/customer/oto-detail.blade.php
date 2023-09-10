@@ -18,11 +18,11 @@
                                 class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto2) }}" alt="" width="100%"
+                            <img src="{{ asset('fotoOto2/' . $data->foto2) }}" alt="" width="100%"
                                 class="small-img" onclick="changeProductImage(this)">
                         </div>
                         <div class="small-img-col">
-                            <img src="{{ asset('fotoOto/' . $data->foto3) }}" alt="" width="100%"
+                            <img src="{{ asset('fotoOto3/' . $data->foto3) }}" alt="" width="100%"
                                 class="small-img" onclick="changeProductImage(this)">
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <p class="attr-tgl">Tahun Pembuatan : <span>&nbsp; {{ $data->tahun }} </span>
                         </p>
                         <p class="attr">Merk : <span>&nbsp; {{ $data->merk }}</span></p>
-                        <p class="attr">CP. Admin : <span>&nbsp; {{ $data->kapasitas_mesin }}&nbsp;cc</span></p>
+                        <p class="attr">Kapasitas Mesin : <span>&nbsp; {{ $data->kapasitas_mesin }}&nbsp;cc</span></p>
                         {{-- <select name="" id="">
                         <option value="">Pilih Warna</option>
                         <option value="">Merah</option>

@@ -6,7 +6,6 @@ use App\Models\Otomotif;
 use App\Models\laporan_transaksi_otomotif;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -154,21 +153,37 @@ class OtomotifController extends Controller
 
     public function deletedataoto($id){
         $data = Otomotif::find($id);
-        $data->delete();
+
+        if ($data->status_pembelian === 'pending') {
+            $data->status_pembelian = 'not yet purchased';
+            $data->purchased_by_user_name = null;
+            $data->purchased_by_user_phone_number = null;
+            $data->purchased_by_user_id = null;
+            $data->no_ktp_purchaser = null;
+            $data->foto_ktp_purchaser = null;
+
+            $data->save();
+        } else {
+            $data->delete();
+        }
+
 
         $user = Auth::user();
+        return back()->with('success', 'Produk berhasil di hapus');
 
-        if ($user->role == 'user') {
 
-            return back()->with('success', 'Product has been deleted.');
-        } else {
 
-            if ($data->status_etalase == 'approved') {
-                return redirect()->route('etalase-oto');
-            } else {
-                return redirect()->route('otomotif');
-            }
-        }
+        // if ($user->role == 'user') {
+
+        //     return back()->with('success', 'Product has been deleted.');
+        // } else {
+
+        //     if ($data->status_etalase == 'approved') {
+        //         return redirect()->route('etalase-oto');
+        //     } else {
+        //         return redirect()->route('otomotif');
+        //     }
+        // }
 
     }
     // approve method
@@ -214,6 +229,8 @@ class OtomotifController extends Controller
         $otomotif->purchased_by_user_id = $user->id;
         $otomotif->purchased_by_user_name = $user->name;
         $otomotif->purchased_by_user_phone_number = $user->phone;
+        $otomotif->status_etalase = 'approved';
+        $otomotif->status_pembelian = 'pending';
 
         // dd($otomotif);
 
@@ -244,7 +261,6 @@ class OtomotifController extends Controller
         }
 
 
-        $otomotif->status_pembelian = 'purchased';
         $otomotif->save();
 
 
@@ -257,9 +273,17 @@ class OtomotifController extends Controller
     // show approve the productpublic function showPurchasedPropertys()
     public function showPurchasedOtomotifs()
 {
-    $purchasedOtomotifs = Otomotif::where('status_pembelian', 'purchased')->get();
+    $purchasedOtomotifs = Otomotif::where('status_pembelian', 'pending')->get();
     return view('Template UI.admin.admin-category-page.oto.trx-oto', compact('purchasedOtomotifs'));
 }
+
+public function showInvoiceOtomotifs($id)
+{
+    $data = Otomotif::find($id);
+    $data->update($request->all());
+    return view('Template UI.customer.invoice-oto', compact('data'));
+}
+
 // method approve payment
 public function approved_payment(Request $request, $id)
 {
@@ -273,6 +297,7 @@ public function approved_payment(Request $request, $id)
     // Mark the product as purchased and associate it with the logged-in user
     $otomotif->approved_payment_by_user_id = $user->id;
     $otomotif->approved_payment_by_user_name = $user->name;
+    $otomotif->status_pembelian = 'purchased';
     $otomotif->save();
 
     $laporan_transaksi_otomotf = laporan_transaksi_otomotif::create([
@@ -308,7 +333,9 @@ public function approved_payment(Request $request, $id)
         'status_etalase' => $otomotif->status_etalase, // tambahkan koma di sini
         'status_pembelian' => $otomotif->status_pembelian, // tambahkan koma di sini
         'approved_payment_by_user_id' => $otomotif->approved_payment_by_user_id, // tambahkan koma di sini
-        'approved_payment_by_user_name' => $otomotif->approved_payment_by_user_name
+        'approved_payment_by_user_name' => $otomotif->approved_payment_by_user_name,
+        'updated_at' => $otomotif->updated_at,
+        'created_at' => $otomotif->created_at,
     ]);
     $laporan_transaksi_otomotf->save();
 

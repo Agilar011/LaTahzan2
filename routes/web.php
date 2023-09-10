@@ -67,7 +67,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/input-oto', [OtomotifController::class, 'index'])->name('otomotif')->middleware('hakAkses');
     Route::get('/tambahOto', [OtomotifController::class, 'tambahOto'])->name('tambahOto'); //----------------------------------------------------------------------------------->Ini masalah input oto customer
-    Route::post('/insertdataoto', [OtomotifController::class, 'insertdataoto'])->name('insertdataoto'); //----------------------------------------------------------------------------------->Ini masalah input oto customer
+    Route::post('/insertdataoto', [OtomotifController::class, 'insertdataoto'])->name('insertdataoto');
+    Route::get('/check-kota', function () {
+        return view('Template UI.customer.oto-customer.oto-kota-check');
+    }); //----------------------------------------------------------------------------------->Ini masalah input oto customer
+    Route::get('/invoice-oto', [OtomotifController::class, 'showInvoiceOtomotifs'])->name('invoice-oto');//--------------------------------------------------> Invoice Oto
     Route::get('/crd-oto', [OtomotifController::class, 'showApprovedNotPurchasedOtomotifs'])->name('etalase-oto')->middleware('hakAkses');
     Route::middleware('auth')->post('/Otomotif/{otomotif}/approve', [OtomotifController::class, 'approve'])->name('otomotifs.approve')->middleware('hakAkses');
     Route::middleware('auth')->post('/Otomotif/{otomotif}/purchased', [OtomotifController::class, 'purchase'])->name('otomotifs.purchased'); //-----------------------------------------------------------------> pembelian barang customer

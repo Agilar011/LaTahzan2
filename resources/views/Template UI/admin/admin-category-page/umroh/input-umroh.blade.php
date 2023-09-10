@@ -128,7 +128,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>{{ $row->deskripsi }}</td>
+                        <td>@if (strlen($row->deskripsi) > 100)
+                            {{ substr($row->deskripsi, 0, 100) }}...
+                        @else
+                            {{ $row->deskripsi }}
+                        @endif</td>
                         <td>{{ $row->durasi }} Hari</td>
                         <td>{{ $row->No_hp_uploader }}</td>
                         <td>{{ $row->Hotel }}</td>

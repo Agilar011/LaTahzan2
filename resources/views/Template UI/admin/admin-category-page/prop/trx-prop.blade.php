@@ -114,7 +114,7 @@
            var inputId = $(this).attr('data-id');
            swal({
                    title: "Anda Yakin?",
-                   text: "Data yang di hapus tidak akan bisa dikembalikan",
+                   text: "Data akan dikembalikan ke Etalase",
                    icon: "warning",
                    buttons: true,
                    dangerMode: true,

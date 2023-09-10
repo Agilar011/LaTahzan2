@@ -201,6 +201,32 @@
     font-size: 14px;
 }
 
+.kota-check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+}
+
+.kota-check label{
+    font-size: 18px;
+}
+
+.kota-check select{
+    width: 30%;
+    height: 70px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.kota-check button{
+    background-color: #089d46;
+    padding: 9px 30px;
+    border-radius: 10px;
+    height: 70px;
+    color: white;
+}
+
 @media (max-width: 500px) {
     .content-table thead {
         display: none;

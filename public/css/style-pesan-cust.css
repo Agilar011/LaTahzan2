@@ -50,9 +50,8 @@
 }
 
 .col-2 .foto-umroh {
-    max-width: 100%;
-    padding: 50px 0;
-    border-radius: 20px;
+    width: 100%;
+    max-height: 460px;
 }
 
 .small-img-col {
@@ -61,7 +60,7 @@
     align-items: center;
     height: 120px;
     cursor: pointer;
-    margin: 5px 0;
+    margin: 15px 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* Nilai bayangan dapat disesuaikan */
 }
 
@@ -74,12 +73,12 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* Nilai bayangan dapat disesuaikan */
-    width: 100%;
+    height: 460px;
     border-radius: 20px;
 }
 
 .single-product .main-img-size .foto-umroh{
-    height: 400px;
+
 }
 
 .single-product .col-2 img {
@@ -95,6 +94,7 @@
 .col-2 .information {
     background-color: #fbfbfb;
     padding: 30px 35px;
+    height: 590px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Nilai bayangan dapat disesuaikan */
 }
 
